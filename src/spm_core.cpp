@@ -293,7 +293,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   filename = prefix + "y_tw.dat";
   fp = fopen(filename.c_str(), "w");
   for (unsigned i = 0; i < r.y.size(); i++) {
-    fprintf(fp, "%.5e %.5e %.5e %.5e\n", (double) i / (double) r.y.size(), r.y[i], r.y_recovered_x[i],
+    fprintf(fp, "%.5e %.5e %.5e %.5e\n", static_cast<double>(i) / r.y.size(), r.y[i], r.y_recovered_x[i],
             r.y_recovered_z1[i]);
   }
   fclose(fp);

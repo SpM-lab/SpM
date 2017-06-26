@@ -1,0 +1,15 @@
+# INPUT/OUTPUT
+statistics="boson"
+beta=100
+filein_G="Gtau.in"
+column=1  
+fileout_spec="spectrum.dat"
+# OMEGA
+Nomega=1001
+omegamin=-4
+omegamax=4
+# ADMM
+lambdalogbegin=2
+lambdalogend=-8
+tolerance=1e-10
+maxiteration=1000

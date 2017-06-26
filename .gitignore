@@ -1,0 +1,10 @@
+*.o
+*.out
+*~
+
+*.dat
+*.pdf
+cmake-build-*
+build
+*.idea
+.DS_Store

@@ -96,25 +96,25 @@ static void read_Gtau_postfix(const char *filename, int col, vector<type_gtau> &
 
 static type_gtau &operator+=(type_gtau &g1, const type_gtau &g2) {
   assert(g1.size() == g2.size());
-  for (int i = 0; i < g1.size(); i++) g1[i] += g2[i];
+  for (unsigned i = 0; i < g1.size(); i++) g1[i] += g2[i];
   return g1;
 }
 
 static type_gtau &operator/=(type_gtau &g1, double a) {
-  for (int i = 0; i < g1.size(); i++) g1[i] /= a;
+  for (unsigned i = 0; i < g1.size(); i++) g1[i] /= a;
   return g1;
 }
 
 static type_gtau average(vector<type_gtau> &g_array) {
   type_gtau ave(g_array[0].size(), 0.);
-  for (int i = 0; i < g_array.size(); i++) ave += g_array[i];
+  for (unsigned i = 0; i < g_array.size(); i++) ave += g_array[i];
   ave /= double(g_array.size());
   return ave;
 }
 
-static type_gtau average_rest(vector<type_gtau> &g_array, int k) {
+static type_gtau average_rest(vector<type_gtau> &g_array, unsigned k) {
   type_gtau ave(g_array[0].size(), 0.);
-  for (int i = 0; i < g_array.size(); i++) if (i != k) ave += g_array[i];
+  for (unsigned i = 0; i < g_array.size(); i++) if (i != k) ave += g_array[i];
   ave /= double(g_array.size() - 1);
   return ave;
 }
@@ -122,7 +122,7 @@ static type_gtau average_rest(vector<type_gtau> &g_array, int k) {
 // return -vector
 static vector<double> operator-(vector<double> &v) {
   vector<double> u(v.size());
-  for (int i = 0; i < v.size(); i++) u[i] = -v[i];
+  for (unsigned i = 0; i < v.size(); i++) u[i] = -v[i];
   return u;
 }
 
@@ -182,7 +182,7 @@ int main(int argc, char *argv[]) {
     read_Gtau_postfix(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col, Gtau_samples);
     printf("size=%d\n", Gtau_samples.size());
     Gtau = average(Gtau_samples);
-    for (int i = 0; i < Gtau_samples.size(); i++) Gtau_rest.push_back(average_rest(Gtau_samples, i));
+    for (unsigned i = 0; i < Gtau_samples.size(); i++) Gtau_rest.push_back(average_rest(Gtau_samples, i));
   }
 
   Kernel kernel;
@@ -194,7 +194,7 @@ int main(int argc, char *argv[]) {
 
   if (setInitial.fileInfo.print_level >= 2) {
     FILE *fp = fopen((outputDir + "mesh_tau.dat").c_str(), "w");
-    for (int i = 0; i < tau.size(); i++) fprintf(fp, "%d %.5e %.5e\n", i, tau[i], tau[i] / beta);
+    for (unsigned i = 0; i < tau.size(); i++) fprintf(fp, "%d %.5e %.5e\n", i, tau[i], tau[i] / beta);
     fclose(fp);
     printf(" 'mesh_tau.dat'\n");
   }
@@ -208,7 +208,7 @@ int main(int argc, char *argv[]) {
   printf(" d_omega = %lf\n", d_omega);
   if (setInitial.fileInfo.print_level >= 2) {
     FILE *fp = fopen((outputDir + "mesh_omega.dat").c_str(), "w");
-    for (int i = 0; i < omega.size(); i++) fprintf(fp, "%d %.5e %.5e\n", i, omega[i], omega[i] * beta);
+    for (unsigned i = 0; i < omega.size(); i++) fprintf(fp, "%d %.5e %.5e\n", i, omega[i], omega[i] * beta);
     fclose(fp);
     printf(" 'mesh_omega.dat'\n");
   }
@@ -265,7 +265,7 @@ int main(int argc, char *argv[]) {
   {
     string fileout_lambda("lambda_dep.dat");
     FILE *fp = fopen((outputDir + fileout_lambda).c_str(), "w");
-    for (int l = 0; l < lambda.size(); l++) {
+    for (unsigned l = 0; l < lambda.size(); l++) {
       fprintf(fp, "%.5e %.5e %.5e %.5e %.5e\n", lambda[l], vmse[l], vmse_full[l], l1_norm[l], valid[l]);
     }
     fclose(fp);

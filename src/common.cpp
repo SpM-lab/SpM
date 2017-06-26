@@ -21,7 +21,7 @@ using namespace std;
 // converter: vector -> CPPL
 CPPL::dcovector vec2cppl_col(const vector<double> &v) {
 	CPPL::dcovector u(v.size());
-	for (int i = 0; i < v.size(); i++) {
+	for (unsigned i = 0; i < v.size(); i++) {
 		u(i) = v[i];
 	}
 	return u;
@@ -147,4 +147,3 @@ CPPL::dgematrix arrange_matrix_col(const CPPL::dgematrix &mat_full, const vector
 	}
 	return mat;
 }
-

@@ -223,7 +223,7 @@ int SPM_Core::find_kink(std::vector<double> &x, std::vector<double> &y, std::vec
   // diff = log(f) - log(y)
   diff.assign(y.size(), 0);
   log_f.assign(y.size(), 0);
-  for (int l = 0; l < y.size(); l++) {
+  for (unsigned l = 0; l < y.size(); l++) {
     log_f[l] = (b * log(x[l]) + log_a);
     diff[l] = (log_f[l] - log(y[l]));
   }
@@ -248,7 +248,7 @@ void SPM_Core::GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse
   _vmse_full.resize(info.size());
   _vl1_norm.resize(info.size());
   _valid.resize(info.size());
-  for (int i = 0; i < info.size(); i++) {
+  for (unsigned i = 0; i < info.size(); i++) {
     _vmse[i] = info[i].mse;
     _vmse_full[i] = info[i].mse_full;
     _vl1_norm[i] = info[i].l1_norm;
@@ -263,7 +263,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   // x in SV basis
   filename = prefix + "x_sv.dat";
   fp = fopen(filename.c_str(), "w");
-  for (int i = 0; i < r.xsv.size(); i++) {
+  for (unsigned i = 0; i < r.xsv.size(); i++) {
     fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i], r.z1sv[i], r.z2sv[i]);
     // fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i]/dw, r.z1sv[i]/dw, r.z2sv[i]/dw);
     // fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i]/sqrt(dw), r.z1sv[i]/sqrt(dw), r.z2sv[i]/sqrt(dw));
@@ -274,7 +274,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   // x in tau-omega basis
   filename = prefix + "x_tw.dat";
   fp = fopen(filename.c_str(), "w");
-  for (int i = 0; i < r.x.size(); i++) {
+  for (unsigned i = 0; i < r.x.size(); i++) {
     fprintf(fp, "%.5e %.5e %.5e %.5e\n", w[i], r.x[i] / dw, r.z1[i] / dw, r.z2[i] / dw);
   }
   fclose(fp);
@@ -283,7 +283,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   // y in SV basis
   filename = prefix + "y_sv.dat";
   fp = fopen(filename.c_str(), "w");
-  for (int i = 0; i < r.ysv.size(); i++) {
+  for (unsigned i = 0; i < r.ysv.size(); i++) {
     fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.ysv[i], r.ysv_recovered_x[i], r.ysv_recovered_z1[i]);
   }
   fclose(fp);
@@ -292,11 +292,10 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   // y in tau-omega basis
   filename = prefix + "y_tw.dat";
   fp = fopen(filename.c_str(), "w");
-  for (int i = 0; i < r.y.size(); i++) {
+  for (unsigned i = 0; i < r.y.size(); i++) {
     fprintf(fp, "%.5e %.5e %.5e %.5e\n", (double) i / (double) r.y.size(), r.y[i], r.y_recovered_x[i],
             r.y_recovered_z1[i]);
   }
   fclose(fp);
   printf("'%s'\n", filename.c_str());
 }
-

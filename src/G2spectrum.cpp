@@ -180,7 +180,7 @@ int main(int argc, char *argv[]) {
     Gtau = read_Gtau(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col);
   } else {  // cross validation
     read_Gtau_postfix(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col, Gtau_samples);
-    printf("size=%d\n", Gtau_samples.size());
+    printf("size=%lu\n", Gtau_samples.size());
     Gtau = average(Gtau_samples);
     for (unsigned i = 0; i < Gtau_samples.size(); i++) Gtau_rest.push_back(average_rest(Gtau_samples, i));
   }

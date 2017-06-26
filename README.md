@@ -8,7 +8,7 @@ The algorithm is written in the article
 
 ## Licence
 
-The distribution of the program package and the source codes for HPhi follow GNU General Public License version 3 ([GPL v3](http://www.gnu.org/licenses/gpl-3.0.en.html)).
+This package is distributed under GNU General Public License version 3 ([GPL v3](http://www.gnu.org/licenses/gpl-3.0.en.html)).
 
 ## Author
 Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka, Masayuki Ohzeki
@@ -21,28 +21,29 @@ Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka, Masayuki Ohzeki
 
 ## How to build
 
+### Getting the source codes
+
+Download the latest source codes by
+
+	$ git clone https://github.com/j-otsuki/SpM.git spm.src
+
+Then, the source codes are downloaded in the directory ``spm.src``.
+
 ### Using Cmake
 
-1. Create an empty ``spm.build.dir`` directory to compile SPM:
+1. Create an empty directory (named ``spm.build`` in the following) and move into it:
 
-	``
-	$ mkdir spm.build.dir && cd spm.build.dir
-	``
+		$ mkdir spm.build && cd spm.build
 
-2. Call cmake:
+1. Call cmake:
 
-	``
-    $ cmake ../spm.src
-	``
+		$ cmake ../spm.src
 
-3. Compile the code:
+1. Compile the code:
 
-	``
-	$  make
-	``
+		$  make
 
-
-Then, the executable file **SpM.out**  is created in the ``spm.build.dir/src`` directory.
+Then, the executable file ``SpM.out``  is created in the ``spm.build/src`` directory.
 
 ## Running samples
 
@@ -57,7 +58,7 @@ There are two ways to run the program.
 
 	A simple way is to give parameters in a text file, and pass it by -i option:
 
-		$  spm.build.dir/src/SpM.out -i param.in
+		$  spm.build/src/SpM.out -i param.in
 
 	Typical input is given in ``param.in`` in the sample directories.
 	A default value is used for parameters not given in the file.
@@ -108,7 +109,7 @@ There are two ways to run the program.
 In SPM, the values of Green's function is only used for calculation, i.e. tau is automatically determined by the beta and the step. Please indicate the column number where the values of G(tau) are stored by "column" in the prameter file.
 
 
-# Output data
+## Output data
 Calculated results are produced in directory 'output'.
 The list of files and brief explanations are given below:
 
@@ -133,7 +134,7 @@ output
 │   ├── ...              :            for all values of lambda
 ```
 
-# How to generate PDFs
+## How to generate PDFs
 
 Gnuplot script files for generating pdf are prepared in `samples/plt`.
 After calculation is done, type as follows

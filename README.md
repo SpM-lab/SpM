@@ -1,14 +1,20 @@
 SPM
 ====
 
-Sparse Modeling tool for analytic continuation.
-The algorithm is written in the article
-"Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data"
+Sparse Modeling tool for analytical continuation.
+
+The algorithm is presented in the article
+
+* J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,  
+"Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data"  
 [Phys. Rev. E 95, 061302(R) (2017).](https://doi.org/10.1103/PhysRevE.95.061302)
 
 ## Licence
 
 This package is distributed under GNU General Public License version 3 ([GPL v3](http://www.gnu.org/licenses/gpl-3.0.en.html)).
+
+We kindly ask you to cite the article above
+in publications that include results obtained using this package.
 
 ## Author
 Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka, Masayuki Ohzeki

@@ -260,7 +260,7 @@ void SetInitial::SetInputValue() {
       param.lambda.dlambda = 0.2;
     }
     if (param.lambda.dlambda > 0) {
-      param.lambda.Nl = (int) ((log10(param.lambda.lbegin / param.lambda.lend)) / param.lambda.dlambda + 0.5) + 1;
+      param.lambda.Nl = static_cast<int>((log10(param.lambda.lbegin / param.lambda.lend)) / param.lambda.dlambda + 0.5) + 1;
       if (param.lambda.Nl < 1) {
         printf("\ndLambda must be lesser than log10(LambdaBegin/LambdaEnd)=%lf\n",
                (log10(param.lambda.lbegin / param.lambda.lend)));
@@ -277,4 +277,3 @@ void SetInitial::SetInputValue() {
     }
   }
 }
-

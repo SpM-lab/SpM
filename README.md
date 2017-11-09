@@ -37,46 +37,31 @@ Then, the source codes are downloaded in the directory ``spm.src``.
 
 ### Using Cmake
 
-1. Create an empty directory (named ``spm.build`` in the following) and move into it:
+Build with cmake command is done in a separate directory, e.g. ``spm.build``.
+Type the following commands:
 
-		$ mkdir spm.build && cd spm.build
+	$ mkdir spm.build && cd spm.build
+	$ cmake ../spm.src
+	$ make
 
-1. Call cmake:
+Then, the executable file ``SpM.out`` is created in directory ``spm.build/src``.
 
-		$ cmake ../spm.src
+## Sample scripts
 
-1. Compile the code:
+Some sample data are provided in ``samples`` directory:
 
-		$  make
+* ``samples/fermion``  # sample for fermionic spectrum (data in the article)
+* ``samples/boson``  # sample for bosonic spectrum
 
-Then, the executable file ``SpM.out``  is created in the ``spm.build/src`` directory.
-
-## Running samples
-
-Sample data are provided both for fermionic and bosonic cases in directories ``samples/fermion/`` and ``samples/boson/``, respectively.
-Here, explanation is given for the fermionic case.
-
-User can execute all the procedure explained below using a single script file ``run.sh``.
-Edit the first two variables ``file_exe="../SpM.out"`` and ``dir_plt="../plt"`` according to your system configuration, and then run the script by
+A script file is also provided to run through the program.
+Enter into one of the sample directory, and execute the script by
 
     $ ./run.sh
 
-If succeeded, text files containing numerical data and graphs in pdf format are created in directory ``output``.
+You may need to change the path to ``SpM.out`` in the script.
+If succeeded, results including graphs in pdf format are created in ``output`` directory.
+For details, see the document linked below.
 
-
-### How to generate PDFs
-
-User can generate graphs using gnuplot.
-Move into directory ``output``, and type
-
-    gnuplot path_to_SpM/samples/plt/*
-
-Next, move into directory ``lambda_opt`` and type
-
-    gnuplot path_to_SpM/samples/plt/lambda_fix/*
-
-Then some graphs such as *spectrum.pdf*, *find_lambda_opt.pdf* are generated. 
-See the documantation in the homepage of the SpM for more deteils.
 
 ## Official page
 The official page of the SpM is [here](xxx) (not linked yet).  

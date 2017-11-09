@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1. How to install &#8212; SpM 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Welcome to SpM’s documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-install">
+<h1>1. How to install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirement">
+<h2>1.1. Requirement<a class="headerlink" href="#requirement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>LAPACK, BLAS</li>
+<li>cpplapack (included in this package)</li>
+</ul>
+</div>
+<div class="section" id="download">
+<h2>1.2. Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Stable version</strong></p>
+<p>You can download a stable version of the <code class="docutils literal"><span class="pre">SpM</span></code> program in <a class="reference external" href="https://github.com/j-otsuki/SpM/releases">https://github.com/j-otsuki/SpM/releases</a>. After download the archive, decompress it by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ tar zxvf v0.1.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Latest codes</strong></p>
+<p>You can get the latest codes from <a class="reference external" href="https://github.com/j-otsuki/SpM">our GitHub repository</a>. Execute the following command</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/j-otsuki/SpM.git spm.src
+</pre></div>
+</div>
+<p>and then the source codes are downloaded in the directory <code class="docutils literal"><span class="pre">spm.src</span></code>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="build">
+<h2>1.3. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>First, create an empty directory and move into it:</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>$ mkdir spm.build &amp;&amp; cd spm.build
+</pre></div>
+</div>
+<p>We assume that <code class="docutils literal"><span class="pre">spm.build</span></code> is located on the same level as <code class="docutils literal"><span class="pre">spm.src</span></code>.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Call cmake</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>$ cmake ../spm.src
+</pre></div>
+</div>
+<p>and all necessary files including <code class="docutils literal"><span class="pre">Makefile</span></code> are created according to your system configuration. [any cmake options?]</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Now, you can compile the codes by</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+<p>The executable file <code class="docutils literal"><span class="pre">SpM.out</span></code> is created in the <code class="docutils literal"><span class="pre">spm.build/src</span></code> directory.</p>
+</div></blockquote>
+</div>
+<div class="section" id="sample-scripts">
+<h2>1.4. Sample scripts<a class="headerlink" href="#sample-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Some sample data are provided in <code class="docutils literal"><span class="pre">samples</span></code> directory:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">samples/fermion</span></code>  # sample for fermionic spectrum (data in the article)</li>
+<li><code class="docutils literal"><span class="pre">samples/boson</span></code>  # sample for bosonic spectrum</li>
+</ul>
+<p>A script file is also provided to run through the program.
+Enter into one of the sample directory, and execute the script by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ./run.sh
+</pre></div>
+</div>
+<p>You may need to change the path to <code class="docutils literal"><span class="pre">SpM.out</span></code> in the script.
+If succeeded, results including graphs in pdf format are created in <code class="docutils literal"><span class="pre">output</span></code> directory.
+For details of the sample script, see <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/SpM.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. How to install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirement">1.1. Requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download">1.2. Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build">1.3. Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-scripts">1.4. Sample scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">2. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">3. Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function.html">4. Calculation flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfile.html">5. Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outputfile.html">6. Output files</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Welcome to SpM’s documentation!</a></li>
+      <li>Next: <a href="tutorials.html" title="next chapter">2. Tutorials</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/docs/install.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

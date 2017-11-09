@@ -52,7 +52,7 @@ public:
 
 	// [optional]
 	void set_sumrule(double sum_x);
-	void set_nonnegative();
+	void set_nonnegative(bool _flag);
 	void set_fileout_iter(const std::string filename);  // output convergence in a file.  unset if filename=""
 	void set_print_level(int);  // 0: none,  1: results,  2: verbose
 

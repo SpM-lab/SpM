@@ -62,6 +62,7 @@ class SPM_Param{
 
 struct SPM_Flags{
   bool validation;
+	bool nonnegative;
 };
   
 #endif

@@ -111,7 +111,7 @@ int SPM_Core::SolveEquationCore(
   param.admm.penalty = std::abs(param.admm.penalty);
 
   admm_svd D(A, param.svd.sv_min);
-  D.set_nonnegative();
+  D.set_nonnegative(flags.nonnegative);
 
   //D.set_print_level(print_level);
   std::string outputOrgDir = "./output/";
@@ -234,7 +234,12 @@ int SPM_Core::find_kink(std::vector<double> &x, std::vector<double> &y, std::vec
 
 void SPM_Core::GetSpectrum(std::vector<double> &_spectrum) {
   //_spectrum = result[param.lambda.lvalid].x;
-  _spectrum = result[param.lambda.lvalid].z2;
+  if(flags.nonnegative==true) {
+    _spectrum = result[param.lambda.lvalid].z2;
+  }
+  else{
+    _spectrum = result[param.lambda.lvalid].z1;
+  }
 }
 
 void SPM_Core::GetLambdaOpt(std::vector<double> &_lambda, int *_opt_l) {

@@ -62,8 +62,8 @@ void admm_svd::set_sumrule(double sum_x) {
   flag_sumrule = true;
 }
 
-void admm_svd::set_nonnegative() {
-  flag_nonnegative = true;
+void admm_svd::set_nonnegative(bool _flag) {
+  flag_nonnegative = _flag;
 }
 
 void admm_svd::set_fileout_iter(string filename) {

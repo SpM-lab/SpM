@@ -34,6 +34,10 @@ private:
         int output_interval;
         std::string fileout_spec;
         int print_level;
+        FileInfo(){
+          print_level=1;
+          output_interval=1;
+        }
     };
 
     struct CalcInfo {
@@ -47,6 +51,7 @@ private:
     SPM_Flags flags;
 
     std::map<std::string, std::string> mapForKeyWordToValue;
+    std::map<std::string, bool> mapForKeyWordToRead;
 
     template<class T>
     std::string argv_or_defaultvalue(int n, T value);

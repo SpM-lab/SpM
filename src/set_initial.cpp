@@ -68,11 +68,10 @@ bool SetInitial::InputFromArgs(int _argc, char *_argv[]) {
   param.admm.tolerance = atof(argv_or_defaultvalue(14, param.admm.tolerance).c_str());
   param.admm.max_iter = atoi(argv_or_defaultvalue(15, param.admm.max_iter).c_str());
   param.admm.flag_penalty_auto = param.admm.penalty < 0 ? true : false;
-
   fileInfo.print_level = atoi(argv_or_defaultvalue(16, fileInfo.print_level).c_str());
-
-  flags.validation = argv_or_defaultvalue(17, flags.validation) == "y";
-
+  fileInfo.output_interval=atoi(argv_or_defaultvalue(17, fileInfo.output_interval).c_str());
+  flags.validation = argv_or_defaultvalue(17, "y") == "y";
+  flags.nonnegative = argv_or_defaultvalue(18, "ON") == "ON";
   return true;
 }
 
@@ -97,6 +96,8 @@ void SetInitial::PrintInfo() {
   printf(" tolerance = %.2e\n", param.admm.tolerance);
   printf(" max_iter = %d\n", param.admm.max_iter);
   printf(" print_level = %d\n", fileInfo.print_level);
+  printf(" OutputInterval = %d\n", fileInfo.output_interval);
+  printf(" FlagNonNegative = %s\n", flags.nonnegative ? "ON": "OFF");
 
   if (flags.validation) {
     printf("\n CROSS VALIDATION\n");
@@ -145,21 +146,22 @@ void SetInitial::RegisterMap(std::string _keyword, std::string _value) {
   DeleteSpace(_value);
   std::transform(_keyword.begin(), _keyword.end(), _keyword.begin(), toupper);
   mapForKeyWordToValue.insert(std::map<std::string, std::string>::value_type(_keyword, _value));
+  mapForKeyWordToRead.insert(std::map<std::string,bool>::value_type(_keyword, false));
 }
 
 
 bool SetInitial::SetDefaultValue() {
-  RegisterMap("Statistics", "Fermion");
-  RegisterMap("beta", "100");
-  RegisterMap("column", "1");
-  RegisterMap("filein_G", "Gtau.in");
+  RegisterMap("Statistics", "");
+  RegisterMap("beta", "");
+  RegisterMap("column", "");
+  RegisterMap("filein_G", "");
   RegisterMap("fileout_spec", "spectrum.out");
-  RegisterMap("NOmega", "1001");
-  RegisterMap("OmegaMin", "-4");
-  RegisterMap("OmegaMax", "4");
+  RegisterMap("NOmega", "");
+  RegisterMap("OmegaMin", "");
+  RegisterMap("OmegaMax", "");
   RegisterMap("NLambda", "0");
-  RegisterMap("LambdaLogBegin", "0");
-  RegisterMap("LambdaLogEnd", "-1");
+  RegisterMap("LambdaLogBegin", "");
+  RegisterMap("LambdaLogEnd", "");
   RegisterMap("LambdaLogMesh", "0");
   RegisterMap("LambdaValid", "0");
   RegisterMap("Penalty", "1.0");
@@ -169,6 +171,7 @@ bool SetInitial::SetDefaultValue() {
   RegisterMap("PrintLevel", "1");
   RegisterMap("CrossValidation", "n");
   RegisterMap("OutputInterval", "1");
+  RegisterMap("FlagNonNegative", "ON");
 
   /*
   std::map<std::string, std::string>::iterator it;
@@ -190,6 +193,7 @@ bool SetInitial::ReadParam(char *_filename) {
   }
   std::string reading_line_buffer;
   std::string item;
+
   while (!fin.eof()) {
     std::vector<std::string> vreadline;
     std::getline(fin, reading_line_buffer);
@@ -214,6 +218,7 @@ bool SetInitial::ReadParam(char *_filename) {
         }
         //std::cout<<"Debug: "<<vreadline[0]<<",  "<<vreadline[1]<<std::endl;
         mapForKeyWordToValue[vreadline[0]] = vreadline[1];
+        mapForKeyWordToRead[vreadline[0]]=true;
       }
     }
   }
@@ -222,6 +227,27 @@ bool SetInitial::ReadParam(char *_filename) {
 }
 
 void SetInitial::SetInputValue() {
+
+  { //Check the esseintial keywords
+    std::vector<std::string> EssentialKeyWord = {"Statistics", "beta", "column", "filein_G",
+                                                 "OmegaMin", "OmegaMax", "LambdaLogBegin", "LambdaLogEnd"};
+    for (std::vector<std::string>::iterator it = EssentialKeyWord.begin(); it != EssentialKeyWord.end(); it++) {
+      std::transform(it->begin(), it->end(), it->begin(), toupper);
+    }
+
+    int iret = 0;
+    for (unsigned i = 0; i < EssentialKeyWord.size(); i++) {
+      if (mapForKeyWordToRead[EssentialKeyWord[i]] == false) {
+        std::cerr << "Error:  " << EssentialKeyWord[i]
+                  << " is an essential parameter. Please set the keyword and value in the input file." << std::endl;
+        iret = -1;
+      }
+    }
+    if (iret == -1) {
+      exit(-1);
+    }
+  }
+
   calcInfo.statistics = GetValue("Statistics");
   transform(calcInfo.statistics.begin(), calcInfo.statistics.end(), calcInfo.statistics.begin(), tolower);
   calcInfo.beta = std::stod(GetValue("beta"));
@@ -247,6 +273,15 @@ void SetInitial::SetInputValue() {
 
   flags.validation = (GetValue("CrossValidation") == "y");
 
+  std::string flag=GetValue("FlagNonNegative");
+  std::transform(flag.begin(), flag.end(),flag.begin(), toupper);
+  if( flag== "ON" or flag=="OFF"){
+    flags.nonnegative= (flag == "ON");
+  }
+  else{
+    std::cerr<<"Error:  FlagNonNegative must be ON or OFF."<<std::endl;
+    exit(-1);
+  }
   /* TODO: Check
   double tmp_lambda=param.lambda.lbegin;
   if(param.lambda.lbegin < param.lambda.lend){
@@ -254,6 +289,7 @@ void SetInitial::SetInputValue() {
     param.lambda.lend=tmp_lambda;
   }
   */
+
 
   if (param.lambda.Nl == 0) {
     if (fabs(param.lambda.dlambda) < pow(10.0, -12)) {

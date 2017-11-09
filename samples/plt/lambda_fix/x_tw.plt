@@ -11,7 +11,8 @@ set style line 99 lt 1 lc 3 lw 2
 
 
 set terminal postscript eps enhanced color font "Times-Roman, 22" size 5, 3
-set output "| epstopdf -f -o=x_tw.pdf"
+# set output "| epstopdf -f -o=x_tw.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=x_tw.pdf" : "x_tw.eps"
 set xlabel "{/Symbol-Oblique w}"
 # set ylabel "{/Times-Italic x}"
 set ylabel "{/Symbol-Oblique r}({/Symbol-Oblique w})"

@@ -10,7 +10,8 @@ set style line 5 lt 1 lw 2 lc 5 pt 2 ps 2.0
 
 
 set terminal postscript eps enhanced color font "Times-Roman, 22" size 5, 3
-set output "| epstopdf -f -o=iter-1.pdf"
+# set output "| epstopdf -f -o=iter-1.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=iter-1.pdf" : "iter-1.eps"
 set xlabel "iteration"
 set ylabel ""
 set xrange[0:*]
@@ -30,7 +31,8 @@ set output
 
 
 
-set output "| epstopdf -f -o=iter-2.pdf"
+# set output "| epstopdf -f -o=iter-2.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=iter-2.pdf" : "iter-2.eps"
 
 plot "iter.dat"u 1:7 title"RMSE" w lp ls 1,\
  ""u 1:8 title"|| x' ||_1" w lp ls 2,\

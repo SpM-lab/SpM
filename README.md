@@ -64,4 +64,4 @@ For details, see the document linked below.
 
 
 ## Official page
-The official page of the SpM is [here](xxx) (not linked yet).  
+The official page of the SpM is [here](https://spm-lab.github.io/SpM/manual/build/html/index.html).  

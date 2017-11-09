@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5. Input files &#8212; SpM 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Output files" href="outputfile.html" />
+    <link rel="prev" title="4. Calculation flow" href="function.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="input-files">
+<span id="inputfiles"></span><h1>5. Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Paramete file (param.in)</li>
+</ol>
+<p>The variables for which default value is not given are mandatory.</p>
+<ul>
+<li><p class="first">INPUT/OUTPUT</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>statistics</td>
+<td>String</td>
+<td>—</td>
+<td>Choose “fermion” or “boson”.</td>
+</tr>
+<tr class="row-odd"><td>beta</td>
+<td>Double</td>
+<td>—</td>
+<td>The inverse temperature</td>
+</tr>
+<tr class="row-even"><td>filein_G</td>
+<td>String</td>
+<td>Gtau.in</td>
+<td>The name of an input file for Green’s function.</td>
+</tr>
+<tr class="row-odd"><td>column</td>
+<td>Integer</td>
+<td>1</td>
+<td>The column number where the values of G(tau) are stored in the filein_G file.</td>
+</tr>
+<tr class="row-even"><td>fileout_spec</td>
+<td>String</td>
+<td>spectrum.out</td>
+<td>The name of output file of spectrum.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">OMEGA</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NOmega</td>
+<td>Integer</td>
+<td>1001</td>
+<td>The number of omega to be calculated.</td>
+</tr>
+<tr class="row-odd"><td>omegamin</td>
+<td>Double</td>
+<td>-4</td>
+<td>The minimum value of omega.</td>
+</tr>
+<tr class="row-even"><td>omegamax</td>
+<td>Double</td>
+<td>4</td>
+<td>The maximum value of omega.</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The i-th omega where i=[0:Nomega) is given by
+<img class="math" src="../_images/math/3ef352c72eac36439ea87320904d745f331d0af6.png" alt="\verb|omega|[i]=\verb|omegamin|+(\verb|omegamax|-\verb|omegamin|)/(\verb|NOmega|-1) * i"/>.</p>
+</li>
+<li><p class="first">SVD</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SVmin</td>
+<td>Double</td>
+<td>1e-10</td>
+<td>Truncation value of singlular values.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">ADMM</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>lambdalogmesh</td>
+<td>Double</td>
+<td>0.2</td>
+<td>The log mesh of lambda.</td>
+</tr>
+<tr class="row-odd"><td>lambdalogbegin</td>
+<td>Double</td>
+<td>0</td>
+<td>The log value of maximum lambda. lambda_max is given by <img class="math" src="../_images/math/c2169fa8df7200e1571d40015f85cc20b800f2f0.png" alt="10^{\verb|lambdalogbegin|}"/>.</td>
+</tr>
+<tr class="row-even"><td>lambdalogend</td>
+<td>Double</td>
+<td>-1</td>
+<td>The log value of minimum lambda. lambda_min is given by <img class="math" src="../_images/math/b7d76a97ccf41eda71495f66486eff2f457bf3f3.png" alt="10^{\verb|lambdalogend|}"/></td>
+</tr>
+<tr class="row-odd"><td>Nlambda</td>
+<td>Integer</td>
+<td>—</td>
+<td>The number of lambda to be calculated.</td>
+</tr>
+<tr class="row-even"><td>penalty</td>
+<td>Double</td>
+<td>10.0</td>
+<td>The value of penalty coefficient. If negative, penalty is optimized during the iteration starting with its absolute value.</td>
+</tr>
+<tr class="row-odd"><td>tolerance</td>
+<td>Double</td>
+<td>1e-6</td>
+<td>The criteria of convergience.</td>
+</tr>
+<tr class="row-even"><td>maxiteration</td>
+<td>Integer</td>
+<td>1000</td>
+<td>The maximum number of iterations.</td>
+</tr>
+<tr class="row-odd"><td>printlevel</td>
+<td>Integer</td>
+<td>2</td>
+<td>0; minimum, 1; moderate, 2; verbose.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ol class="arabic" start="2">
+<li><p class="first">Green’s function (Gtau.in)</p>
+<p>In SPM, the values of Green’s function is only used for calculation,
+i.e. tau is automatically determined by the beta and the step.
+Please indicate the column number where the values of G(tau) are
+stored by “column” in the prameter file.</p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/SpM.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">1. How to install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">2. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">3. Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function.html">4. Calculation flow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Input files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outputfile.html">6. Output files</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="function.html" title="previous chapter">4. Calculation flow</a></li>
+      <li>Next: <a href="outputfile.html" title="next chapter">6. Output files</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/docs/inputfile.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

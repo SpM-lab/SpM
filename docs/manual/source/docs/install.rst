@@ -16,19 +16,19 @@ Download
 ---------
 * **Stable version**
 
-  You can download a stable version of the ``SpM`` program in https://github.com/j-otsuki/SpM/releases. After download the archive, decompress it by
+  You can download a stable version of the ``SpM`` program in https://github.com/SpM-lab/SpM/releases. After download the archive, decompress it by
 
   ::
 
-    $ tar zxvf v0.1.tar.gz
+    $ tar zxvf v1.0.tar.gz
 
 * **Latest codes**
 
-  You can get the latest codes from `our GitHub repository <https://github.com/j-otsuki/SpM>`_. Execute the following command
+  You can get the latest codes from `our GitHub repository <https://github.com/SpM-lab/SpM>`_. Execute the following command
 
   ::
 
-    $ git clone https://github.com/j-otsuki/SpM.git spm.src
+    $ git clone https://github.com/SpM-lab/SpM.git spm.src
 
   and then the source codes are downloaded in the directory ``spm.src``.
 

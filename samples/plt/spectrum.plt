@@ -1,3 +1,5 @@
+# To get PDF instead of EPS, execute this script with the option -e "flag_pdf=1"
+
 reset
 set key
 set zeroaxis lw 1
@@ -8,7 +10,8 @@ set style line 2 lt 1 lc 3 lw 3
 
 
 set terminal postscript eps enhanced color font "Times-Roman, 22" size 5, 3
-set output "| epstopdf -f -o=spectrum.pdf"
+# set output "| epstopdf -f -o=spectrum.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=spectrum.pdf" : "spectrum.eps"
 set xlabel "{/Symbol-Oblique w}"
 set ylabel "{/Symbol-Oblique r}({/Symbol-Oblique w})"
 set xrange[*:*]

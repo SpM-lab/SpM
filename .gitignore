@@ -4,6 +4,7 @@
 
 *.dat
 *.pdf
+*.eps
 cmake-build-*
 build
 *.idea

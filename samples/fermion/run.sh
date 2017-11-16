@@ -1,50 +1,43 @@
 #!/bin/sh
 
+# =========================
 file_exe="../SpM.out"
 dir_plt="../plt"
+plot_level=1  # 0: no plot, 1: plot major data, 2: plot all data
+eps_or_pdf='eps'  # 'eps' or 'pdf' (epstopdf is required)
+# =========================
 
-# INPUT/OUTPUT
-statistics="fermion"
-beta=100
-filein_G="Gtau.in"
-column=1  # start from 0
-fileout_spec="spectrum.dat"
+# CHECK FILE AND DIRECTORY
+if [ ! -e $file_exe ]; then
+    echo "Error: file '$file_exe' not found"
+    exit
+fi
 
-# OMEGA
-N_omega=1001
-omega_min=-4
-omega_max=4
+abs_plt=$(cd $dir_plt; pwd)  # get full path
 
-# SVD
-SV_min=1e-10  # 0 for no truncation
-
-# ADMM
-N_lambda=41
-lambda_begin=1e+2
-lambda_end=1e-6
-penalty=1.  # if negative, penalty is optimized during the iteration starting with its absolute value
-tolerance=1e-10
-max_iter=1000
-print_level=1  # 0: minimum, 1: moderate, 2: verbose
-
-# CROSS VALIDATION
-cross_validation="n"  # y/n
-
-# =========================== RUN
-$file_exe $statistics $beta $filein_G $column $fileout_spec $N_omega $omega_min $omega_max $SV_min $N_lambda $lambda_begin $lambda_end $penalty $tolerance $max_iter $print_level $cross_validation
-# ===========================
+# RUN
+echo "### Running..."
+$file_exe -i param.in
 
 # PLOT
-echo "plotting..."
-cd output
-gnuplot ../$dir_plt/*.plt
-cd lambda_opt
-gnuplot ../../$dir_plt/lambda_fix/*.plt
+[ $eps_or_pdf = 'pdf' ] && opt="-e flag_pdf=1"  # set flag to generate pdf
+if [ $plot_level -ge 1 ]; then
+    echo "### Plotting..."
+    cd output
+    gnuplot $opt $abs_plt/*.plt
 
-# execute below if you want pdf for all data
-# cd ../lambda
-# for dir in `ls -F | grep /`; do
-# 	cd $dir
-# 	gnuplot ../../../$dir_plt/lambda_fix/*.plt
-# 	cd ..
-# done
+    # plot results for the optimal value of lambda
+    cd lambda_opt
+    gnuplot $opt $abs_plt/lambda_fix/*.plt
+fi
+if [ $plot_level -ge 2 ]; then
+    # plot results for all values of lambda
+    if [ $plot_all = 'y' ]; then
+    cd ../lambda
+    for dir in `ls -F | grep /`; do
+        cd $dir
+        gnuplot $opt $abs_plt/lambda_fix/*.plt
+        cd ..
+    done
+    fi
+fi

@@ -12,7 +12,8 @@ set style line 99 lt 1 lc 4 pt 7 ps 1.0
 
 
 set terminal postscript eps enhanced color font "Times-Roman, 22" size 5, 3
-set output "| epstopdf -f -o=y_sv.pdf"
+# set output "| epstopdf -f -o=y_sv.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=y_sv.pdf" : "y_sv.eps"
 set xlabel "{/Times-Italic l}"
 # set ylabel "| {/Times-Italic y'_l} |"
 set ylabel "| {/Times-Italic G}@{/Symbol \\242}{/Times-Italic _l} |"
@@ -29,7 +30,8 @@ set output
 
 
 
-set output "| epstopdf -f -o=y_sv-log.pdf"
+# set output "| epstopdf -f -o=y_sv-log.pdf"
+set output (exists("flag_pdf")) ? "| epstopdf -f -o=y_sv-log.pdf" : "y_sv-log.eps"
 
 set yrange[1e-10:*]
 set logscale y

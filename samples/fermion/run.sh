@@ -3,8 +3,8 @@
 # =========================
 file_exe="../SpM.out"
 dir_plt="../plt"
-output_pdf='n'  # 'y' to get pdf instead of eps
-plot_all='n'  # 'y' if you want figures for all data
+plot_level=1  # 0: no plot, 1: plot major data, 2: plot all data
+eps_or_pdf='eps'  # 'eps' or 'pdf' (epstopdf is required)
 # =========================
 
 # CHECK FILE AND DIRECTORY
@@ -20,21 +20,24 @@ echo "### Running..."
 $file_exe -i param.in
 
 # PLOT
-[ $output_pdf = 'y' ] && opt="-e flag_pdf=1"  # set flag to generate pdf
-echo "### Plotting..."
-cd output
-gnuplot $opt $abs_plt/*.plt
+[ $eps_or_pdf = 'pdf' ] && opt="-e flag_pdf=1"  # set flag to generate pdf
+if [ $plot_level -ge 1 ]; then
+    echo "### Plotting..."
+    cd output
+    gnuplot $opt $abs_plt/*.plt
 
-# plot results for the optimal value of lambda
-cd lambda_opt
-gnuplot $opt $abs_plt/lambda_fix/*.plt
-
-# plot results for all values of lambda
-if [ $plot_all = 'y' ]; then
-	cd ../lambda
-	for dir in `ls -F | grep /`; do
-		cd $dir
-		gnuplot $opt $abs_plt/lambda_fix/*.plt
-		cd ..
-	done
+    # plot results for the optimal value of lambda
+    cd lambda_opt
+    gnuplot $opt $abs_plt/lambda_fix/*.plt
+fi
+if [ $plot_level -ge 2 ]; then
+    # plot results for all values of lambda
+    if [ $plot_all = 'y' ]; then
+    cd ../lambda
+    for dir in `ls -F | grep /`; do
+        cd $dir
+        gnuplot $opt $abs_plt/lambda_fix/*.plt
+        cd ..
+    done
+    fi
 fi

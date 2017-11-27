@@ -60,46 +60,16 @@ Build
   The executable file ``SpM.out`` is created in the ``spm.build/src`` directory.
 
 
-Sample scripts
+Test
 ------------------
 
-Some sample data are provided in ``samples`` directory:
-
-- ``samples/fermion``  # sample for fermionic spectrum (data in the article)
-- ``samples/boson``  # sample for bosonic spectrum
-
-A script file is also provided to run through the program.
-Enter into one of the sample directory, and execute the script by
+Some sample data are provided for test calculations.
+Just enter into ``samples/fermion`` directory and execute it by
 
 ::
 
     $ ./run.sh
 
-You may need to change the path to ``SpM.out`` in the script.
-If succeeded, results including graphs in pdf format are created in ``output`` directory.
+You may need to change the parameter ``file_exe="../SpM.out"`` in the script (absolute or relative path to ``SpM.out``) according to your environment.
+If succeeded, results including graphs in EPS format are generated in ``output`` directory.
 For details of the sample script, see :ref:`tutorials`.
-
-
-
-..
-  1. Parameter file
-
-     A simple way is to give parameters in a text file, and pass it by -i option:
-
-     ``$  spm.build/src/SpM.out -i param.in``
-
-     Typical input is given in ``param.in`` in the sample directories.
-     A default value is used for parameters not given in the file.
-     The output data will be created in ``output`` directory.
-
-  2. Command-line arguments
-
-     Alternatively, you can pass **all** parameters to the program as command-line arguments.
-     See the script file ``run.sh`` for details.
-     You can run it simply by
-
-     ``$ ./run.sh``
-
-     Here, it is assumed that the executable ``SpM.out`` is located in ``samples`` directory.
-     If not, copy or link the executable or modify ``run.sh``.
-     In the script, gnuplot is called after calculations to generate pdf files.

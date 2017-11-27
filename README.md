@@ -1,3 +1,4 @@
+
 SPM
 ====
 
@@ -53,13 +54,13 @@ Some sample data are provided in ``samples`` directory:
 * ``samples/fermion``  # sample for fermionic spectrum (data in the article)
 * ``samples/boson``  # sample for bosonic spectrum
 
-A script file is also provided to run through the program.
-Enter into one of the sample directory, and execute the script by
+A script file, `run.sh`, is provided to run through the program.
+Enter into the directory `samples/fermion`, and execute the script by
 
     $ ./run.sh
 
 You may need to change the path to ``SpM.out`` in the script.
-If succeeded, results including graphs in pdf format are created in ``output`` directory.
+If succeeded, results including graphs in eps format are created in ``output`` directory.
 For details, see the document linked below.
 
 

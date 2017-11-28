@@ -10,15 +10,15 @@ Tutorials
 
 Sample data are provided both for fermionic and bosonic cases:
 
-    - ``samples/fermion``  # sample for fermionic spectrum (data in the article)
-    - ``samples/boson``  # sample for bosonic spectrum
+    - ``samples/fermion``  # a sample for fermionic spectrum (data in the article)
+    - ``samples/boson``  # a sample for bosonic spectrum
 
-Here, explanation is given for the fermionic case.
+Here, an explanation is given for the fermionic case.
 
 Script
 ----------------------------------
 
-User can execute all the procedure explained below using a single script file ``run.sh``.
+User can execute all the steps explained below using a single script file ``run.sh``.
 Edit some variables in the top of the script (explained later) and then run the script by
 
 ::
@@ -26,7 +26,7 @@ Edit some variables in the top of the script (explained later) and then run the 
     $ ./run.sh
 
 If succeeded, text files containing numerical data and graphs in EPS format are generated in ``output`` directory.
-There are some parameters to control the behavior of the script
+There are some parameters to control the behavior of the script;
 
 ::
 
@@ -67,12 +67,12 @@ Make input files
     There are 3 columns, which corresponds to :math:`\tau_i/\beta`, :math:`G^{\rm input}(\tau_i)`, and :math:`G^{\rm exact}(\tau_i)`.
     ``SpM`` program actually reads only one column, in this case, the second column containing :math:`G^{\rm input}(\tau_i)`.
     User is requested to specify with ``column`` parameter which column should be read.
-    Note that the value of :math:`G(\tau=\beta)` needs to be given in order to evaluate the integral intensity of :math:`\rho(\omega)`. It means that the integrated intensity is not necessarily be 1 (0 for off-diagonal Green's function and some finite value for the self energy).
+    Note that the value of :math:`G(\tau=\beta)` needs to be given in order to evaluate the integral intensity of :math:`\rho(\omega)`. It means that the integrated intensity is not necessarily be equal to 1 (0 for off-diagonal Green's function and some finite value for the self energy).
 
 #. Parameters
 
     Parameters are passed to the ``SpM`` program by a text file.
-    The file ``param.in`` shows a setting used in obtaining the demonstrative results
+    The file ``param.in`` shows a setting used in obtaining the demonstrative results;
 
     ::
 
@@ -156,7 +156,7 @@ Let us look at some graphs below.
     .. image:: figs/find_lambda_opt.jpg
 
     The peak position gives the optimal choice :math:`\lambda_{\rm opt}=10^{-1.8}`.
-    If the peak is not clear, the choice might not be reasonable. In this case, accuracy the input should be improved.
+    If the peak is not clear, the choice might not be reasonable. In this case, accuracy of the input should be improved.
 
 - *y_sv-log.eps*
 

@@ -45,20 +45,20 @@
 <p>Sample data are provided both for fermionic and bosonic cases:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">samples/fermion</span></code>  # sample for fermionic spectrum (data in the article)</li>
-<li><code class="docutils literal"><span class="pre">samples/boson</span></code>  # sample for bosonic spectrum</li>
+<li><code class="docutils literal"><span class="pre">samples/fermion</span></code>  # a sample for fermionic spectrum (data in the article)</li>
+<li><code class="docutils literal"><span class="pre">samples/boson</span></code>  # a sample for bosonic spectrum</li>
 </ul>
 </div></blockquote>
-<p>Here, explanation is given for the fermionic case.</p>
+<p>Here, an explanation is given for the fermionic case.</p>
 <div class="section" id="script">
 <h2>2.1. Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
-<p>User can execute all the procedure explained below using a single script file <code class="docutils literal"><span class="pre">run.sh</span></code>.
+<p>User can execute all the steps explained below using a single script file <code class="docutils literal"><span class="pre">run.sh</span></code>.
 Edit some variables in the top of the script (explained later) and then run the script by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ ./run.sh
 </pre></div>
 </div>
 <p>If succeeded, text files containing numerical data and graphs in EPS format are generated in <code class="docutils literal"><span class="pre">output</span></code> directory.
-There are some parameters to control the behavior of the script</p>
+There are some parameters to control the behavior of the script;</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># =========================</span>
 <span class="n">file_exe</span><span class="o">=</span><span class="s2">&quot;../SpM.out&quot;</span>
 <span class="n">dir_plt</span><span class="o">=</span><span class="s2">&quot;../plt&quot;</span>
@@ -95,13 +95,13 @@ The file <code class="docutils literal"><span class="pre">Gtau.in</span></code> 
 There are 3 columns, which corresponds to <img class="math" src="../_images/math/47cdea4ba963069691bfe84c50e17683025c0979.png" alt="\tau_i/\beta"/>, <img class="math" src="../_images/math/800a289af47e2f3052ffb324c8f6987bc496052f.png" alt="G^{\rm input}(\tau_i)"/>, and <img class="math" src="../_images/math/a3f47b047edcf70c20b71a148ef35825bb7e2fe1.png" alt="G^{\rm exact}(\tau_i)"/>.
 <code class="docutils literal"><span class="pre">SpM</span></code> program actually reads only one column, in this case, the second column containing <img class="math" src="../_images/math/800a289af47e2f3052ffb324c8f6987bc496052f.png" alt="G^{\rm input}(\tau_i)"/>.
 User is requested to specify with <code class="docutils literal"><span class="pre">column</span></code> parameter which column should be read.
-Note that the value of <img class="math" src="../_images/math/b699a4b61a18d3471ea57883736739f4d4ce3770.png" alt="G(\tau=\beta)"/> needs to be given in order to evaluate the integral intensity of <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/>. It means that the integrated intensity is not necessarily be 1 (0 for off-diagonal Green’s function and some finite value for the self energy).</p>
+Note that the value of <img class="math" src="../_images/math/b699a4b61a18d3471ea57883736739f4d4ce3770.png" alt="G(\tau=\beta)"/> needs to be given in order to evaluate the integral intensity of <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/>. It means that the integrated intensity is not necessarily be equal to 1 (0 for off-diagonal Green’s function and some finite value for the self energy).</p>
 </div></blockquote>
 </li>
 <li><p class="first">Parameters</p>
 <blockquote>
 <div><p>Parameters are passed to the <code class="docutils literal"><span class="pre">SpM</span></code> program by a text file.
-The file <code class="docutils literal"><span class="pre">param.in</span></code> shows a setting used in obtaining the demonstrative results</p>
+The file <code class="docutils literal"><span class="pre">param.in</span></code> shows a setting used in obtaining the demonstrative results;</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># INPUT/OUTPUT</span>
 <span class="n">statistics</span><span class="o">=</span><span class="s2">&quot;fermion&quot;</span>
 <span class="n">beta</span><span class="o">=</span><span class="mi">100</span>
@@ -170,7 +170,7 @@ Again, the option <code class="docutils literal"><span class="pre">flag_pdf=1</s
 Loot at the file <code class="docutils literal"><span class="pre">output/find_lambda_opt.eps</span></code></p>
 <img alt="../_images/find_lambda_opt.jpg" src="../_images/find_lambda_opt.jpg" />
 <p>The peak position gives the optimal choice <img class="math" src="../_images/math/85c913e5997c47b58a8a2ce9ecac21612aeee15b.png" alt="\lambda_{\rm opt}=10^{-1.8}"/>.
-If the peak is not clear, the choice might not be reasonable. In this case, accuracy the input should be improved.</p>
+If the peak is not clear, the choice might not be reasonable. In this case, accuracy of the input should be improved.</p>
 </div></blockquote>
 </li>
 <li><p class="first"><em>y_sv-log.eps</em></p>

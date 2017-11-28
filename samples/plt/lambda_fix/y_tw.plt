@@ -19,7 +19,7 @@ set xrange[0:1]
 
 plot "y_tw.dat"u 1:2 title"input" w p ls 1,\
  "../../Gtau.in"u 1:(abs($3)) title"exact" w l ls 3,\
- "y_tw.dat"u 1:3 title"recovered from x'" w l ls 2,\
+ "y_tw.dat"u 1:3 title"recovered from x'" w l ls 2
 
 set output
 

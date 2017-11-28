@@ -21,7 +21,7 @@ set xrange[0:*]
 set yrange[0:*]
 set grid
 
-plot "SV.dat"u 1:2 title"" w p ls 99,\
+plot "SV.dat"u 1:2 title"" w p ls 99
 
 set output
 

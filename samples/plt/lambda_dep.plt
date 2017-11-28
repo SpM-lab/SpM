@@ -22,6 +22,6 @@ set grid
 
 plot "lambda_dep.dat"u 1:2 title"RMSE (from x')" w lp ls 1,\
  ""u 1:3 title"RMSE (from x)" w lp ls 2,\
- ""u 1:4 title"L1" w lp ls 3,\
+ ""u 1:4 title"L1" w lp ls 3
 
 set output

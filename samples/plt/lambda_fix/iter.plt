@@ -24,7 +24,7 @@ plot "iter.dat"u 1:2 title"diff(x, x_{old})" w lp ls 1,\
  ""u 1:3 title"(for L1 regular.) primary residual" w lp ls 2,\
  ""u 1:4 title"dual residual" w lp ls 3,\
  ""u 1:5 title"(for non-negative) primary residual" w lp ls 4,\
- ""u 1:6 title"dual residual" w lp ls 5,\
+ ""u 1:6 title"dual residual" w lp ls 5
 
 set output
 
@@ -37,6 +37,6 @@ set output (exists("flag_pdf")) ? "| epstopdf -f -o=iter-2.pdf" : "iter-2.eps"
 plot "iter.dat"u 1:7 title"RMSE" w lp ls 1,\
  ""u 1:8 title"|| x' ||_1" w lp ls 2,\
  ""u 1:9 title"sum(x)" w lp ls 3,\
- ""u 1:10 title"negative weight" w lp ls 4,\
+ ""u 1:10 title"negative weight" w lp ls 4
 
 set output

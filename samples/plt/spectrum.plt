@@ -18,6 +18,6 @@ set xrange[*:*]
 #set yrange[0:*]
 
 plot "spectrum.dat"u 1:2 title"" w l ls 1,\
- "../Gtau.in.dos"u 1:2 title"exact" w l ls 2,
+ "../Gtau.in.dos"u 1:2 title"exact" w l ls 2
 
 set output

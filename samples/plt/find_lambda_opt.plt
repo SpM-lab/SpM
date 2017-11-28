@@ -20,6 +20,6 @@ set yrange[*:*]
 # set format "10^{%L}"
 set grid
 
-plot "find_lambda_opt.dat"u 1:2 title"" w lp ls 1,\
+plot "find_lambda_opt.dat"u 1:2 title"" w lp ls 1
 
 set output

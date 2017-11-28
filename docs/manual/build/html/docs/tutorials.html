@@ -42,16 +42,35 @@
             
   <div class="section" id="tutorials">
 <span id="id1"></span><h1>2. Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
-<p>Sample data are provided both for fermionic and bosonic cases in directories <code class="docutils literal"><span class="pre">samples/fermion/</span></code> and <code class="docutils literal"><span class="pre">samples/boson/</span></code>, respectively.
-Here, explanation is given for the fermionic case.</p>
+<p>Sample data are provided both for fermionic and bosonic cases:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">samples/fermion</span></code>  # sample for fermionic spectrum (data in the article)</li>
+<li><code class="docutils literal"><span class="pre">samples/boson</span></code>  # sample for bosonic spectrum</li>
+</ul>
+</div></blockquote>
+<p>Here, explanation is given for the fermionic case.</p>
+<div class="section" id="script">
+<h2>2.1. Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
 <p>User can execute all the procedure explained below using a single script file <code class="docutils literal"><span class="pre">run.sh</span></code>.
-Edit the first two variables <code class="docutils literal"><span class="pre">file_exe=&quot;../SpM.out&quot;</span></code> and <code class="docutils literal"><span class="pre">dir_plt=&quot;../plt&quot;</span></code> according to your system configuration, and then run the script by</p>
+Edit some variables in the top of the script (explained later) and then run the script by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ ./run.sh
 </pre></div>
 </div>
-<p>If succeeded, text files containing numerical data and graphs in pdf format are created in directory <code class="docutils literal"><span class="pre">output</span></code>.</p>
+<p>If succeeded, text files containing numerical data and graphs in EPS format are generated in <code class="docutils literal"><span class="pre">output</span></code> directory.
+There are some parameters to control the behavior of the script</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># =========================</span>
+<span class="n">file_exe</span><span class="o">=</span><span class="s2">&quot;../SpM.out&quot;</span>
+<span class="n">dir_plt</span><span class="o">=</span><span class="s2">&quot;../plt&quot;</span>
+<span class="n">plot_level</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># 0: no plot, 1: plot major data, 2: plot all data</span>
+<span class="n">eps_or_pdf</span><span class="o">=</span><span class="s1">&#39;eps&#39;</span>  <span class="c1"># &#39;eps&#39; or &#39;pdf&#39; (epstopdf is required)</span>
+<span class="c1"># =========================</span>
+</pre></div>
+</div>
+<p>The fist one must be modified, at least, before running.</p>
+</div>
 <div class="section" id="make-input-files">
-<h2>2.1. Make input files<a class="headerlink" href="#make-input-files" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. Make input files<a class="headerlink" href="#make-input-files" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Green’s function</p>
 <blockquote>
@@ -107,50 +126,57 @@ For details of each parameter and further optional parameters, see <a class="ref
 </ol>
 </div>
 <div class="section" id="run-spm">
-<h2>2.2. Run SpM<a class="headerlink" href="#run-spm" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. Run SpM<a class="headerlink" href="#run-spm" title="Permalink to this headline">¶</a></h2>
 <p>In the directory <code class="docutils literal"><span class="pre">samples/fermion/</span></code>, just type the command</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ build_directory/src/SpM.out -i param.in
 </pre></div>
 </div>
 </div>
 <div class="section" id="results">
-<h2>2.3. Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>Results are stored as ordinary text format in <code class="docutils literal"><span class="pre">output</span></code> directory.
 See <a class="reference internal" href="outputfile.html#outputfiles"><span class="std std-ref">Output files</span></a> for details of each file.</p>
 </div>
-<div class="section" id="generate-pdfs">
-<h2>2.4. Generate PDFs<a class="headerlink" href="#generate-pdfs" title="Permalink to this headline">¶</a></h2>
-<p>User can generate graphs using gnuplot.
+<div class="section" id="plot">
+<h2>2.5. Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h2>
+<p>User can generate graphs either in EPS format or in PDF format using gnuplot.
 Move into directory <code class="docutils literal"><span class="pre">output</span></code>, and type</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/*</span>
 </pre></div>
 </div>
-<p>Next, move into directory <code class="docutils literal"><span class="pre">lambda_opt</span></code> and type</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/</span><span class="n">lambda_fix</span><span class="o">/*</span>
+<p>to generate EPS files of main results. If you prefer PDF format, put <code class="docutils literal"><span class="pre">flag_pdf=1</span></code> option as</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="o">-</span><span class="n">e</span> <span class="n">flag_pdf</span><span class="o">=</span><span class="mi">1</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/*</span>
 </pre></div>
 </div>
+<p>Note that it requires <code class="docutils literal"><span class="pre">epstopdf</span></code> program in the PATH.
+Next, move into directory <code class="docutils literal"><span class="pre">lambda_opt</span></code> and type</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/</span><span class="n">lambda_opt</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>Detailed results for the optimal value of <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> are then plotted.
+Again, the option <code class="docutils literal"><span class="pre">flag_pdf=1</span></code> may be put to obtain PDF files.</p>
 <p>Let us look at some graphs below.</p>
 <ul>
-<li><p class="first"><em>spectrum.pdf</em></p>
+<li><p class="first"><em>spectrum.eps</em></p>
 <blockquote>
-<div><p>The final result for the spectrum <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> is given in the file <code class="docutils literal"><span class="pre">output/spectrum.pdf</span></code>.</p>
+<div><p>The final result for the spectrum <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> is given in the file <code class="docutils literal"><span class="pre">output/spectrum.eps</span></code>.</p>
 <img alt="../_images/spectrum.jpg" src="../_images/spectrum.jpg" />
 <p>The red line shows the computed spectrum, and the blue line shows the exact spectrum, which is provided in the file <code class="docutils literal"><span class="pre">Gtau.in.dos</span></code> (not output of the <code class="docutils literal"><span class="pre">SpM</span></code> program).</p>
 </div></blockquote>
 </li>
-<li><p class="first"><em>find_lambda_opt.pdf</em></p>
+<li><p class="first"><em>find_lambda_opt.eps</em></p>
 <blockquote>
 <div><p>User should check how the regularization parameter <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> is determined and whether the choice is resonable.
-Loot at the file <code class="docutils literal"><span class="pre">output/find_lambda_opt.pdf</span></code></p>
+Loot at the file <code class="docutils literal"><span class="pre">output/find_lambda_opt.eps</span></code></p>
 <img alt="../_images/find_lambda_opt.jpg" src="../_images/find_lambda_opt.jpg" />
 <p>The peak position gives the optimal choice <img class="math" src="../_images/math/85c913e5997c47b58a8a2ce9ecac21612aeee15b.png" alt="\lambda_{\rm opt}=10^{-1.8}"/>.
 If the peak is not clear, the choice might not be reasonable. In this case, accuracy the input should be improved.</p>
 </div></blockquote>
 </li>
-<li><p class="first"><em>y_sv-log.pdf</em></p>
+<li><p class="first"><em>y_sv-log.eps</em></p>
 <blockquote>
 <div><p>One can see how much information in the input data is used for constructing the spectrum.
-See the file <code class="docutils literal"><span class="pre">output/lambda_opt/y_sv-log.pdf</span></code></p>
+See the file <code class="docutils literal"><span class="pre">output/lambda_opt/y_sv-log.eps</span></code></p>
 <img alt="../_images/y_sv-log.jpg" src="../_images/y_sv-log.jpg" />
 <p>The light blue points show the input data <img class="math" src="../_images/math/50c5e67e5e093ef5d995560386cea9511bde7f33.png" alt="G'_l"/> transformed into the SVD basis, and red circles are data used in computing <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> above.
 The blue points show, for comparison, the exact <img class="math" src="../_images/math/50c5e67e5e093ef5d995560386cea9511bde7f33.png" alt="G'_l"/> without noise, which is provided in the file <code class="docutils literal"><span class="pre">Gtau.in.sv_basis</span></code> (not output of the <code class="docutils literal"><span class="pre">SpM</span></code> program).</p>
@@ -184,10 +210,11 @@ The blue points show, for comparison, the exact <img class="math" src="../_image
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">1. How to install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#make-input-files">2.1. Make input files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#run-spm">2.2. Run SpM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#results">2.3. Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-pdfs">2.4. Generate PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#script">2.1. Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-input-files">2.2. Make input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-spm">2.3. Run SpM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">2.4. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot">2.5. Plot</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="algorithm.html">3. Algorithm</a></li>

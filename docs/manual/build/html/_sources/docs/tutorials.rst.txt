@@ -8,18 +8,36 @@
 Tutorials
 ===============================
 
-Sample data are provided both for fermionic and bosonic cases in directories ``samples/fermion/`` and ``samples/boson/``, respectively.
+Sample data are provided both for fermionic and bosonic cases:
+
+    - ``samples/fermion``  # sample for fermionic spectrum (data in the article)
+    - ``samples/boson``  # sample for bosonic spectrum
+
 Here, explanation is given for the fermionic case.
 
+Script
+----------------------------------
+
 User can execute all the procedure explained below using a single script file ``run.sh``.
-Edit the first two variables ``file_exe="../SpM.out"`` and ``dir_plt="../plt"`` according to your system configuration, and then run the script by
+Edit some variables in the top of the script (explained later) and then run the script by
 
 ::
 
     $ ./run.sh
 
-If succeeded, text files containing numerical data and graphs in pdf format are created in directory ``output``.
+If succeeded, text files containing numerical data and graphs in EPS format are generated in ``output`` directory.
+There are some parameters to control the behavior of the script
 
+::
+
+    # =========================
+    file_exe="../SpM.out"
+    dir_plt="../plt"
+    plot_level=1  # 0: no plot, 1: plot major data, 2: plot all data
+    eps_or_pdf='eps'  # 'eps' or 'pdf' (epstopdf is required)
+    # =========================
+
+The fist one must be modified, at least, before running.
 
 Make input files
 ----------------------------------
@@ -94,46 +112,56 @@ Results are stored as ordinary text format in ``output`` directory.
 See :ref:`outputfiles` for details of each file.
 
 
-Generate PDFs
+Plot
 -------------
 
-User can generate graphs using gnuplot.
+User can generate graphs either in EPS format or in PDF format using gnuplot.
 Move into directory ``output``, and type
 
 ::
 
     gnuplot path_to_SpM/samples/plt/*
 
+to generate EPS files of main results. If you prefer PDF format, put ``flag_pdf=1`` option as
+
+::
+
+    gnuplot -e flag_pdf=1 path_to_SpM/samples/plt/*
+
+Note that it requires ``epstopdf`` program in the PATH.
 Next, move into directory ``lambda_opt`` and type
 
 ::
 
-    gnuplot path_to_SpM/samples/plt/lambda_fix/*
+    gnuplot path_to_SpM/samples/plt/lambda_opt/*
+
+Detailed results for the optimal value of :math:`\lambda` are then plotted.
+Again, the option ``flag_pdf=1`` may be put to obtain PDF files.
 
 Let us look at some graphs below.
 
-- *spectrum.pdf*
+- *spectrum.eps*
 
-    The final result for the spectrum :math:`\rho(\omega)` is given in the file ``output/spectrum.pdf``.
+    The final result for the spectrum :math:`\rho(\omega)` is given in the file ``output/spectrum.eps``.
 
     .. image:: figs/spectrum.jpg
 
     The red line shows the computed spectrum, and the blue line shows the exact spectrum, which is provided in the file ``Gtau.in.dos`` (not output of the ``SpM`` program).
 
-- *find_lambda_opt.pdf*
+- *find_lambda_opt.eps*
 
     User should check how the regularization parameter :math:`\lambda` is determined and whether the choice is resonable.
-    Loot at the file ``output/find_lambda_opt.pdf``
+    Loot at the file ``output/find_lambda_opt.eps``
 
     .. image:: figs/find_lambda_opt.jpg
 
     The peak position gives the optimal choice :math:`\lambda_{\rm opt}=10^{-1.8}`.
     If the peak is not clear, the choice might not be reasonable. In this case, accuracy the input should be improved.
 
-- *y_sv-log.pdf*
+- *y_sv-log.eps*
 
     One can see how much information in the input data is used for constructing the spectrum.
-    See the file ``output/lambda_opt/y_sv-log.pdf``
+    See the file ``output/lambda_opt/y_sv-log.eps``
 
     .. image:: figs/y_sv-log.jpg
 

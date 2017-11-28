@@ -57,13 +57,13 @@ Some comments may be given at the header of files (lines beginning with '#').
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/spectrum.dat``.
 
     ::
-       
+
        # lambda=1.585e-02  (l=19)
        -4.00000e+00 0.00000e+00
        -3.99200e+00 0.00000e+00
        -3.98400e+00 0.00000e+00
        -3.97600e+00 0.00000e+00
-      
+
 * *lambda_dep.dat*
 
     Several quantities as a function of lambda.
@@ -75,7 +75,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 5th column: not used
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_dep.dat``.
-    
+
     ::
 
        1.00000e+02 1.09110e-01 1.13080e-01 4.81361e-02 0.00000e+00
@@ -84,7 +84,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        2.51189e+01 1.08710e-01 1.12679e-01 4.81394e-02 0.00000e+00
        1.58489e+01 1.08609e-01 1.12578e-01 4.81459e-02 0.00000e+00
 
-      
+
 * *find_lambda_opt.dat*
 
     Auxiliary data that are used to determine the optimal value of lambda. See ref.?? for details.
@@ -93,9 +93,9 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 2nd column: :math:`\log_{10}(f(x)/\chi^2)`
     * 3rd column: :math:`\log_{10}(\chi^2)`
     * 4th column: :math:`\log_{10}(f(x))`
-    
+
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/find_lambda_opt.dat``.
-      
+
     ::
 
        # log(x)  diff  log(y)  log(f(x))  [all in log10 scale]
@@ -103,7 +103,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        1.80000e+00 -8.94525e-02 -9.631547e-01 -1.052607e+00
        1.60000e+00 -1.79519e-01 -9.635618e-01 -1.143080e+00
        1.40000e+00 -2.69822e-01 -9.637317e-01 -1.233554e+00
-      
+
 * *SV.dat*
 
     Singular values of the kernel :math:`K(\tau, \omega)`.
@@ -112,7 +112,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 2nd column: The singular value :math:`S_l` in descending order
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/find_lambda_opt.dat``.
-    
+
     ::
 
        0 1.07898e+02
@@ -121,7 +121,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        3 5.27590e+01
        4 3.57046e+01
 
-      
+
 * *iter.dat*
 
     Several quantities as a function of the iteration number.
@@ -139,7 +139,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 10th column: negative weight in the spectrum :math:`V\bm{x}'`
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/iter.dat``.
-      
+
     ::
 
        # iter  diff(x,x_old)  res1_pri res1_dual res2_pri res2_dual  RMSE L1_norm sum(x) negative_weight
@@ -147,7 +147,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        2 2.399056e-03 1.526513e-03 3.273800e-05 4.131063e-04 6.433491e-04 5.652371e-05 9.203257e-02 1.000546e+00 2.717878e-03
        3 2.166172e-03 1.024876e-03 1.232067e-05 4.091785e-04 6.751225e-04 5.686296e-05 9.031303e-02 1.000546e+00 3.234967e-03
        4 1.425573e-03 8.163075e-04 4.198961e-06 3.879910e-04 4.450555e-04 5.711656e-05 8.963409e-02 1.000546e+00 3.396003e-03
-      
+
 * *x_sv.dat*
 
     spectrum in the SV basis (solution of the minimization problem)
@@ -158,7 +158,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 4th column: :math:`V^{\rm t}\bm{z}`
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/x_sv.dat``.
-      
+
     ::
 
        0 -4.61300e-02 -4.61300e-02 -4.61492e-02
@@ -167,7 +167,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        3 -2.29934e-05 0.00000e+00 -1.16960e-05
        4 -3.21754e-03 -3.21754e-03 -3.16677e-03
 
-      
+
 * *x_tw.dat*
 
     spectrum \rho(\omega) in the real-frequency domain
@@ -178,7 +178,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 4th column: :math:`\bm{z}` (**final result** for a given lambda when non-negativity is imposed)
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/x_tw.dat``.
-      
+
     ::
 
        -4.00000e+00 8.98641e-04 3.95646e-03 0.00000e+00
@@ -187,7 +187,7 @@ Some comments may be given at the header of files (lines beginning with '#').
        -3.97600e+00 8.02778e-04 3.48473e-03 0.00000e+00
        -3.96800e+00 7.58271e-04 3.33005e-03 0.00000e+00
 
-      
+
 * *y_sv.dat*
 
     input data transformed into the SV basis
@@ -198,15 +198,15 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 4th column: :math:`S\bm{z}'`
 
     ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/y_sv.dat``.
-    
+
     ::
-       
+
        0 -4.97866e+00 -4.97734e+00 -4.97734e+00
        1 1.16952e-04 1.11571e-04 0.00000e+00
        2 -4.63728e-01 -4.61804e-01 -4.61804e-01
        3 -1.28769e-03 -1.21311e-03 0.00000e+00
        4 -1.13754e-01 -1.14881e-01 -1.14881e-01
-      
+
 * *y_tw.dat*
 
     input data :math:`G(\tau)` in the imaginary-time domain
@@ -217,7 +217,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 4th column: :math:`U S \bm{z}'`
 
     ex.) calculated results for fermion sample outputted as ``samles/fermion/lambda_opt/y_tw.dat``.
-      
+
     ::
 
        0.00000e+00 5.00734e-01 5.00687e-01 5.00294e-01
@@ -226,39 +226,20 @@ Some comments may be given at the header of files (lines beginning with '#').
        7.49813e-04 4.71476e-01 4.70561e-01 4.70268e-01
        9.99750e-04 4.61762e-01 4.61154e-01 4.60890e-01
 
-
-How to generate PDF files
------------------------------
-
-Gnuplot script files are given in the sample directory.
-In the ``output`` directory, type
-
-::
-
-    gnuplot path_to_SpM/samples/plt/*
-
-and in ``lambda_*`` directory, type
-
-::
-
-    gnuplot path_to_SpM/samples/plt/lambda_fix/*
-
-
-
 ..
+
+    How to generate PDF files
+    -----------------------------
+
+    Gnuplot script files are given in the sample directory.
+    In the ``output`` directory, type
+
     ::
 
-      output
-      ├── find_lambda_opt.dat  : finding the optimal value of lambda [Fig. 4(b) in PRE]
-      ├── lambda_dep.dat       : lambda dependence of the square error, etc. [Fig. 4(a)]
-      ├── spectrum.dat         : spectrum for optimal value of lambda [Fig. 2(b2)]
-      ├── SV.dat               : singular values
-      ├── lambda_opt
-      │   ├── iter.dat     : convergence of solution
-      │   ├── x_sv.dat     : $\rho_l$ [Fig. 3(b)]
-      │   ├── x_tw.dat     : $\rho(\omega)$ [Fig. 2(b)]
-      │   ├── y_sv.dat     : $G_l$ [Fig. 3(a)]
-      │   └── y_tw.dat     : $G(\tau)$ [Fig.2(a)]
-      ├── lambda
-      │   ├── lambda_1.00e+00  : (optional) as in lambda_opt
-      │   ├── ...              :            for all values of lambda
+        gnuplot path_to_SpM/samples/plt/*
+
+    and in ``lambda_*`` directory, type
+
+    ::
+
+        gnuplot path_to_SpM/samples/plt/lambda_fix/*

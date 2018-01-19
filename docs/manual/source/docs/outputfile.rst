@@ -88,7 +88,7 @@ Some comments may be given at the header of files (lines beginning with '#').
 
 * *find_lambda_opt.dat*
 
-    Auxiliary data that are used to determine the optimal value of lambda. See ref.?? for details.
+    Auxiliary data that are used to determine the optimal value of lambda. See our original paper `Phys. Rev. E 95, 061302(R) (2017) <https://doi.org/10.1103/PhysRevE.95.061302>`_ for details.
 
     * 1st column: :math:`\log_{10}(\lambda)`
     * 2nd column: :math:`\log_{10}(f(x)/\chi^2)`

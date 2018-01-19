@@ -228,6 +228,7 @@ int admm_svd::solve(double tolerance, int max_iter, int min_iter) {
     // quantities to check
     diff_x = norm_l1(x - x_old);
     info.mse = norm_l2_sq(y_sv - svd->S * x);  // MSE computed in SV basis
+    info.l0_norm = norm_l0(z1);
     info.l1_norm = norm_l1(x);
     // sum_x_calc = sum_vector(Vx);
     info.sum_x_calc = pre.v_row * x;  // < V*x >

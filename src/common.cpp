@@ -44,6 +44,17 @@ vector<double> cppl2vec(const CPPL::drovector &u) {
 	return v;
 }
 
+// L0 norm
+int norm_l0(const CPPL::dcovector &v) {
+	int s = 0;
+	for (int i = 0; i < v.l; i++) {
+		if(fabs(v(i)) > pow(10.0, -15)) s++;
+	}
+	return s;
+}
+
+
+
 // L1 norm
 double norm_l1(const CPPL::dcovector &v) {
 	double s = 0;

@@ -248,14 +248,17 @@ void SPM_Core::GetLambdaOpt(std::vector<double> &_lambda, int *_opt_l) {
 }
 
 void SPM_Core::GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full,
-                          std::vector<double> &_vl1_norm, std::vector<double> &_valid) {
+                          std::vector<int> &_vl0_norm, std::vector<double> &_vl1_norm,
+                          std::vector<double> &_valid) {
   _vmse.resize(info.size());
   _vmse_full.resize(info.size());
+  _vl0_norm.resize(info.size());
   _vl1_norm.resize(info.size());
   _valid.resize(info.size());
   for (unsigned i = 0; i < info.size(); i++) {
     _vmse[i] = info[i].mse;
     _vmse_full[i] = info[i].mse_full;
+    _vl0_norm[i] = info[i].l0_norm;
     _vl1_norm[i] = info[i].l1_norm;
     _valid[i] = valid[i];
   }

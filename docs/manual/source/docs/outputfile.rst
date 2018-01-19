@@ -54,7 +54,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 1st column: :math:`\omega_i`
     * 2nd column: :math:`\rho(\omega_i)`
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/spectrum.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/spectrum.dat``.
 
     ::
 
@@ -71,18 +71,19 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 1st column: :math:`\lambda`
     * 2nd column: Square error in the SV basis, :math:`\| \bm{y}'-S\bm{x}' \|_2^2` (the first term in :math:`F`)
     * 3rd column: Square error computed in the original basis, :math:`\| \bm{y}-K\bm{x} \|_2^2`
-    * 4th column: L1 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_1` (the second term in :math:`F`)
-    * 5th column: not used
+    * 4th column: L0 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_0` (the number of selected basis) 
+    * 5th column: L1 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_1` (the second term in :math:`F`)
+    * 6th column: not used
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_dep.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/lambda_dep.dat``.
 
     ::
 
-       1.00000e+02 1.09110e-01 1.13080e-01 4.81361e-02 0.00000e+00
-       6.30957e+01 1.08854e-01 1.12824e-01 4.81376e-02 0.00000e+00
-       3.98107e+01 1.08752e-01 1.12722e-01 4.81386e-02 0.00000e+00
-       2.51189e+01 1.08710e-01 1.12679e-01 4.81394e-02 0.00000e+00
-       1.58489e+01 1.08609e-01 1.12578e-01 4.81459e-02 0.00000e+00
+       1.00000e+02 1.09110e-01 1.13080e-01 2 4.81361e-02 0.00000e+00
+       6.30957e+01 1.08854e-01 1.12824e-01 2 4.81376e-02 0.00000e+00
+       3.98107e+01 1.08752e-01 1.12722e-01 2 4.81386e-02 0.00000e+00
+       2.51189e+01 1.08710e-01 1.12679e-01 2 4.81394e-02 0.00000e+00
+       1.58489e+01 1.08609e-01 1.12578e-01 2 4.81459e-02 0.00000e+00
 
 
 * *find_lambda_opt.dat*
@@ -94,7 +95,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 3rd column: :math:`\log_{10}(\chi^2)`
     * 4th column: :math:`\log_{10}(f(x))`
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/find_lambda_opt.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/find_lambda_opt.dat``.
 
     ::
 
@@ -111,7 +112,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 1st column: index :math:`l` (starting from 0)
     * 2nd column: The singular value :math:`S_l` in descending order
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/find_lambda_opt.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/SV.dat``.
 
     ::
 
@@ -138,7 +139,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 9th column: sum of spectrum, :math:`\langle V\bm{x}' \rangle`
     * 10th column: negative weight in the spectrum :math:`V\bm{x}'`
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/iter.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/lambda_opt/iter.dat``.
 
     ::
 
@@ -157,7 +158,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 3rd column: :math:`z'_l` (**must be sparse**)
     * 4th column: :math:`V^{\rm t}\bm{z}`
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/x_sv.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/lambda_opt/x_sv.dat``.
 
     ::
 
@@ -177,7 +178,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 3rd column: :math:`V\bm{z}'` (final result for a given lambda when non-negativity is not imposed)
     * 4th column: :math:`\bm{z}` (**final result** for a given lambda when non-negativity is imposed)
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/x_tw.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/lambda_opt/x_tw.dat``.
 
     ::
 
@@ -197,7 +198,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 3rd column: :math:`S\bm{x}'`
     * 4th column: :math:`S\bm{z}'`
 
-    ex.) calculated results for fermion sample outputted as  ``samles/fermion/lambda_opt/y_sv.dat``.
+    ex.) calculated results for fermion sample outputted as  ``samples/fermion/output/lambda_opt/y_sv.dat``.
 
     ::
 
@@ -216,7 +217,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 3rd column: :math:`U S \bm{x}'`
     * 4th column: :math:`U S \bm{z}'`
 
-    ex.) calculated results for fermion sample outputted as ``samles/fermion/lambda_opt/y_tw.dat``.
+    ex.) calculated results for fermion sample outputted as ``samples/fermion/output/lambda_opt/y_tw.dat``.
 
     ::
 

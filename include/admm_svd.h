@@ -41,6 +41,7 @@ struct admm_result{
 struct admm_info{
 	double res1_pri, res1_dual, res2_pri, res2_dual;  // residual errors
 	double mse, mse_full;
+  int l0_norm;
 	double l1_norm, sum_x_calc, negative_weight;
 	int iter;
 };

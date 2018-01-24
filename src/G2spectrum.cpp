@@ -228,6 +228,7 @@ int main(int argc, char *argv[]) {
   printf("\nConstructing kernel matrix...\n");
   vector<vector<double> > A;
   vector<double> vmse, vmse_full, l1_norm, valid;
+  vector<int> l0_norm;
   int errinfo = 0;
 
   //TODO: Make Kernel should be treated as a private function
@@ -247,7 +248,7 @@ int main(int argc, char *argv[]) {
 
   vector<double> spec;
   spm_core.GetSpectrum(spec);
-  spm_core.GetResults(vmse, vmse_full, l1_norm, valid);
+  spm_core.GetResults(vmse, vmse_full, l0_norm, l1_norm, valid);
   //---------------------------------------------------------
   // Save spectrum
   {
@@ -266,7 +267,7 @@ int main(int argc, char *argv[]) {
     string fileout_lambda("lambda_dep.dat");
     FILE *fp = fopen((outputDir + fileout_lambda).c_str(), "w");
     for (unsigned l = 0; l < lambda.size(); l++) {
-      fprintf(fp, "%.5e %.5e %.5e %.5e %.5e\n", lambda[l], vmse[l], vmse_full[l], l1_norm[l], valid[l]);
+      fprintf(fp, "%.5e %.5e %.5e %d %.5e %.5e\n", lambda[l], vmse[l], vmse_full[l], l0_norm[l], l1_norm[l], valid[l]);
     }
     fclose(fp);
     printf("'%s'\n", fileout_lambda.c_str());

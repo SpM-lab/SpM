@@ -66,7 +66,8 @@ public:
 
 		void GetSpectrum(std::vector<double> &_spectrum);
 
-		void GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full, std::vector<double> &_vl1_norm,
+		void GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full,
+										std::vector<int> &_vl0_norm, std::vector<double> &_vl1_norm,
 										std::vector<double> &_valid);
 
 		int SolveEquation(

@@ -71,7 +71,7 @@ Some comments may be given at the header of files (lines beginning with '#').
     * 1st column: :math:`\lambda`
     * 2nd column: Square error in the SV basis, :math:`\| \bm{y}'-S\bm{x}' \|_2^2` (the first term in :math:`F`)
     * 3rd column: Square error computed in the original basis, :math:`\| \bm{y}-K\bm{x} \|_2^2`
-    * 4th column: L0 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_0` (the number of selected basis) 
+    * 4th column: L0 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_0` (the number of non-zero components in :math:`\bm{x}'`)
     * 5th column: L1 norm of :math:`\bm{x}'`, :math:`\| \bm{x}' \|_1` (the second term in :math:`F`)
     * 6th column: not used
 

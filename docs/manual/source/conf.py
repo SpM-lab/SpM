@@ -37,7 +37,9 @@ extensions = ['sphinx.ext.imgmath',
               'sphinxcontrib.actdiag',
               'sphinxcontrib.nwdiag',
               'sphinxcontrib.rackdiag',
-              'sphinxcontrib.packetdiag',]
+              'sphinxcontrib.packetdiag',
+              'sphinxcontrib.spelling',]
+
 #mathjax_path = 'http://mathjax.connectmv.com/MathJax.js?config=default'
 
 blockdiag_html_image_format = 'SVG'

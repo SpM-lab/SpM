@@ -150,7 +150,7 @@ Let us look at some graphs below.
 
 - *find_lambda_opt.eps*
 
-    User should check how the regularization parameter :math:`\lambda` is determined and whether the choice is resonable.
+    User should check how the regularization parameter :math:`\lambda` is determined and whether the choice is reasonable.
     Loot at the file ``output/find_lambda_opt.eps``
 
     .. image:: figs/find_lambda_opt.jpg

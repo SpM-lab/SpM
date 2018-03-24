@@ -7,7 +7,7 @@
 
 Input files
 ===============================
-1. Paramete file (param.in)
+1. Parameter file (param.in)
   
 The variables for which default value is not given are mandatory.
 
@@ -47,7 +47,7 @@ The variables for which default value is not given are mandatory.
      :widths: 1,1,2,4
 
      Name, Type, Default value, Description
-     SVmin, Double, 1e-10, Truncation value of singlular values.
+     SVmin, Double, 1e-10, Truncation value of singiular values.
 
      
 * ADMM
@@ -62,7 +62,7 @@ The variables for which default value is not given are mandatory.
      lambdalogend, Double, -1, The log value of minimum lambda. lambda_min is given by :math:`10^{\verb|lambdalogend|}`
      Nlambda, Integer, ---,  The number of lambda to be calculated.
      penalty, Double, 10.0, "The value of penalty coefficient. If negative, penalty is optimized during the iteration starting with its absolute value."
-     tolerance, Double, 1e-6, The criteria of convergience.
+     tolerance, Double, 1e-6, The criteria of convergence.
      maxiteration, Integer,1000,	The maximum number of iterations.
      printlevel, Integer,2,	"0; minimum, 1; moderate, 2; verbose."
 
@@ -71,4 +71,4 @@ The variables for which default value is not given are mandatory.
    In SPM, the values of Green's function is only used for calculation,
    i.e. tau is automatically determined by the beta and the step.
    Please indicate the column number where the values of G(tau) are
-   stored by "column" in the prameter file.
+   stored by "column" in the parameter file.

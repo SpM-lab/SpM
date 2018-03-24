@@ -25,7 +25,6 @@ gnuplot
 fileout
 filein
 fermionic
-documantation
 dep
 dat
 cpplapack

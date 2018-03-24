@@ -5,7 +5,7 @@
 
 Welcome to SpM's documentation!
 ===============================
-This is a documantation of Sparse Modeling (SpM) tool for analytical continuation.
+This is a documentation of Sparse Modeling (SpM) tool for analytical continuation.
 
 What is SpM ?
 -------------

@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>5. Input files &#8212; SpM 1.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -31,8 +23,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -43,7 +34,7 @@
   <div class="section" id="input-files">
 <span id="inputfiles"></span><h1>5. Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>Paramete file (param.in)</li>
+<li>Parameter file (param.in)</li>
 </ol>
 <p>The variables for which default value is not given are mandatory.</p>
 <ul>
@@ -146,7 +137,7 @@
 <tr class="row-even"><td>SVmin</td>
 <td>Double</td>
 <td>1e-10</td>
-<td>Truncation value of singlular values.</td>
+<td>Truncation value of singular values.</td>
 </tr>
 </tbody>
 </table>
@@ -195,7 +186,7 @@
 <tr class="row-odd"><td>tolerance</td>
 <td>Double</td>
 <td>1e-6</td>
-<td>The criteria of convergience.</td>
+<td>The criteria of convergence.</td>
 </tr>
 <tr class="row-even"><td>maxiteration</td>
 <td>Integer</td>
@@ -216,7 +207,7 @@
 <p>In SPM, the values of Green’s function is only used for calculation,
 i.e. tau is automatically determined by the beta and the step.
 Please indicate the column number where the values of G(tau) are
-stored by “column” in the prameter file.</p>
+stored by “column” in the parameter file.</p>
 </li>
 </ol>
 </div>
@@ -262,12 +253,14 @@ stored by “column” in the prameter file.</p>
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -278,7 +271,7 @@ stored by “column” in the prameter file.</p>
       &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

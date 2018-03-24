@@ -47,7 +47,7 @@ The variables for which default value is not given are mandatory.
      :widths: 1,1,2,4
 
      Name, Type, Default value, Description
-     SVmin, Double, 1e-10, Truncation value of singiular values.
+     SVmin, Double, 1e-10, Truncation value of singular values.
 
      
 * ADMM

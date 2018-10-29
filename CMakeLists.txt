@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)
 project(sparse CXX C)
 
 # add common modules from ../common/cmake
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/common/cmake)
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Type of build" FORCE)
@@ -16,18 +16,33 @@ set(CMAKE_CXX_FLAGS_DEBUG "-std=c++11 -D_DEBUG -g -Wall -Wextra -pedantic -Wcast
 set(CMAKE_CXX_FLAGS_RELEASE "-std=c++11 -O3")
 
 #include directories
-include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/thirdparty/cpplapack/include)
+include_directories(${CMAKE_SOURCE_DIR}/thirdparty/cpplapack/include)
 
-find_package(OpenMP)
-if(OPENMP_FOUND)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-endif(OPENMP_FOUND)
+#find_package(OpenMP)
+#if(OPENMP_FOUND)
+#  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+#endif(OPENMP_FOUND)
 
 #Find BLAS
 find_package(BLAS REQUIRED)
 
 #Find LAPACK
 find_package(LAPACK REQUIRED)
+
+#Find FFTW3
+find_package(FFTW REQUIRED)
+include_directories(${FFTW_INCLUDE_DIRS})
+
+# Build and enable tests
+# testing setup
+# enable_testing() must be called in the top-level CMakeLists.txt before any add_subdirectory() is called.
+option(Testing "Enable testing" ON)
+
+if (Testing)
+  enable_testing(test)
+  add_subdirectory(test/c++)
+  add_subdirectory(test/python)
+endif()
 
 #Find SWIG
 #find_package(SWIG REQUIRED)
@@ -52,6 +67,4 @@ find_package(LAPACK REQUIRED)
 # CPPLAPACK
 #include_directories(${CPPLAPACK_INCLUDE_DIR})
 
-add_subdirectory(src)
-
-#add_subdirectory(python)
+add_subdirectory(c++)

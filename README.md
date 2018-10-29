@@ -1,6 +1,7 @@
 
 SPM
 ====
+[![Build Status](https://travis-ci.org/SpM-lab/SpM.svg?branch=master)](https://travis-ci.org/SpM-lab/SpM)
 
 Sparse Modeling tool for analytical continuation.
 

@@ -8,19 +8,18 @@ matrix:
       - pip install numpy --user
       - pip install scipy --user
       - sudo apt-get install -y libopenmpi-dev openmpi-bin
+      - install -d gtest_build
+      - pushd gtest_build
+      - cmake -DCMAKE_CXX_COMPILER=g++ /usr/src/gtest/
+      - make
+      - sudo cp *.a /usr/lib
+      - popd 
+
     install:
       - mkdir build
       - cd build
       - cmake -DTesting=ON ../
       - VERBOSE=1 make 
-
-    before_script:
-      - install -d gtest_build
-      - pushd gtest_build
-      - cmake -DCMAKE_CXX_COMPILER=clang++-3.7 /usr/src/gtest/
-      - make
-      - sudo cp *.a /usr/lib
-      - popd 
     script:
       - export OMP_NUM_THREADS=1
       - make test ARGS='-V'

@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 2.8.12)
+
 function(add_gtest test)
     set(source "${ARGV1}/${test}.cpp")
-    set(gtest_src "${ARGV1}/gtest_main.cc;${ARGV1}/gtest-all.cc")
+    #set(gtest_src "${ARGV1}/gtest_main.cc;${ARGV1}/gtest-all.cc")
     
-    add_executable(${test} ${source} ${gtest_src} ${header_files})
-    target_link_libraries(${test} ${LINK_ALL})
-    target_include_directories(${test} PRIVATE ${HDF5_INCLUDE_DIRS})
+    add_executable(${test} ${source} ${header_files})
+    target_link_libraries(${test} GTest::GTest GTest::Main)
+    target_include_directories(${test} PRIVATE ${HDF5_INCLUDE_DIR})
     add_test(NAME ${test} COMMAND ${test} ${test_xml_output})
 endfunction(add_gtest)
 

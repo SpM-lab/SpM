@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 include(EnableGtests) #defined in ./cmake
 include_directories(../../c++/include)
+include_directories(./)
 
 # test for SPM library
 
@@ -12,8 +13,8 @@ test_pade
 )
 
 foreach(test_c++ ${unittest_src_gf})
-  target_link_libraries(${test_c++} gf)
   add_gtest(${test_c++})
+  target_link_libraries(${test_c++} gf)
 endforeach(test_c++)
 
 add_subdirectory(data)

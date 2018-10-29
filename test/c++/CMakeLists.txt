@@ -5,7 +5,7 @@ function(add_gtest test)
     #set(gtest_src "${ARGV1}/gtest_main.cc;${ARGV1}/gtest-all.cc")
     
     add_executable(${test} ${source} ${header_files})
-    target_link_libraries(${test} GTest::GTest GTest::Main)
+    target_link_libraries(${test} GTest::GTest GTest::Main pthread)
     target_include_directories(${test} PRIVATE ${HDF5_INCLUDE_DIR})
     add_test(NAME ${test} COMMAND ${test} ${test_xml_output})
 endfunction(add_gtest)
@@ -13,7 +13,6 @@ endfunction(add_gtest)
 find_package(GTest REQUIRED)
 include_directories(BEFORE ${GTEST_INCLUDE_DIRS})
 include_directories(../../c++/include)
-include_directories(./)
 
 # test for SPM library
 

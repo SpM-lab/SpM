@@ -12,8 +12,8 @@ test_pade
 )
 
 foreach(test_c++ ${unittest_src_gf})
-  add_gtest(${test_c++})
   target_link_libraries(${test_c++} gf)
+  add_gtest(${test_c++})
 endforeach(test_c++)
 
 add_subdirectory(data)

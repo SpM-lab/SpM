@@ -11,7 +11,7 @@ function(add_gtest test)
 endfunction(add_gtest)
 
 find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+include_directories(BEFORE ${GTEST_INCLUDE_DIRS})
 include_directories(../../c++/include)
 include_directories(./)
 

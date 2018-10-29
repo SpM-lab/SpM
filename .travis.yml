@@ -5,6 +5,7 @@ matrix:
     before_install:
       - sudo apt-get update
       - sudo apt-get install -y gcc liblapack-dev cmake
+      - sudo apt-get -yV install libfftw3-3
       - pip install numpy --user
       - pip install scipy --user
       - sudo apt-get install -y libopenmpi-dev openmpi-bin

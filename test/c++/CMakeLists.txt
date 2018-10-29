@@ -9,6 +9,8 @@ function(add_gtest test)
     add_test(NAME ${test} COMMAND ${test} ${test_xml_output})
 endfunction(add_gtest)
 
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(../../c++/include)
 include_directories(./)
 

@@ -4,7 +4,8 @@ matrix:
     sudo: enabled
     before_install:
       - sudo apt-get update
-      - sudo apt-get install -y gcc liblapack-dev cmake libfftw3-dev libgtest-dev python-dev
+      - sudo apt-get install -y gcc liblapack-dev cmake libfftw3-dev python-dev
+        #- sudo apt-get install -y gcc liblapack-dev cmake libfftw3-dev libgtest-dev python-dev
       - pip install numpy --user
       - pip install scipy --user
       - sudo apt-get install -y libopenmpi-dev openmpi-bin

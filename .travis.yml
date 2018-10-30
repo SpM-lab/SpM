@@ -9,12 +9,12 @@ matrix:
       - pip install numpy --user
       - pip install scipy --user
       - sudo apt-get install -y libopenmpi-dev openmpi-bin
-      - install -d gtest_build
-      - pushd gtest_build
-      - cmake -DCMAKE_CXX_COMPILER=g++ /usr/src/gtest/
-      - make
-      - sudo cp *.a /usr/lib
-      - popd 
+        #- install -d gtest_build
+        #- pushd gtest_build
+        #- cmake -DCMAKE_CXX_COMPILER=g++ /usr/src/gtest/
+        #- make
+        #- sudo cp *.a /usr/lib
+        #- popd 
 
     install:
       - mkdir build

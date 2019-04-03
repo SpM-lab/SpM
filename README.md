@@ -37,38 +37,6 @@ Download the latest source codes by
 
 Then, the source codes are downloaded in the directory ``spm.src``.
 
-
-
-### Directories
-
-The structure of the directroies  in ` spm.src` is given as follows:
-
-- c++
-
-  Source codes for SpM are located.
-
-- cmake
-
-  Files related to cmake are located.
-
-- docs
-
-  Files related to the document are located.
-
-- samples
-
-  Sample files for SpM are located.
-
-- test
-
-  Test files for SpM are located. 
-
-- thirdparty
-
-  CPPLAPACK libraries are located.
-
-  
-
 ### Using Cmake
 
 Build with cmake command is done in a separate directory, e.g. ``spm.build``.
@@ -96,6 +64,19 @@ You may need to change the path to ``SpM.out`` in the script.
 If succeeded, results including graphs in eps format are created in ``output`` directory.
 For details, see the document linked below.
 
+
+## Directories
+The configuration of the directories is shown below.
+
+```
+.
+├── c++         # source files of the SpM program
+├── cmake       # cmake files
+├── docs        # source files of the document page
+├── samples     # sample scripts
+├── test        # files for `make test`
+└── thirdparty  # CPPLAPACK headers
+```
 
 ## Official page
 The official page of the SpM is [here](https://spm-lab.github.io/SpM/manual/build/html/index.html).  

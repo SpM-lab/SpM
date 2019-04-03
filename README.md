@@ -56,6 +56,7 @@ The structure of the directroies  in ` spm.src` is given as follows:
   Files related to the document are located.
 
 - samples
+
   Sample files for SpM are located.
 
 - test

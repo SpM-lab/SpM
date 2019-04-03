@@ -65,5 +65,18 @@ If succeeded, results including graphs in eps format are created in ``output`` d
 For details, see the document linked below.
 
 
+## Directories
+The configuration of the directories is shown below.
+
+```
+.
+├── c++         # source files of the SpM program
+├── cmake       # cmake files
+├── docs        # source files of the document page
+├── samples     # sample scripts
+├── test        # files for `make test`
+└── thirdparty  # CPPLAPACK headers
+```
+
 ## Official page
 The official page of the SpM is [here](https://spm-lab.github.io/SpM/manual/build/html/index.html).  

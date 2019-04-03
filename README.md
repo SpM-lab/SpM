@@ -37,6 +37,36 @@ Download the latest source codes by
 
 Then, the source codes are downloaded in the directory ``spm.src``.
 
+
+
+### Directories
+
+The structure of the directroies  in ` spm.src` is given as follows:
+
+- c++
+
+  Source codes for SpM are located.
+
+- cmake
+
+  Files related to cmake are located.
+
+- docs
+
+  Files related to the document are located.
+
+- samples
+  Sample files for SpM are located.
+
+- test
+
+  Test files for SpM are located. 
+
+- thirdparty
+  CPPLAPACK libraries are located.
+
+  
+
 ### Using Cmake
 
 Build with cmake command is done in a separate directory, e.g. ``spm.build``.

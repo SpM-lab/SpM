@@ -1,0 +1,27 @@
+[parameter]
+stat = "fermion"
+Ntau = 4001
+beta = 100.0
+Nomega = 1001
+omega_max = 4.0
+omega_min = -4.0
+noise = 1e-6
+
+## the seed of the RNG
+## seed(isample) = base + isamples * step
+seed_base = 12345
+seed_step = 11
+
+outputdir = "." # default:"work"
+
+[[peaks]]
+peak_type = "G"
+position = 1.0
+width = 0.8
+intensity = 0.8
+
+[[peaks]]
+peak_type = "G"
+position = 2.2
+width = 0.4
+intensity = 0.2

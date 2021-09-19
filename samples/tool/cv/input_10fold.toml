@@ -1,0 +1,10 @@
+[cond]
+cv_type = "Kfold"
+nsamples = 20
+[param]
+k_fold = 10
+[file]
+work_dir = "input"
+[job]
+cmd = ["SpM.out"]
+path_to_job = ["./SpM.out"]

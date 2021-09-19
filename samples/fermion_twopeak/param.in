@@ -1,0 +1,20 @@
+# INPUT/OUTPUT
+statistics="fermion"
+beta=100
+filein_G="Gtau.in"
+column=1  
+fileout_spec="spectrum.dat"
+fileout_pade="pade.dat"
+# OMEGA
+Nomega=1001
+omegamin=-4
+omegamax=4
+SVmin=1e-12
+# ADMM
+lambdalogbegin=-6.0
+lambdalogend=-10.0
+tolerance=1e-10
+maxiteration=10000
+# Pade
+PadeEta = 1.0
+g_sigma=1e-6

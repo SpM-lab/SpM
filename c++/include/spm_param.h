@@ -16,53 +16,64 @@
 #ifndef _SPM_PARAM_HEADER
 #define _SPM_PARAM_HEADER
 
-class SPM_Param{
- private:
-	struct Lambda{
-		int Nl;
-		double lbegin;
-		double lend;
-		int lvalid;
-    double dlambda;
-		Lambda(){
-			Nl=1;
-			lbegin = 1e-1;
-			lend = 1e+0;
-			lvalid=0;
-			dlambda=-1;
-		}
-	};
+#include <string>
 
-	struct Admm{
-		double penalty;
-		double tolerance;
-		int max_iter;
-		bool flag_penalty_auto;
-		Admm(){
-			penalty=10.;
-			tolerance = 1e-6;
-			max_iter=1000;
-			flag_penalty_auto=false;
-		}
-	};
+class SPM_Param {
+private:
+    struct Lambda {
+        int Nl;
+        double lbegin;
+        double lend;
+        int lvalid;
+        double dlambda;
 
-	struct SVD{
-		double sv_min;
-		SVD(){
-			sv_min=0;
-		}
-	};
-	
- public:
+        Lambda() {
+            Nl = 1;
+            lbegin = 1e-1;
+            lend = 1e+0;
+            lvalid = 0;
+            dlambda = -1;
+        }
+    };
+
+    struct Admm {
+        double penalty;
+        double tolerance;
+        int max_iter;
+        bool flag_penalty_auto;
+
+        Admm() {
+            penalty = 10.;
+            tolerance = 1e-6;
+            max_iter = 1000;
+            flag_penalty_auto = false;
+        }
+    };
+
+    struct SVD {
+        double sv_min;
+        SVD() {
+            sv_min = 0;
+        }
+    };
+
+    struct Pade {
+      std::string filename;
+      int nsample;
+      double eta;
+    };
+
+public:
     Lambda lambda;
     Admm admm;
     SVD svd;
-    
+    Pade pade;
 };
 
-struct SPM_Flags{
-  bool validation;
-	bool nonnegative;
+struct SPM_Flags {
+    bool validation;
+    bool nonnegative;
+    bool refrho;
 };
-  
+
 #endif

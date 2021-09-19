@@ -35,12 +35,14 @@ class SVD_matrix;
 struct admm_result{
 	// w/ sv  : results in SV basis
 	// w/o sv : results in omega-tau basis
-	std::vector<double> x, xsv, z1, z1sv, z2, z2sv;
+	std::vector<double> x, xsv, z1, z1sv, z2, z2sv, z3, z3sv;
 	std::vector<double> y, ysv, y_recovered_x, y_recovered_z1, ysv_recovered_x, ysv_recovered_z1;
 };
 struct admm_info{
 	double res1_pri, res1_dual, res2_pri, res2_dual;  // residual errors
+	double res3_pri, res3_dual; // spmpade
 	double mse, mse_full;
+	int l0_norm;
 	double l1_norm, sum_x_calc, negative_weight;
 	int iter;
 };
@@ -52,13 +54,16 @@ public:
 
 	// [optional]
 	void set_sumrule(double sum_x);
+	void set_rho_ref(std::vector<double>const &rho_ref, std::vector<double> const & rho_ref_weight);
+	void set_omega_coeff(std::vector<double> const& omega_coeff);
 	void set_nonnegative(bool _flag);
 	void set_fileout_iter(const std::string filename);  // output convergence in a file.  unset if filename=""
 	void set_print_level(int);  // 0: none,  1: results,  2: verbose
 
 	// [required]
-	void set_coef(double lambda, double penalty1=1.0, double penalty2=1.0, bool flag_penalty_auto=false);
+	void set_coef(double lambda, double penalty1=1.0, double penalty2=1.0, double penalty3=1.0, bool flag_penalty_auto=false);
 	void set_y(const std::vector<double> &y);
+	int get_svd_num(){return svd_num;}
 
 	// [optional]
 	void clear_x();
@@ -77,28 +82,42 @@ private:
 
 	bool flag_nonnegative;
 	bool flag_sumrule;
+	bool flag_rho_ref;
 	double sum_x;
+	std::vector<double> rho_ref;
+	std::vector<double> rho_ref_weight;
 
-	CPPL::dcovector x, Vx, z1, u1, z2, u2;  // 1 for L1 norm, 2 for non-negativity
+	CPPL::dcovector x, Vx, WVx, z1, u1, z2, u2;  // 1 for L1 norm, 2 for non-negativity
+	CPPL::dcovector z3, u3; // SpM-Pade
 	CPPL::dcovector y, y_sv;
 
 	double regulariz, penalty1, penalty2;
+	double penalty3; // SpMPade
 	bool flag_penalty_auto;
 	static const int PENALTY_UPDATE_INTERVAL;
+
+	std::vector<double> omega_coeff; // omega
 
 	int print_level;
 	bool flag_fileout_iter;
 	std::string file_iter;
 
+	int svd_num;
 	void pre_update();  // This function must be called before calling update_x, and must be recalled when one of values of lambda, penalty1, penalty2 are changed
 	void update_x();
 
+	CPPL::dcovector transform_x2sv(CPPL::dcovector const& v);
+	CPPL::dcovector transform_sv2x(CPPL::dcovector const& v);
+
 	// quantities used in functions update_x and set_y (set in function pre_update)
 	struct quantities_for_update{
-		CPPL::dgbmatrix Y, B;  // diagonal matrix
-		CPPL::dgematrix C;
+		CPPL::dgematrix Y, B;  // diagonal matrix
+		CPPL::dgbmatrix Pade_B3;
+		CPPL::dgematrix Pade_B0, C;
 		CPPL::dcovector Yy, w;
+		CPPL::dcovector Pade_y;
 		CPPL::drovector v_row;
+        CPPL::dcovector rho_w;
 		double sum_Vw;
 	} pre;
 };

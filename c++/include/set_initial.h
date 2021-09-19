@@ -30,7 +30,9 @@ private:
     };
     struct FileInfo {
         std::string filein_G;
+        std::string filein_Gsigma;
         int col;
+        int colsigma;
         int output_interval;
         std::string fileout_spec;
         int print_level;
@@ -43,6 +45,7 @@ private:
     struct CalcInfo {
         std::string statistics;
         double beta;
+        double sigma;
     };
 
     int argc;
@@ -53,8 +56,6 @@ private:
     std::map<std::string, std::string> mapForKeyWordToValue;
     std::map<std::string, bool> mapForKeyWordToRead;
 
-    template<class T>
-    std::string argv_or_defaultvalue(int n, T value);
     bool SetDefaultValue();
     void SetInputValue();
     void RegisterMap(std::string _keyword, std::string _value);
@@ -79,7 +80,6 @@ public:
     CalcInfo calcInfo;
     bool AddDefaulValueMap(char* _filename);
     bool ReadParam(char* _filename);
-    bool InputFromArgs(int argc, char *argv[]);
     void PrintInfo();
 };
 

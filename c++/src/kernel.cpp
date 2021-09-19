@@ -49,7 +49,8 @@ int Kernel::MakeKernelLinear
     _Aout[i].resize(_ANcolumn);
   }
 
-  double (*kernel)(double, double, double) = _StatisticsType == "fermion" ? Kernel::kernel_f : Kernel::kernel_b;
+  //double (*kernel)(double, double, double) = _StatisticsType == "fermion" ? Kernel::kernel_f : Kernel::kernel_b;
+  double (*kernel)(double, double, double) =  Kernel::kernel_f;
 
   for (int j = 0; j < _ANcolumn; j++) {
     for (int i = 0; i < _ANrow; i++) {

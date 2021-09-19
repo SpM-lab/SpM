@@ -32,7 +32,8 @@ void Pade::init(vector<complex<double> > &z, vector<complex<double> > &u)
 		swap(g0, g1);
 	}
 
-	delete g0, g1;
+  delete g1;
+	delete g0;
 
 	// truncate the coefficients m_a if m_a[n]=0
 	for(int i=0; i<m_n; i++){

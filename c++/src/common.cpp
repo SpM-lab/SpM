@@ -14,6 +14,7 @@
 /* You should have received a copy of the GNU General Public License */
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <cassert>
+#include <cmath>
 #include "common.h"
 
 using namespace std;
@@ -43,6 +44,17 @@ vector<double> cppl2vec(const CPPL::drovector &u) {
 	}
 	return v;
 }
+
+// L0 norm
+int norm_l0(const CPPL::dcovector &v) {
+	int s = 0;
+	for (int i = 0; i < v.l; i++) {
+		if(fabs(v(i)) > pow(10.0, -15)) s++;
+	}
+	return s;
+}
+
+
 
 // L1 norm
 double norm_l1(const CPPL::dcovector &v) {
@@ -124,6 +136,21 @@ CPPL::dgematrix positive(const CPPL::dgematrix &A) {
 	}
 	return B;
 }
+
+CPPL::dcovector project_ref(const CPPL::dcovector &v,
+                            const std::vector<double> &ref,
+                            const std::vector<double> &coeff) {
+	CPPL::dcovector u(v.l);
+	for (int i = 0; i < v.l; i++){
+    /*
+    u(i) = v(i) + coeff[i]*ref[i];
+    u(i) /= 1.0+coeff[i];
+    */
+    u(i) = (1.0-coeff[i])*v(i) + coeff[i] * ref[i];
+  }
+	return u;
+}
+
 
 // return shrinked matrix
 CPPL::dgematrix low_rank_matrix(CPPL::dgematrix &mat, int m, int n) {

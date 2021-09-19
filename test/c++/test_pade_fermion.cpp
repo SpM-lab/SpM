@@ -9,6 +9,8 @@
 using namespace std;
 const complex<double> IMAG = complex<double>(0, 1.);
 
+bool isodd(int n) { return (n/2)*2 != n;}
+
 template <typename T>
 void read_file_to_vector(const char *filename, vector<T> &out)
 {
@@ -35,9 +37,6 @@ double diff_vector(const vector<T> &vec1, const vector<T> &vec2)
     return dif_max;
 }
 
-
-
-int N=256;
 double beta=15;
 
 double wmax = 1.5;
@@ -46,19 +45,22 @@ int nw = 501;
 
 double acc_required = 1e-6;
 
-TEST(pade, lorentzian)
+double test_fermion_lorentzian(int N)
 {
     double mu=0.2;
     double gamma=0.3;
 
-    // G(iw) for a model with rectangular DOS
-    vector< complex<double> > giw(N/2);
-    for(int i=0; i<N/2; i++){
+    int n = N/2;
+    if(isodd(N)) ++n;
+
+    // G(iw) for a model with Lorentzian DOS
+    vector< complex<double> > giw(n);
+    for(int i=0; i<n; i++){
         double omega = double(2*i+1) * M_PI / beta;
         giw[i] = 1./ ( IMAG*omega + mu + IMAG*gamma );
     }
 
-    class Gf gf;
+    Gf gf;
     gf.set_Giw(giw, Gf::FERMION, beta);
 
     // Matsubara frequencies
@@ -69,11 +71,12 @@ TEST(pade, lorentzian)
     }
 
     // create reference data
-    ofstream fout;
-    fout.open("pade_lo.dat");
-    for(int i=0; i<nw; i++)
-        fout << scientific << setprecision(10) << rho[i] << std::endl;
-    fout.close();
+    {
+        ofstream fout("pade_lo.dat");
+        for(int i=0; i<nw; i++){
+            fout << scientific << setprecision(10) << rho[i] << std::endl;
+        }
+    }
 
     // read reference data
     std::vector<double> ref;
@@ -83,15 +86,32 @@ TEST(pade, lorentzian)
     double diff = diff_vector(rho, ref);
     printf("%.3e\n", diff);
 
+    // EXPECT_GT(acc_required, diff);
+    return diff;
+}
+
+TEST(pade, lorentzian_even_N)
+{
+    int N = 256;
+    double diff = test_fermion_lorentzian(N);
     EXPECT_GT(acc_required, diff);
 }
 
-
-TEST(pade, rectangular)
+TEST(pade, lorentzian_odd_N)
 {
+    int N = 255;
+    double diff = test_fermion_lorentzian(N);
+    EXPECT_GT(acc_required, diff);
+}
+
+double test_fermion_rectangular(int N)
+{
+    int n = N/2;
+    if(isodd(N)) ++n;
+
     // G(iw) for a model with rectangular DOS
-    vector< complex<double> > giw(N/2);
-    for(int i=0; i<N/2; i++){
+    vector< complex<double> > giw(n);
+    for(int i=0; i<n; i++){
         double omega = double(2*i+1) * M_PI / beta;
         giw[i] = -IMAG * atan(1./omega);
         // truncate some digits
@@ -124,5 +144,21 @@ TEST(pade, rectangular)
     double diff = diff_vector(rho, ref);
     printf("%.3e\n", diff);
 
+    return diff;
+}
+
+TEST(pade, rectangular_even_N)
+{
+    int N = 256;
+    double diff = test_fermion_rectangular(N);
     EXPECT_GT(acc_required, diff);
 }
+
+
+TEST(pade, rectangular_odd_N)
+{
+    int N = 255;
+    double diff = test_fermion_rectangular(N);
+    EXPECT_GT(acc_required, diff);
+}
+

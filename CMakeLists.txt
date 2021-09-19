@@ -23,15 +23,27 @@ include_directories(${CMAKE_SOURCE_DIR}/thirdparty/cpplapack/include)
 #  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 #endif(OPENMP_FOUND)
 
-#Find BLAS
-find_package(BLAS REQUIRED)
+if(USE_MKL)
+  if(NOT MKLROOT)
+    set(MKLROOT $ENV{MKLROOT})
+  endif()
+  if(NOT MKLROOT)
+    message(FATAL "MKLROOT is not set")
+  endif()
 
-#Find LAPACK
-find_package(LAPACK REQUIRED)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mkl")
+  include_directories(${MKLROOT}/include/fftw)
+else()
+  #Find BLAS
+  find_package(BLAS REQUIRED)
 
-#Find FFTW3
-find_package(FFTW REQUIRED)
-include_directories(${FFTW_INCLUDE_DIRS})
+  #Find LAPACK
+  find_package(LAPACK REQUIRED)
+
+  #Find FFTW3
+  find_package(FFTW REQUIRED)
+  include_directories(${FFTW_INCLUDE_DIRS})
+endif()
 
 # Build and enable tests
 # testing setup

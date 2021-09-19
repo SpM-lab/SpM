@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>6. Output files &#8212; SpM 1.0.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. Output files &#8212; SpM 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="5. Input files" href="inputfile.html" />
@@ -28,15 +28,18 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="output-files">
-<span id="outputfiles"></span><h1>6. Output files<a class="headerlink" href="#output-files" title="Permalink to this headline">¶</a></h1>
+<span id="outputfiles"></span><h1><span class="section-number">6. </span>Output files<a class="headerlink" href="#output-files" title="Permalink to this headline">¶</a></h1>
 <p>After computation is done, numerical results are stored in directory <code class="docutils literal notranslate"><span class="pre">output</span></code>.</p>
 <div class="section" id="list-of-files">
-<h2>6.1. List of files<a class="headerlink" href="#list-of-files" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>List of files<a class="headerlink" href="#list-of-files" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>output
 ├── spectrum.dat
+├── pade.dat
 ├── lambda_dep.dat
 ├── find_lambda_opt.dat
 ├── SV.dat
@@ -64,18 +67,18 @@ More detailed results for a given value lambda are stored in directory <code cla
 In particular, the directory <code class="docutils literal notranslate"><span class="pre">lambda_opt</span></code> is for the optimal values of lambda, and the other directories ending with numbers, e.g. <code class="docutils literal notranslate"><span class="pre">lambda_1.00e+00</span></code>, contain results for the specific value of lambda.</p>
 </div>
 <div class="section" id="details-of-each-files">
-<h2>6.2. Details of each files<a class="headerlink" href="#details-of-each-files" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Details of each files<a class="headerlink" href="#details-of-each-files" title="Permalink to this headline">¶</a></h2>
 <p>Each files stores list of real numbers separated with a white space.
 Some comments may be given at the header of files (lines beginning with ‘#’).</p>
 <ul>
-<li><p class="first"><em>spectrum.dat</em></p>
+<li><p><em>spectrum.dat</em></p>
 <blockquote>
-<div><p>Real frequency spectrum <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> for the optimal value of <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/>. This is the final solution.</p>
+<div><p>Real frequency spectrum <img class="math" src="../_images/math/d785a6c9abcdb146b923be73cde3c1b13ef6112a.png" alt="\rho(\omega)"/> for the optimal value of <img class="math" src="../_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/>. This is the final solution.</p>
 <ul class="simple">
-<li>1st column: <img class="math" src="../_images/math/359c8be672c286f0451ce49e8c8b7db7f99fad74.png" alt="\omega_i"/></li>
-<li>2nd column: <img class="math" src="../_images/math/c33c44a9858afa000c1c2dedf203753df4baadc8.png" alt="\rho(\omega_i)"/></li>
+<li><p>1st column: <img class="math" src="../_images/math/74ba2b409c080b4e3153c234247143775552abb7.png" alt="\omega_i"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/dee7d442da8fcaf06afa46d1f97d0584cbdfb7c2.png" alt="\rho(\omega_i)"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/spectrum.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/spectrum.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lambda=1.585e-02  (l=19)</span>
 <span class="o">-</span><span class="mf">4.00000e+00</span> <span class="mf">0.00000e+00</span>
 <span class="o">-</span><span class="mf">3.99200e+00</span> <span class="mf">0.00000e+00</span>
@@ -85,36 +88,48 @@ Some comments may be given at the header of files (lines beginning with ‘#’)
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>lambda_dep.dat</em></p>
+<li><p><em>spectrum.dat</em></p>
+<blockquote>
+<div><p>Real frequency spectrum <img class="math" src="../_images/math/d785a6c9abcdb146b923be73cde3c1b13ef6112a.png" alt="\rho(\omega)"/> calculated by the Pade approximant.</p>
+<ul class="simple">
+<li><p>1st column: <img class="math" src="../_images/math/74ba2b409c080b4e3153c234247143775552abb7.png" alt="\omega_i"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/dee7d442da8fcaf06afa46d1f97d0584cbdfb7c2.png" alt="\rho(\omega_i)"/> from G(tau) in <code class="docutils literal notranslate"><span class="pre">filein_G</span></code>.</p></li>
+<li><p>3rd column: The expectation value of <img class="math" src="../_images/math/dee7d442da8fcaf06afa46d1f97d0584cbdfb7c2.png" alt="\rho(\omega_i)"/> over the generated <code class="docutils literal notranslate"><span class="pre">NSamplePade</span></code> samples with independent noise.</p></li>
+<li><p>4th column: The sample standard deviation of <img class="math" src="../_images/math/dee7d442da8fcaf06afa46d1f97d0584cbdfb7c2.png" alt="\rho(\omega_i)"/> over the generated <code class="docutils literal notranslate"><span class="pre">NsamplePade</span></code> samples with independent noise.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><em>lambda_dep.dat</em></p>
 <blockquote>
 <div><p>Several quantities as a function of lambda.</p>
 <ul class="simple">
-<li>1st column: <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/></li>
-<li>2nd column: Square error in the SV basis, <img class="math" src="../_images/math/3a3d1af28de6ef34516ac9d699c48cbbb23ce998.png" alt="\| \bm{y}'-S\bm{x}' \|_2^2"/> (the first term in <img class="math" src="../_images/math/a3965ac90c9513644606210339d525386626dcb2.png" alt="F"/>)</li>
-<li>3rd column: Square error computed in the original basis, <img class="math" src="../_images/math/0949ed70c72f091f7e8ac4a7dd9c7bd9d859e06e.png" alt="\| \bm{y}-K\bm{x} \|_2^2"/></li>
-<li>4th column: L1 norm of <img class="math" src="../_images/math/9d49d6f3960ae938ac2efcc52449f7f93bc3b97b.png" alt="\bm{x}'"/>, <img class="math" src="../_images/math/8ddb02d4e899000ba2ee76d62ac4ab491fd44a75.png" alt="\| \bm{x}' \|_1"/> (the second term in <img class="math" src="../_images/math/a3965ac90c9513644606210339d525386626dcb2.png" alt="F"/>)</li>
-<li>5th column: not used</li>
+<li><p>1st column: <img class="math" src="../_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/></p></li>
+<li><p>2nd column: Square error in the SV basis, <img class="math" src="../_images/math/5b74536daf193cce4611f5dcb4d160da369709aa.png" alt="\| \bm{y}'-S\bm{x}' \|_2^2"/> (the first term in <img class="math" src="../_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>)</p></li>
+<li><p>3rd column: Square error computed in the original basis, <img class="math" src="../_images/math/56e7b22a087c62148f5a8522c2ae4a9d55719fcd.png" alt="\| \bm{y}-K\bm{x} \|_2^2"/></p></li>
+<li><p>4th column: L0 norm of <img class="math" src="../_images/math/bc339ddfc8da63735f6dd5127f4dede6fe7a0fe4.png" alt="\bm{x}'"/>, <img class="math" src="../_images/math/8c131d45098b8570f11fc96d80a8f2b915501b5b.png" alt="\| \bm{x}' \|_0"/> (the number of non-zero components in <img class="math" src="../_images/math/bc339ddfc8da63735f6dd5127f4dede6fe7a0fe4.png" alt="\bm{x}'"/>)</p></li>
+<li><p>5th column: L1 norm of <img class="math" src="../_images/math/bc339ddfc8da63735f6dd5127f4dede6fe7a0fe4.png" alt="\bm{x}'"/>, <img class="math" src="../_images/math/4271cd7da7fbe9c7afd999eaefbb1a69b55da855.png" alt="\| \bm{x}' \|_1"/> (the second term in <img class="math" src="../_images/math/df00656702b70b4b6f7ffbf6a9aa9a334bab1914.png" alt="F"/>)</p></li>
+<li><p>6th column: not used</p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_dep.dat</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.00000e+02</span> <span class="mf">1.09110e-01</span> <span class="mf">1.13080e-01</span> <span class="mf">4.81361e-02</span> <span class="mf">0.00000e+00</span>
-<span class="mf">6.30957e+01</span> <span class="mf">1.08854e-01</span> <span class="mf">1.12824e-01</span> <span class="mf">4.81376e-02</span> <span class="mf">0.00000e+00</span>
-<span class="mf">3.98107e+01</span> <span class="mf">1.08752e-01</span> <span class="mf">1.12722e-01</span> <span class="mf">4.81386e-02</span> <span class="mf">0.00000e+00</span>
-<span class="mf">2.51189e+01</span> <span class="mf">1.08710e-01</span> <span class="mf">1.12679e-01</span> <span class="mf">4.81394e-02</span> <span class="mf">0.00000e+00</span>
-<span class="mf">1.58489e+01</span> <span class="mf">1.08609e-01</span> <span class="mf">1.12578e-01</span> <span class="mf">4.81459e-02</span> <span class="mf">0.00000e+00</span>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_dep.dat</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.00000e+02</span> <span class="mf">1.09110e-01</span> <span class="mf">1.13080e-01</span> <span class="mi">2</span> <span class="mf">4.81361e-02</span> <span class="mf">0.00000e+00</span>
+<span class="mf">6.30957e+01</span> <span class="mf">1.08854e-01</span> <span class="mf">1.12824e-01</span> <span class="mi">2</span> <span class="mf">4.81376e-02</span> <span class="mf">0.00000e+00</span>
+<span class="mf">3.98107e+01</span> <span class="mf">1.08752e-01</span> <span class="mf">1.12722e-01</span> <span class="mi">2</span> <span class="mf">4.81386e-02</span> <span class="mf">0.00000e+00</span>
+<span class="mf">2.51189e+01</span> <span class="mf">1.08710e-01</span> <span class="mf">1.12679e-01</span> <span class="mi">2</span> <span class="mf">4.81394e-02</span> <span class="mf">0.00000e+00</span>
+<span class="mf">1.58489e+01</span> <span class="mf">1.08609e-01</span> <span class="mf">1.12578e-01</span> <span class="mi">2</span> <span class="mf">4.81459e-02</span> <span class="mf">0.00000e+00</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>find_lambda_opt.dat</em></p>
+<li><p><em>find_lambda_opt.dat</em></p>
 <blockquote>
-<div><p>Auxiliary data that are used to determine the optimal value of lambda. See ref.?? for details.</p>
+<div><p>Auxiliary data that are used to determine the optimal value of lambda. See our original paper <a class="reference external" href="https://doi.org/10.1103/PhysRevE.95.061302">Phys. Rev. E 95, 061302(R) (2017)</a> for details.</p>
 <ul class="simple">
-<li>1st column: <img class="math" src="../_images/math/bd30e06c49c5b6e0f1ff7b39d06a6f8292259ddb.png" alt="\log_{10}(\lambda)"/></li>
-<li>2nd column: <img class="math" src="../_images/math/b172478c2e144fb77ed130c729b5ad404895872f.png" alt="\log_{10}(f(x)/\chi^2)"/></li>
-<li>3rd column: <img class="math" src="../_images/math/8cb351dd3b28ea1c9fb991ca73ab98acd8cfce4a.png" alt="\log_{10}(\chi^2)"/></li>
-<li>4th column: <img class="math" src="../_images/math/518712cb83e744e0d12c45a910b011dcca076a39.png" alt="\log_{10}(f(x))"/></li>
+<li><p>1st column: <img class="math" src="../_images/math/48731d0d0099a80831fc44ba4efc0374831fec66.png" alt="\log_{10}(\lambda)"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/beebde8324cfe5c384486efd63f5ac2c2f1a994a.png" alt="\log_{10}(f(x)/\chi^2)"/></p></li>
+<li><p>3rd column: <img class="math" src="../_images/math/64809dadb325c3edda2fb2f7cc11bd792ef6d006.png" alt="\log_{10}(\chi^2)"/></p></li>
+<li><p>4th column: <img class="math" src="../_images/math/6f580bcf790eb89c2d436a3ce122884a9be81c9b.png" alt="\log_{10}(f(x))"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/find_lambda_opt.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/find_lambda_opt.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># log(x)  diff  log(y)  log(f(x))  [all in log10 scale]</span>
 <span class="mf">2.00000e+00</span> <span class="mf">1.92865e-16</span> <span class="o">-</span><span class="mf">9.621340e-01</span> <span class="o">-</span><span class="mf">9.621340e-01</span>
 <span class="mf">1.80000e+00</span> <span class="o">-</span><span class="mf">8.94525e-02</span> <span class="o">-</span><span class="mf">9.631547e-01</span> <span class="o">-</span><span class="mf">1.052607e+00</span>
@@ -124,14 +139,14 @@ Some comments may be given at the header of files (lines beginning with ‘#’)
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>SV.dat</em></p>
+<li><p><em>SV.dat</em></p>
 <blockquote>
-<div><p>Singular values of the kernel <img class="math" src="../_images/math/34643d2d999fcc53423d45f1bb2392eb2ca4772b.png" alt="K(\tau, \omega)"/>.</p>
+<div><p>Singular values of the kernel <img class="math" src="../_images/math/2f2022e529b7e23aae4ac90bfaa5cef33e7d968c.png" alt="K(\tau, \omega)"/>.</p>
 <ul class="simple">
-<li>1st column: index <img class="math" src="../_images/math/b359488b993294ebbc2c7b30ab8f749dcbc6826d.png" alt="l"/> (starting from 0)</li>
-<li>2nd column: The singular value <img class="math" src="../_images/math/08a277da44635b36e49e97a084c18ddbebeb65c6.png" alt="S_l"/> in descending order</li>
+<li><p>1st column: index <img class="math" src="../_images/math/470aa65888a2971c9346e573f12b37ea406b8ec9.png" alt="l"/> (starting from 0)</p></li>
+<li><p>2nd column: The singular value <img class="math" src="../_images/math/9db34e2fc2099e7aef7f2ee993cca2cb0e574551.png" alt="S_l"/> in descending order</p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/find_lambda_opt.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/SV.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mf">1.07898e+02</span>
 <span class="mi">1</span> <span class="mf">9.75830e+01</span>
 <span class="mi">2</span> <span class="mf">6.93652e+01</span>
@@ -141,23 +156,23 @@ Some comments may be given at the header of files (lines beginning with ‘#’)
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>iter.dat</em></p>
+<li><p><em>iter.dat</em></p>
 <blockquote>
 <div><p>Several quantities as a function of the iteration number.
 The 2nd–6th quantities should be small.</p>
 <ul class="simple">
-<li>1st column: iteration (starting from 1)</li>
-<li>2nd column: <img class="math" src="../_images/math/f94e13b8b141ea338343a4edcb7d14d0283209be.png" alt="\| \bm{x}'(n) - \bm{x}'(n-1) \|_1"/></li>
-<li>3rd column: primary residual error for the constraint <img class="math" src="../_images/math/e2bf38137174bbbc865558597cdacfe137d43d52.png" alt="\bm{z}'=\bm{x}', \| \bm{z}'-\bm{x}' \|_2"/></li>
-<li>4th column: dual residual error for the constraint <img class="math" src="../_images/math/6ed94dac5ae2ab85d25d0c11ed15a62e4b9568d0.png" alt="\bm{z}'=\bm{x}'"/>, <img class="math" src="../_images/math/4569268c314a44232c428f1e7bf62b8bd225381a.png" alt="|| \bm{z}'(n) - \bm{z}'(n-1) ||_2"/></li>
-<li>5th column: primary residual error for the constraint <img class="math" src="../_images/math/3cc42bfbdd8b170705ca942fa5fc4974d1580ec3.png" alt="\bm{z}=V\bm{x}'"/>, <img class="math" src="../_images/math/6f30456384f9635601349f6bb0de3ccdd58b0837.png" alt="\| \bm{z}-V\bm{x}' \|_2"/></li>
-<li>6th column: dual residual error for the constraint <img class="math" src="../_images/math/3cc42bfbdd8b170705ca942fa5fc4974d1580ec3.png" alt="\bm{z}=V\bm{x}'"/>, <img class="math" src="../_images/math/fac78ecd202fb268bd8ad30d6fa2176d9f74c01c.png" alt="\| \bm{z}(n) - \bm{z}(n-1) \|_2"/></li>
-<li>7th column: Square error in the SV basis (the quantity of 2nd column in lambda_dep.dat)</li>
-<li>8th column: <img class="math" src="../_images/math/64666578228826a7dc2a0ecfa07b9e1618527ed5.png" alt="\| \bm{x} \|_1'"/> (the quantity of 4th column in lambda_dep.dat)</li>
-<li>9th column: sum of spectrum, <img class="math" src="../_images/math/c236cbdfa9836dffda883ffed7a9336e0cb5f87f.png" alt="\langle V\bm{x}' \rangle"/></li>
-<li>10th column: negative weight in the spectrum <img class="math" src="../_images/math/666d5022792b496e5bc4af1c5fb7361d9e5ed685.png" alt="V\bm{x}'"/></li>
+<li><p>1st column: iteration (starting from 1)</p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/8e76284621712833fa2c62549c474ce476c0985a.png" alt="\| \bm{x}'(n) - \bm{x}'(n-1) \|_1"/></p></li>
+<li><p>3rd column: primary residual error for the constraint <img class="math" src="../_images/math/dafab2ceccf1253d46d57f855db2114666be8f84.png" alt="\bm{z}'=\bm{x}', \| \bm{z}'-\bm{x}' \|_2"/></p></li>
+<li><p>4th column: dual residual error for the constraint <img class="math" src="../_images/math/eb65da8604af4d17a3e3c7b6fa772d62b2a117c4.png" alt="\bm{z}'=\bm{x}'"/>, <img class="math" src="../_images/math/6fb6ea3c9b7bdabce03e2042f8d03b68930e6496.png" alt="|| \bm{z}'(n) - \bm{z}'(n-1) ||_2"/></p></li>
+<li><p>5th column: primary residual error for the constraint <img class="math" src="../_images/math/127c265f0cf8b8d0a6b2b1f46e642c258268db54.png" alt="\bm{z}=V\bm{x}'"/>, <img class="math" src="../_images/math/2b961a32b8f4a499431818378a9eaf3cefeb5a13.png" alt="\| \bm{z}-V\bm{x}' \|_2"/></p></li>
+<li><p>6th column: dual residual error for the constraint <img class="math" src="../_images/math/127c265f0cf8b8d0a6b2b1f46e642c258268db54.png" alt="\bm{z}=V\bm{x}'"/>, <img class="math" src="../_images/math/8f3208ec712501c41d504675079146fc4721003a.png" alt="\| \bm{z}(n) - \bm{z}(n-1) \|_2"/></p></li>
+<li><p>7th column: Square error in the SV basis (the quantity of 2nd column in lambda_dep.dat)</p></li>
+<li><p>8th column: <img class="math" src="../_images/math/39bd43c9da2251ecec72aa5bcf36e34daa0327c4.png" alt="\| \bm{x} \|_1'"/> (the quantity of 4th column in lambda_dep.dat)</p></li>
+<li><p>9th column: sum of spectrum, <img class="math" src="../_images/math/5e8121837eccfb7797787e50b1852bb6db99f0f6.png" alt="\langle V\bm{x}' \rangle"/></p></li>
+<li><p>10th column: negative weight in the spectrum <img class="math" src="../_images/math/ea358021687773786e1c8680fd1e622c32801379.png" alt="V\bm{x}'"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_opt/iter.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_opt/iter.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># iter  diff(x,x_old)  res1_pri res1_dual res2_pri res2_dual  RMSE L1_norm sum(x) negative_weight</span>
 <span class="mi">1</span> <span class="mf">3.854841e-03</span> <span class="mf">2.119714e-03</span> <span class="mf">1.369725e-04</span> <span class="mf">5.289078e-04</span> <span class="mf">4.523259e-04</span> <span class="mf">5.618012e-05</span> <span class="mf">9.396320e-02</span> <span class="mf">1.000546e+00</span> <span class="mf">3.481495e-03</span>
 <span class="mi">2</span> <span class="mf">2.399056e-03</span> <span class="mf">1.526513e-03</span> <span class="mf">3.273800e-05</span> <span class="mf">4.131063e-04</span> <span class="mf">6.433491e-04</span> <span class="mf">5.652371e-05</span> <span class="mf">9.203257e-02</span> <span class="mf">1.000546e+00</span> <span class="mf">2.717878e-03</span>
@@ -167,16 +182,16 @@ The 2nd–6th quantities should be small.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>x_sv.dat</em></p>
+<li><p><em>x_sv.dat</em></p>
 <blockquote>
 <div><p>spectrum in the SV basis (solution of the minimization problem)</p>
 <ul class="simple">
-<li>1st column: The singular value index <img class="math" src="../_images/math/b359488b993294ebbc2c7b30ab8f749dcbc6826d.png" alt="l"/></li>
-<li>2nd column: <img class="math" src="../_images/math/47aa9388b4a90760ec185881759daa4766d51191.png" alt="x'_l"/></li>
-<li>3rd column: <img class="math" src="../_images/math/a6d47234c6a3b8d24783aaebc72d9d4359d13c82.png" alt="z'_l"/> (<strong>must be sparse</strong>)</li>
-<li>4th column: <img class="math" src="../_images/math/636d4c832194e64ac08693518831e906009d3161.png" alt="V^{\rm t}\bm{z}"/></li>
+<li><p>1st column: The singular value index <img class="math" src="../_images/math/470aa65888a2971c9346e573f12b37ea406b8ec9.png" alt="l"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/daa80fd46aaa8f81b408d3e79ef33d00b4408424.png" alt="x'_l"/></p></li>
+<li><p>3rd column: <img class="math" src="../_images/math/2849d9bdf4962c370ec5060ef311a22748279907.png" alt="z'_l"/> (<strong>must be sparse</strong>)</p></li>
+<li><p>4th column: <img class="math" src="../_images/math/ace0e65627948c2736eb6f812e46b8c87b698337.png" alt="V^{\rm t}\bm{z}"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_opt/x_sv.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_opt/x_sv.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-</span><span class="mf">4.61300e-02</span> <span class="o">-</span><span class="mf">4.61300e-02</span> <span class="o">-</span><span class="mf">4.61492e-02</span>
 <span class="mi">1</span> <span class="mf">1.14335e-06</span> <span class="mf">0.00000e+00</span> <span class="o">-</span><span class="mf">5.52982e-06</span>
 <span class="mi">2</span> <span class="o">-</span><span class="mf">6.65757e-03</span> <span class="o">-</span><span class="mf">6.65757e-03</span> <span class="o">-</span><span class="mf">6.69485e-03</span>
@@ -186,16 +201,16 @@ The 2nd–6th quantities should be small.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>x_tw.dat</em></p>
+<li><p><em>x_tw.dat</em></p>
 <blockquote>
 <div><p>spectrum rho(omega) in the real-frequency domain</p>
 <ul class="simple">
-<li>1st column: <img class="math" src="../_images/math/359c8be672c286f0451ce49e8c8b7db7f99fad74.png" alt="\omega_i"/></li>
-<li>2nd column: <img class="math" src="../_images/math/666d5022792b496e5bc4af1c5fb7361d9e5ed685.png" alt="V\bm{x}'"/></li>
-<li>3rd column: <img class="math" src="../_images/math/db9038319d8e3a6b6b43071d4d08701d9d70c2ac.png" alt="V\bm{z}'"/> (final result for a given lambda when non-negativity is not imposed)</li>
-<li>4th column: <img class="math" src="../_images/math/26e8299b484849735af4360c90f176656e4c035a.png" alt="\bm{z}"/> (<strong>final result</strong> for a given lambda when non-negativity is imposed)</li>
+<li><p>1st column: <img class="math" src="../_images/math/74ba2b409c080b4e3153c234247143775552abb7.png" alt="\omega_i"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/ea358021687773786e1c8680fd1e622c32801379.png" alt="V\bm{x}'"/></p></li>
+<li><p>3rd column: <img class="math" src="../_images/math/4460a792b9008a7d3bcbe1d50683b0b4cfb83f11.png" alt="V\bm{z}'"/> (final result for a given lambda when non-negativity is not imposed)</p></li>
+<li><p>4th column: <img class="math" src="../_images/math/2ca435fb22c938d7aac1be50458e635ac33e0486.png" alt="\bm{z}"/> (<strong>final result</strong> for a given lambda when non-negativity is imposed)</p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_opt/x_tw.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_opt/x_tw.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">4.00000e+00</span> <span class="mf">8.98641e-04</span> <span class="mf">3.95646e-03</span> <span class="mf">0.00000e+00</span>
 <span class="o">-</span><span class="mf">3.99200e+00</span> <span class="mf">8.73662e-04</span> <span class="mf">3.79795e-03</span> <span class="mf">0.00000e+00</span>
 <span class="o">-</span><span class="mf">3.98400e+00</span> <span class="mf">8.41470e-04</span> <span class="mf">3.64070e-03</span> <span class="mf">0.00000e+00</span>
@@ -205,16 +220,16 @@ The 2nd–6th quantities should be small.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>y_sv.dat</em></p>
+<li><p><em>y_sv.dat</em></p>
 <blockquote>
 <div><p>input data transformed into the SV basis</p>
 <ul class="simple">
-<li>1st column: The singular value index <img class="math" src="../_images/math/b359488b993294ebbc2c7b30ab8f749dcbc6826d.png" alt="l"/></li>
-<li>2nd column: <img class="math" src="../_images/math/61e319ecabcb5c23765c66fb100f64ec3aaf1f14.png" alt="y'_l"/> computed by <img class="math" src="../_images/math/b33b56c5293081e5b6575bf2f6f1eecc81b16d8c.png" alt="U^{\rm t} \bm{y}"/></li>
-<li>3rd column: <img class="math" src="../_images/math/a372fe4adb7d7aa51df8ac102e5b7123b3b8f24c.png" alt="S\bm{x}'"/></li>
-<li>4th column: <img class="math" src="../_images/math/3f9b358d1499cd88c763c093b52622a9820128c0.png" alt="S\bm{z}'"/></li>
+<li><p>1st column: The singular value index <img class="math" src="../_images/math/470aa65888a2971c9346e573f12b37ea406b8ec9.png" alt="l"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/2d1158e63fa2d4369306e799c2ca70c0ff5e4c8a.png" alt="y'_l"/> computed by <img class="math" src="../_images/math/0814fde550b0601779ad6ba68412c18f985efc35.png" alt="U^{\rm t} \bm{y}"/></p></li>
+<li><p>3rd column: <img class="math" src="../_images/math/b12dde60462879ed92a5655089c70a9fc7b35de5.png" alt="S\bm{x}'"/></p></li>
+<li><p>4th column: <img class="math" src="../_images/math/dce18fda1ad5f4f7cfb43d1bb32ab2f5cdcf6f49.png" alt="S\bm{z}'"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_opt/y_sv.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as  <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_opt/y_sv.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-</span><span class="mf">4.97866e+00</span> <span class="o">-</span><span class="mf">4.97734e+00</span> <span class="o">-</span><span class="mf">4.97734e+00</span>
 <span class="mi">1</span> <span class="mf">1.16952e-04</span> <span class="mf">1.11571e-04</span> <span class="mf">0.00000e+00</span>
 <span class="mi">2</span> <span class="o">-</span><span class="mf">4.63728e-01</span> <span class="o">-</span><span class="mf">4.61804e-01</span> <span class="o">-</span><span class="mf">4.61804e-01</span>
@@ -224,16 +239,16 @@ The 2nd–6th quantities should be small.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><em>y_tw.dat</em></p>
+<li><p><em>y_tw.dat</em></p>
 <blockquote>
-<div><p>input data <img class="math" src="../_images/math/f36101c441bcf511a4c70e9f0fd21507af66d746.png" alt="G(\tau)"/> in the imaginary-time domain</p>
+<div><p>input data <img class="math" src="../_images/math/5bf2f08118377eb66aaeda43b38188e919b6ed89.png" alt="G(\tau)"/> in the imaginary-time domain</p>
 <ul class="simple">
-<li>1st column: <img class="math" src="../_images/math/b80430baf1b059d0097bc9081abca3b1e0a74287.png" alt="\tau_i"/></li>
-<li>2nd column: <img class="math" src="../_images/math/dd5601c05723358c40a8cb0fa9b1541eb1def298.png" alt="y_i=G(\tau_i)"/> (<strong>input data</strong>)</li>
-<li>3rd column: <img class="math" src="../_images/math/d1814eaebc091b796e7d216225889ea1ca054937.png" alt="U S \bm{x}'"/></li>
-<li>4th column: <img class="math" src="../_images/math/ed882223f7d35e6c8ab4844af95f33706aaa0c31.png" alt="U S \bm{z}'"/></li>
+<li><p>1st column: <img class="math" src="../_images/math/dbc357e9cf742d661bf4941cd0c41ec78cbbe187.png" alt="\tau_i"/></p></li>
+<li><p>2nd column: <img class="math" src="../_images/math/24be1bd9da0de6de81ffddd162981d41f03455f4.png" alt="y_i=G(\tau_i)"/> (<strong>input data</strong>)</p></li>
+<li><p>3rd column: <img class="math" src="../_images/math/2666177e2060605383cc6abb7c35a7076b51e76d.png" alt="U S \bm{x}'"/></p></li>
+<li><p>4th column: <img class="math" src="../_images/math/3f018cc85ab0a8ac1525bdd4c98be894d29282da.png" alt="U S \bm{z}'"/></p></li>
 </ul>
-<p>ex.) calculated results for fermion sample outputted as <code class="docutils literal notranslate"><span class="pre">samles/fermion/lambda_opt/y_tw.dat</span></code>.</p>
+<p>ex.) calculated results for fermion sample outputted as <code class="docutils literal notranslate"><span class="pre">samples/fermion/output/lambda_opt/y_tw.dat</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.00000e+00</span> <span class="mf">5.00734e-01</span> <span class="mf">5.00687e-01</span> <span class="mf">5.00294e-01</span>
 <span class="mf">2.49938e-04</span> <span class="mf">4.90130e-01</span> <span class="mf">4.90315e-01</span> <span class="mf">4.89958e-01</span>
 <span class="mf">4.99875e-04</span> <span class="mf">4.81350e-01</span> <span class="mf">4.80277e-01</span> <span class="mf">4.79953e-01</span>
@@ -260,6 +275,7 @@ In the <code class="docutils literal notranslate"><span class="pre">output</span
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -296,32 +312,38 @@ In the <code class="docutils literal notranslate"><span class="pre">output</span
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="inputfile.html" title="previous chapter">5. Input files</a></li>
+      <li>Previous: <a href="inputfile.html" title="previous chapter"><span class="section-number">5. </span>Input files</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/docs/outputfile.rst.txt"

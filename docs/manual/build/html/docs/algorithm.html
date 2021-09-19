@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3. Algorithm &#8212; SpM 1.0.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Algorithm &#8212; SpM 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Calculation flow" href="function.html" />
@@ -29,28 +29,32 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="algorithm">
-<h1>3. Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">SpM</span></code> program solves the linear equation <img class="math" src="../_images/math/379721c563c5940c2c493c638e2bbd7607140312.png" alt="\bm{G}=K\bm{\rho}"/> with respect to <img class="math" src="../_images/math/08ee2ced3e4c74283f24491dbb1e4612e1953b38.png" alt="\bm{\rho}"/> for given <img class="math" src="../_images/math/d3abeeec19e04fc372e23a3383efcb60678ecdb8.png" alt="\bm{G}"/>.
-Because of <strong>ill-conditioned</strong> nature of the matrix <img class="math" src="../_images/math/684381a21cd73ebbf43b63a087d3f7410ee99ce8.png" alt="K"/>, a simple treatment of this equation is numerically unstable.
+<h1><span class="section-number">3. </span>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">SpM</span></code> program solves the linear equation <img class="math" src="../_images/math/4ddd01a46514d77caa76510a4c6abd3febb35bc2.png" alt="\bm{G}=K\bm{\rho}"/> with respect to <img class="math" src="../_images/math/c133ba25c5649d9fecda14dc827c772e0bedec0a.png" alt="\bm{\rho}"/> for given <img class="math" src="../_images/math/101ff834ad46926c805bdc2dccfa56b70baeafd3.png" alt="\bm{G}"/>.
+Because of <strong>ill-conditioned</strong> nature of the matrix <img class="math" src="../_images/math/52ddc0cde6d632f631533173562fe3ca375b1f32.png" alt="K"/>, a simple treatment of this equation is numerically unstable.
 For example, the solution using the <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse">Moore-Penrose pseudo-inverse matrix</a>
 results in NaN.
 Even if one manages to derive a definite solution, it is quite sensitive to numerical noise and often breaks preconditions that any physical spectra must satisfy.
-This becomes particularly problematic when <img class="math" src="../_images/math/d3abeeec19e04fc372e23a3383efcb60678ecdb8.png" alt="\bm{G}"/> is evaluated by quantum Monte Carlo technique.</p>
+This becomes particularly problematic when <img class="math" src="../_images/math/101ff834ad46926c805bdc2dccfa56b70baeafd3.png" alt="\bm{G}"/> is evaluated by quantum Monte Carlo technique.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SpM</span></code> provides a <strong>physical</strong> solution which fulfills the equation of concern within a certain accuracy.
 The solution satisfies the constraints such as sum rule and nonnegativity.
-The engine of <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program uses the method of <strong>L1-norm regularization</strong> to separate relevant information in <img class="math" src="../_images/math/d3abeeec19e04fc372e23a3383efcb60678ecdb8.png" alt="\bm{G}"/> from irrelevant one which makes the spectrum unphysical. This process is automatically done without hand-tuning parameters.</p>
+The engine of <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program uses the method of <strong>L1-norm regularization</strong> to separate relevant information in <img class="math" src="../_images/math/101ff834ad46926c805bdc2dccfa56b70baeafd3.png" alt="\bm{G}"/> from irrelevant one which makes the spectrum unphysical. This process is automatically done without hand-tuning parameters.</p>
 <p>For details, see the original article</p>
 <blockquote>
-<div>J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
+<div><p>J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
 “Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data”
-<a class="reference external" href="https://doi.org/10.1103/PhysRevE.95.061302">Phys. Rev. E 95, 061302(R) (2017).</a></div></blockquote>
+<a class="reference external" href="https://doi.org/10.1103/PhysRevE.95.061302">Phys. Rev. E 95, 061302(R) (2017).</a></p>
+</div></blockquote>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -83,33 +87,39 @@ The engine of <code class="docutils literal notranslate"><span class="pre">SpM</
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="tutorials.html" title="previous chapter">2. Tutorials</a></li>
-      <li>Next: <a href="function.html" title="next chapter">4. Calculation flow</a></li>
+      <li>Previous: <a href="tutorials.html" title="previous chapter"><span class="section-number">2. </span>Tutorials</a></li>
+      <li>Next: <a href="function.html" title="next chapter"><span class="section-number">4. </span>Calculation flow</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/docs/algorithm.rst.txt"

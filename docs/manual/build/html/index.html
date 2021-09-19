@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to SpM’s documentation! &#8212; SpM 1.0.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to SpM’s documentation! &#8212; SpM 2.0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. How to install" href="docs/install.html" />
@@ -28,6 +28,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="welcome-to-spm-s-documentation">
@@ -40,12 +42,31 @@
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
 <p>This package is distributed under GNU General Public License version 3 (GPL v3).</p>
-<p>We kindly ask you to cite the article</p>
+<p>When you publish a publication that includes results obtained using this package,
+we kindly ask you to cite the following articles</p>
+<ul>
+<li><p>SpM method</p>
 <blockquote>
-<div>J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
+<div><p>J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
 “<em>Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data</em>”
-<a class="reference external" href="https://doi.org/10.1103/PhysRevE.95.061302">Phys. Rev. E 95, 061302(R) (2017)</a>.</div></blockquote>
-<p>in publications that includes results obtained using this package.</p>
+<a class="reference external" href="https://doi.org/10.1103/PhysRevE.95.061302">Phys. Rev. E 95, 061302(R) (2017)</a>.</p>
+</div></blockquote>
+</li>
+<li><p>SpM package</p>
+<blockquote>
+<div><p>K. Yoshimi, J. Otsuki, Y. Motoyama, M. Ohzeki, and H. Shinaoka,
+“<em>SpM: Sparse modeling tool for analytic continuation of imaginary-time Green’s function</em>”
+<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0010465519302103">Comput. Phys. Commun. 244, 319-323 (2019)</a>.</p>
+</div></blockquote>
+</li>
+<li><p>SpM-Pade method (if you use)</p>
+<blockquote>
+<div><p>Y. Motoyama, K. Yoshimi, and J. Otsuki,
+“<em>Robust analytic continuation combining the advantages of the sparse modeling approach and Pade approximation</em>”,
+arXiv:2109.XXXXX.</p>
+</div></blockquote>
+</li>
+</ul>
 </div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
@@ -59,11 +80,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/tutorials.html">2. Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#script">2.1. Script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#make-input-files">2.2. Make input files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#run-spm">2.3. Run SpM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#results">2.4. Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#plot">2.5. Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#fermionic-system">2.1. Fermionic system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#bosonic-system">2.2. Bosonic system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/tutorials.html#spm-pade-method">2.3. SpM-Pade method</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/algorithm.html">3. Algorithm</a></li>
@@ -85,6 +104,7 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -117,32 +137,38 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="docs/install.html" title="next chapter">1. How to install</a></li>
+      <li>Next: <a href="docs/install.html" title="next chapter"><span class="section-number">1. </span>How to install</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/index.rst.txt"

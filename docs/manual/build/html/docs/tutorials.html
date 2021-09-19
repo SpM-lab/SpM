@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. Tutorials &#8212; SpM 1.0.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Tutorials &#8212; SpM 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Algorithm" href="algorithm.html" />
@@ -29,20 +29,25 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="tutorials">
-<span id="id1"></span><h1>2. Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">2. </span>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
 <p>Sample data are provided both for fermionic and bosonic cases:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">samples/fermion</span></code>  # a sample for fermionic spectrum (data in the article)</li>
-<li><code class="docutils literal notranslate"><span class="pre">samples/boson</span></code>  # a sample for bosonic spectrum</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">samples/fermion</span></code>  # a sample for fermionic spectrum (data in the SpM article)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">samples/fermion_twopeak</span></code>  # another sample for fermionic spectrum (data in the SpM-Pade article)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">samples/boson</span></code>  # a sample for bosonic spectrum</p></li>
 </ul>
 </div></blockquote>
-<p>Here, an explanation is given for the fermionic case.</p>
+<div class="section" id="fermionic-system">
+<h2><span class="section-number">2.1. </span>Fermionic system<a class="headerlink" href="#fermionic-system" title="Permalink to this headline">¶</a></h2>
+<p>Here, an explanation is given for the fermionic case (<code class="docutils literal notranslate"><span class="pre">samples/fermion</span></code>).</p>
 <div class="section" id="script">
-<h2>2.1. Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.1. </span>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h3>
 <p>User can execute all the steps explained below using a single script file <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>.
 Edit some variables in the top of the script (explained later) and then run the script by</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./run.sh
@@ -61,11 +66,11 @@ There are some parameters to control the behavior of the script;</p>
 <p>The fist one must be modified, at least, before running.</p>
 </div>
 <div class="section" id="make-input-files">
-<h2>2.2. Make input files<a class="headerlink" href="#make-input-files" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.2. </span>Make input files<a class="headerlink" href="#make-input-files" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
-<li><p class="first">Green’s function</p>
+<li><p>Green’s function</p>
 <blockquote>
-<div><p>Input data for the imaginary time Green’s function <img class="math" src="../_images/math/f36101c441bcf511a4c70e9f0fd21507af66d746.png" alt="G(\tau)"/> should be provided on a linearly discretized mesh between <img class="math" src="../_images/math/604b498d61fdb6213317eab6a9f7240af06a9911.png" alt="\tau=0"/> and <img class="math" src="../_images/math/410a9d0df9c135dd73b269cba7ef04dcfd932b1f.png" alt="\beta"/>.
+<div><p>Input data for the imaginary time Green’s function <img class="math" src="../_images/math/5bf2f08118377eb66aaeda43b38188e919b6ed89.png" alt="G(\tau)"/> should be provided on a linearly discretized mesh between <img class="math" src="../_images/math/bf9ce67c4af0cf022ae70d39169ee8c1c0ff5b02.png" alt="\tau=0"/> and <img class="math" src="../_images/math/7138dad9ac96835665b17f5817eacfcaa9b834c9.png" alt="\beta"/>.
 The file <code class="docutils literal notranslate"><span class="pre">Gtau.in</span></code> contains sample data in the following manner</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#beta=100.000000</span>
 <span class="c1">#omega_max=4.000000</span>
@@ -83,13 +88,13 @@ The file <code class="docutils literal notranslate"><span class="pre">Gtau.in</s
 </pre></div>
 </div>
 <p>Lines beginning with ‘#’ are skipped.
-There are 3 columns, which corresponds to <img class="math" src="../_images/math/47cdea4ba963069691bfe84c50e17683025c0979.png" alt="\tau_i/\beta"/>, <img class="math" src="../_images/math/800a289af47e2f3052ffb324c8f6987bc496052f.png" alt="G^{\rm input}(\tau_i)"/>, and <img class="math" src="../_images/math/a3f47b047edcf70c20b71a148ef35825bb7e2fe1.png" alt="G^{\rm exact}(\tau_i)"/>.
-<code class="docutils literal notranslate"><span class="pre">SpM</span></code> program actually reads only one column, in this case, the second column containing <img class="math" src="../_images/math/800a289af47e2f3052ffb324c8f6987bc496052f.png" alt="G^{\rm input}(\tau_i)"/>.
+There are 3 columns, which corresponds to <img class="math" src="../_images/math/55993aa6bad0c1f4ff2cc440ed6162cee7c076a9.png" alt="\tau_i/\beta"/>, <img class="math" src="../_images/math/f14da30328c6e9a2dc0ba44a1363209d8b080514.png" alt="G^{\rm input}(\tau_i)"/>, and <img class="math" src="../_images/math/6428b105cf252885d44e53f2ad58ae6c663f4c23.png" alt="G^{\rm exact}(\tau_i)"/>.
+<code class="docutils literal notranslate"><span class="pre">SpM</span></code> program actually reads only one column, in this case, the second column containing <img class="math" src="../_images/math/f14da30328c6e9a2dc0ba44a1363209d8b080514.png" alt="G^{\rm input}(\tau_i)"/>.
 User is requested to specify with <code class="docutils literal notranslate"><span class="pre">column</span></code> parameter which column should be read.
-Note that the value of <img class="math" src="../_images/math/b699a4b61a18d3471ea57883736739f4d4ce3770.png" alt="G(\tau=\beta)"/> needs to be given in order to evaluate the integral intensity of <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/>. It means that the integrated intensity is not necessarily be equal to 1 (0 for off-diagonal Green’s function and some finite value for the self energy).</p>
+Note that the value of <img class="math" src="../_images/math/fbda708e89853fd4adede074355f4f30121ceba7.png" alt="G(\tau=\beta)"/> needs to be given in order to evaluate the integral intensity of <img class="math" src="../_images/math/d785a6c9abcdb146b923be73cde3c1b13ef6112a.png" alt="\rho(\omega)"/>. It means that the integrated intensity is not necessarily be equal to 1 (0 for off-diagonal Green’s function and some finite value for the self energy).</p>
 </div></blockquote>
 </li>
-<li><p class="first">Parameters</p>
+<li><p>Parameters</p>
 <blockquote>
 <div><p>Parameters are passed to the <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program by a text file.
 The file <code class="docutils literal notranslate"><span class="pre">param.in</span></code> shows a setting used in obtaining the demonstrative results;</p>
@@ -117,19 +122,19 @@ For details of each parameter and further optional parameters, see <a class="ref
 </ol>
 </div>
 <div class="section" id="run-spm">
-<h2>2.3. Run SpM<a class="headerlink" href="#run-spm" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.3. </span>Run SpM<a class="headerlink" href="#run-spm" title="Permalink to this headline">¶</a></h3>
 <p>In the directory <code class="docutils literal notranslate"><span class="pre">samples/fermion/</span></code>, just type the command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ build_directory/src/SpM.out -i param.in
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ build_directory/src/SpM.out param.in
 </pre></div>
 </div>
 </div>
 <div class="section" id="results">
-<h2>2.4. Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.4. </span>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>Results are stored as ordinary text format in <code class="docutils literal notranslate"><span class="pre">output</span></code> directory.
 See <a class="reference internal" href="outputfile.html#outputfiles"><span class="std std-ref">Output files</span></a> for details of each file.</p>
 </div>
 <div class="section" id="plot">
-<h2>2.5. Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.5. </span>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
 <p>User can generate graphs either in EPS format or in PDF format using gnuplot.
 Move into directory <code class="docutils literal notranslate"><span class="pre">output</span></code>, and type</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/*</span>
@@ -144,41 +149,66 @@ Next, move into directory <code class="docutils literal notranslate"><span class
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">path_to_SpM</span><span class="o">/</span><span class="n">samples</span><span class="o">/</span><span class="n">plt</span><span class="o">/</span><span class="n">lambda_opt</span><span class="o">/*</span>
 </pre></div>
 </div>
-<p>Detailed results for the optimal value of <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> are then plotted.
+<p>Detailed results for the optimal value of <img class="math" src="../_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/> are then plotted.
 Again, the option <code class="docutils literal notranslate"><span class="pre">flag_pdf=1</span></code> may be put to obtain PDF files.</p>
 <p>Let us look at some graphs below.</p>
 <ul>
-<li><p class="first"><em>spectrum.eps</em></p>
+<li><p><em>spectrum.eps</em></p>
 <blockquote>
-<div><p>The final result for the spectrum <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> is given in the file <code class="docutils literal notranslate"><span class="pre">output/spectrum.eps</span></code>.</p>
+<div><p>The final result for the spectrum <img class="math" src="../_images/math/d785a6c9abcdb146b923be73cde3c1b13ef6112a.png" alt="\rho(\omega)"/> is given in the file <code class="docutils literal notranslate"><span class="pre">output/spectrum.eps</span></code>.</p>
 <img alt="../_images/spectrum.jpg" src="../_images/spectrum.jpg" />
 <p>The red line shows the computed spectrum, and the blue line shows the exact spectrum, which is provided in the file <code class="docutils literal notranslate"><span class="pre">Gtau.in.dos</span></code> (not output of the <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program).</p>
 </div></blockquote>
 </li>
-<li><p class="first"><em>find_lambda_opt.eps</em></p>
+<li><p><em>find_lambda_opt.eps</em></p>
 <blockquote>
-<div><p>User should check how the regularization parameter <img class="math" src="../_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> is determined and whether the choice is reasonable.
+<div><p>User should check how the regularization parameter <img class="math" src="../_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/> is determined and whether the choice is reasonable.
 Loot at the file <code class="docutils literal notranslate"><span class="pre">output/find_lambda_opt.eps</span></code></p>
 <img alt="../_images/find_lambda_opt.jpg" src="../_images/find_lambda_opt.jpg" />
-<p>The peak position gives the optimal choice <img class="math" src="../_images/math/85c913e5997c47b58a8a2ce9ecac21612aeee15b.png" alt="\lambda_{\rm opt}=10^{-1.8}"/>.
+<p>The peak position gives the optimal choice <img class="math" src="../_images/math/2b5da52779733b1c0c2d4b9e58da422cff7e9549.png" alt="\lambda_{\rm opt}=10^{-1.8}"/>.
 If the peak is not clear, the choice might not be reasonable. In this case, accuracy of the input should be improved.</p>
 </div></blockquote>
 </li>
-<li><p class="first"><em>y_sv-log.eps</em></p>
+<li><p><em>y_sv-log.eps</em></p>
 <blockquote>
 <div><p>One can see how much information in the input data is used for constructing the spectrum.
 See the file <code class="docutils literal notranslate"><span class="pre">output/lambda_opt/y_sv-log.eps</span></code></p>
 <img alt="../_images/y_sv-log.jpg" src="../_images/y_sv-log.jpg" />
-<p>The light blue points show the input data <img class="math" src="../_images/math/50c5e67e5e093ef5d995560386cea9511bde7f33.png" alt="G'_l"/> transformed into the SVD basis, and red circles are data used in computing <img class="math" src="../_images/math/b147153e026a1d013217d1f1cf8a5e039971806e.png" alt="\rho(\omega)"/> above.
-The blue points show, for comparison, the exact <img class="math" src="../_images/math/50c5e67e5e093ef5d995560386cea9511bde7f33.png" alt="G'_l"/> without noise, which is provided in the file <code class="docutils literal notranslate"><span class="pre">Gtau.in.sv_basis</span></code> (not output of the <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program).</p>
+<p>The light blue points show the input data <img class="math" src="../_images/math/7731d880fc13db25db6d138125b8f50cebf253dc.png" alt="G'_l"/> transformed into the SVD basis, and red circles are data used in computing <img class="math" src="../_images/math/d785a6c9abcdb146b923be73cde3c1b13ef6112a.png" alt="\rho(\omega)"/> above.
+The blue points show, for comparison, the exact <img class="math" src="../_images/math/7731d880fc13db25db6d138125b8f50cebf253dc.png" alt="G'_l"/> without noise, which is provided in the file <code class="docutils literal notranslate"><span class="pre">Gtau.in.sv_basis</span></code> (not output of the <code class="docutils literal notranslate"><span class="pre">SpM</span></code> program).</p>
 </div></blockquote>
 </li>
 </ul>
 </div>
 </div>
+<div class="section" id="bosonic-system">
+<h2><span class="section-number">2.2. </span>Bosonic system<a class="headerlink" href="#bosonic-system" title="Permalink to this headline">¶</a></h2>
+<p>Sample files are available at <code class="docutils literal notranslate"><span class="pre">samples/boson</span></code>.</p>
+<p>Users can deal with a bosonic system by only changing <code class="docutils literal notranslate"><span class="pre">statistics</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">&quot;boson&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">&quot;fermion&quot;</span></code> in the parameter file.</p>
+</div>
+<div class="section" id="spm-pade-method">
+<h2><span class="section-number">2.3. </span>SpM-Pade method<a class="headerlink" href="#spm-pade-method" title="Permalink to this headline">¶</a></h2>
+<p>Sample files are available at <code class="docutils literal notranslate"><span class="pre">samples/fermion_twopeak</span></code>.</p>
+<p>The SpM-Pade method is another SpM AC method, where unphysical oscillation in the SpM spectrum is reduced by using spectra reconstructed by the Pade AC method.</p>
+<p>The cost function is</p>
+<div class="math">
+<p><img src="../_images/math/4b41fc119dc6cd09d3ad9ad842795ee2a1e06bb6.png" alt="L_\text{SpM-Pade}(\boldsymbol{\rho}) = L_\text{SpM}(\boldsymbol{\rho}) + \frac{\eta}{2} \sum_i w_i \left(\rho(\omega_i) - \rho^\text{Pade}(\omega_i)\right)^2,"/></p>
+</div><p>where</p>
+<div class="math">
+<p><img src="../_images/math/b6af8709c5bd18dd7bf03ea11243debeefc4966c.png" alt="w_i = \left(1.0 + \left(\frac{\sigma^\text{Pade}(\omega_i)}{\rho^\text{Pade}(\omega_i)}\right)^2\right)^{-1}"/></p>
+</div><p>and <img class="math" src="../_images/math/2c3e01c5110cff344f2937ba2ba3f8dfc205612c.png" alt="\rho^\text{Pade}(\omega_i)"/> and <img class="math" src="../_images/math/c1f3685c39e83d7b65dcd24187c7e248df35fbb9.png" alt="\sigma^\text{Pade}(\omega_i)"/> are the expectation value and standard deviation of the spectrum reconstructed by the Pade AC method from <code class="docutils literal notranslate"><span class="pre">NSamplePade</span></code> Green’s functions with independent Gaussian noise.
+The strength of the Gaussian noise is specified by <code class="docutils literal notranslate"><span class="pre">g_sigma</span></code> or the pair of <code class="docutils literal notranslate"><span class="pre">filein_Gsigma</span></code> and <code class="docutils literal notranslate"><span class="pre">column_sigma</span></code> parameters (see <a class="reference internal" href="inputfile.html#inputfiles"><span class="std std-ref">Input files</span></a> for details).
+The coefficient of the Pade weight, <img class="math" src="../_images/math/3c7e3932712a51dcc2e971bff709e7c4f1327ae4.png" alt="eta"/>, is specified by the <code class="docutils literal notranslate"><span class="pre">PadeEta</span></code> parameter.
+If <code class="docutils literal notranslate"><span class="pre">PadeEta</span> <span class="pre">=</span> <span class="pre">0</span></code>, the original SpM method will be used.</p>
+<img alt="../_images/spectrum_spmpade.png" src="../_images/spectrum_spmpade.png" />
+<p>The blue curve and red curve show the spectrum reconstructed by the SpM method (<img class="math" src="../_images/math/e3b3dabdf6117d99d4d0704507be54f8f69faae4.png" alt="\eta=0"/>) and the SpM-Pade method (<img class="math" src="../_images/math/c2426dc2abc877bfafbc4ea35ef11fd065d77147.png" alt="\eta=1"/>), respectively.
+The black dashed curve shows the exact spectrum.</p>
+</div>
+</div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -201,11 +231,9 @@ The blue points show, for comparison, the exact <img class="math" src="../_image
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">1. How to install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#script">2.1. Script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#make-input-files">2.2. Make input files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#run-spm">2.3. Run SpM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#results">2.4. Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plot">2.5. Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fermionic-system">2.1. Fermionic system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bosonic-system">2.2. Bosonic system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spm-pade-method">2.3. SpM-Pade method</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="algorithm.html">3. Algorithm</a></li>
@@ -218,33 +246,39 @@ The blue points show, for comparison, the exact <img class="math" src="../_image
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="install.html" title="previous chapter">1. How to install</a></li>
-      <li>Next: <a href="algorithm.html" title="next chapter">3. Algorithm</a></li>
+      <li>Previous: <a href="install.html" title="previous chapter"><span class="section-number">1. </span>How to install</a></li>
+      <li>Next: <a href="algorithm.html" title="next chapter"><span class="section-number">3. </span>Algorithm</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/docs/tutorials.rst.txt"

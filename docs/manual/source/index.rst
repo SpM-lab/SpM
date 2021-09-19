@@ -15,13 +15,26 @@ License
 --------------
 This package is distributed under GNU General Public License version 3 (GPL v3).
 
-We kindly ask you to cite the article
+When you publish a publication that includes results obtained using this package,
+we kindly ask you to cite the following articles
 
-    J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
-    "*Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data*"
-    `Phys. Rev. E 95, 061302(R) (2017) <https://doi.org/10.1103/PhysRevE.95.061302>`_.
+- SpM method
 
-in publications that includes results obtained using this package.
+   J. Otsuki, M. Ohzeki, H. Shinaoka, K. Yoshimi,
+   "*Sparse modeling approach to analytical continuation of imaginary-time quantum Monte Carlo data*"
+   `Phys. Rev. E 95, 061302(R) (2017) <https://doi.org/10.1103/PhysRevE.95.061302>`_.
+
+- SpM package
+
+   K. Yoshimi, J. Otsuki, Y. Motoyama, M. Ohzeki, and H. Shinaoka,
+   "*SpM: Sparse modeling tool for analytic continuation of imaginary-time Green’s function*"
+   `Comput. Phys. Commun. 244, 319-323 (2019) <https://www.sciencedirect.com/science/article/abs/pii/S0010465519302103>`_.
+
+- SpM-Pade method (if you use)
+
+   Y. Motoyama, K. Yoshimi, and J. Otsuki,
+   "*Robust analytic continuation combining the advantages of the sparse modeling approach and Pade approximation*",
+   arXiv:2109.XXXXX.
 
 
 Contents

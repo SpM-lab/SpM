@@ -5,6 +5,6 @@ nsamples = 20
 k_fold = 2
 [file]
 work_dir = "input"
+path_to_job = "base"
 [job]
-cmd = ["SpM.out"]
-path_to_job = ["./SpM.out"]
+cmd = ["./SpM.out", "param.in"]

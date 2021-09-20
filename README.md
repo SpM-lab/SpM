@@ -22,7 +22,7 @@ in publications that include results obtained using this package.
 * The article about this package
     * K. Yoshimi, J. Otsuki, Y. Motoyama, M. Ohzeki, and H. Shinaoka, "SpM: Sparse modeling tool for analytic continuation of imaginary-time Green's function" [Comput. Phys. Commun. 244, 319-323 (2019)](https://www.sciencedirect.com/science/article/pii/S0010465519302103).
 * The article about the SpM-Pade method (please cite if you use)
-    * Y. Motoyama, K. Yoshimi, and J. Otsuki, "Robust analytic continuation combining the advantages of the sparse modeling approach and Pade approximation" arXiv:2109.XXXXX
+    * Y. Motoyama, K. Yoshimi, and J. Otsuki, "Robust analytic continuation combining the advantages of the sparse modeling approach and Pade approximation" [arXiv:2109.08370](https://arxiv.org/abs/2109.08370)
 
 ## Authors
 

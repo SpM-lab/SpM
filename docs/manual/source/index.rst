@@ -34,7 +34,7 @@ we kindly ask you to cite the following articles
 
    Y. Motoyama, K. Yoshimi, and J. Otsuki,
    "*Robust analytic continuation combining the advantages of the sparse modeling approach and Pade approximation*",
-   arXiv:2109.XXXXX.
+   [arXiv:2109.08370](https://arxiv.org/abs/2109.08370).
 
 
 Contents

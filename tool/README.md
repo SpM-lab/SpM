@@ -10,6 +10,8 @@ The configuration of this directory is shown below.
 └── calc_cv_score.py    # Calculating score
 ```
 
+Sample files are located in ``samples/tool/cv``.
+
 ## Usage
 
 ### Making datasets for Cross-Validation
@@ -45,7 +47,7 @@ Parameters of the input file for `wrapper_cv_Gtau.py` is explained below.
   - cmd
     - type: list
     - Description: Command of executing SpM in working directory.  
-      ex.) \["./SpM.out"\], \["sh", "./spm.sh"\], \["qsub", "./spm.sh"\]
+      ex.) \["./SpM.out", "param.in" \], \["sh", "./spm.sh"\], \["qsub", "./spm.sh"\]
   - path_to_job
     - type: str
       - Description: Path to base script or execution file.

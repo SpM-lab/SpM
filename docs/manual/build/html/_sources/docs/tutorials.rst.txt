@@ -206,6 +206,10 @@ The strength of the Gaussian noise is specified by ``g_sigma`` or the pair of ``
 The coefficient of the Pade weight, :math:`eta`, is specified by the ``PadeEta`` parameter.
 If ``PadeEta = 0``, the original SpM method will be used.
 
+``param_spm.in`` and ``param_spmpade.in`` are input files for the SpM (:math:`\eta=0`) and SpM-Pade (:math:`\eta=1`) method, respectively.
+Note that optimal :math:`\lambda` for the SpM and SpM-Pade differ, and hence users may need to change the range of :math:`lambda` (``lambdalogbegin`` and ``lambdalogend``).
+The following figure shows the result:
+
 .. image:: figs/spectrum_spmpade.png
 
 The blue curve and red curve show the spectrum reconstructed by the SpM method (:math:`\eta=0`) and the SpM-Pade method (:math:`\eta=1`), respectively.

@@ -4,15 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Tutorials &#8212; SpM 2.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Algorithm" href="algorithm.html" />
@@ -33,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <section id="tutorials">
+  <div class="section" id="tutorials">
 <span id="id1"></span><h1><span class="section-number">2. </span>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
 <p>Sample data are provided both for fermionic and bosonic cases:</p>
 <blockquote>
@@ -43,10 +43,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">samples/boson</span></code>  # a sample for bosonic spectrum</p></li>
 </ul>
 </div></blockquote>
-<section id="fermionic-system">
+<div class="section" id="fermionic-system">
 <h2><span class="section-number">2.1. </span>Fermionic system<a class="headerlink" href="#fermionic-system" title="Permalink to this headline">¶</a></h2>
 <p>Here, an explanation is given for the fermionic case (<code class="docutils literal notranslate"><span class="pre">samples/fermion</span></code>).</p>
-<section id="script">
+<div class="section" id="script">
 <h3><span class="section-number">2.1.1. </span>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h3>
 <p>User can execute all the steps explained below using a single script file <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>.
 Edit some variables in the top of the script (explained later) and then run the script by</p>
@@ -64,8 +64,8 @@ There are some parameters to control the behavior of the script;</p>
 </pre></div>
 </div>
 <p>The fist one must be modified, at least, before running.</p>
-</section>
-<section id="make-input-files">
+</div>
+<div class="section" id="make-input-files">
 <h3><span class="section-number">2.1.2. </span>Make input files<a class="headerlink" href="#make-input-files" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p>Green’s function</p>
@@ -120,20 +120,20 @@ For details of each parameter and further optional parameters, see <a class="ref
 </div></blockquote>
 </li>
 </ol>
-</section>
-<section id="run-spm">
+</div>
+<div class="section" id="run-spm">
 <h3><span class="section-number">2.1.3. </span>Run SpM<a class="headerlink" href="#run-spm" title="Permalink to this headline">¶</a></h3>
 <p>In the directory <code class="docutils literal notranslate"><span class="pre">samples/fermion/</span></code>, just type the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ build_directory/src/SpM.out param.in
 </pre></div>
 </div>
-</section>
-<section id="results">
+</div>
+<div class="section" id="results">
 <h3><span class="section-number">2.1.4. </span>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>Results are stored as ordinary text format in <code class="docutils literal notranslate"><span class="pre">output</span></code> directory.
 See <a class="reference internal" href="outputfile.html#outputfiles"><span class="std std-ref">Output files</span></a> for details of each file.</p>
-</section>
-<section id="plot">
+</div>
+<div class="section" id="plot">
 <h3><span class="section-number">2.1.5. </span>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
 <p>User can generate graphs either in EPS format or in PDF format using gnuplot.
 Move into directory <code class="docutils literal notranslate"><span class="pre">output</span></code>, and type</p>
@@ -179,14 +179,14 @@ The blue points show, for comparison, the exact <img class="math" src="../_image
 </div></blockquote>
 </li>
 </ul>
-</section>
-</section>
-<section id="bosonic-system">
+</div>
+</div>
+<div class="section" id="bosonic-system">
 <h2><span class="section-number">2.2. </span>Bosonic system<a class="headerlink" href="#bosonic-system" title="Permalink to this headline">¶</a></h2>
 <p>Sample files are available at <code class="docutils literal notranslate"><span class="pre">samples/boson</span></code>.</p>
 <p>Users can deal with a bosonic system by only changing <code class="docutils literal notranslate"><span class="pre">statistics</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">&quot;boson&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">&quot;fermion&quot;</span></code> in the parameter file.</p>
-</section>
-<section id="spm-pade-method">
+</div>
+<div class="section" id="spm-pade-method">
 <h2><span class="section-number">2.3. </span>SpM-Pade method<a class="headerlink" href="#spm-pade-method" title="Permalink to this headline">¶</a></h2>
 <p>Sample files are available at <code class="docutils literal notranslate"><span class="pre">samples/fermion_twopeak</span></code>.</p>
 <p>The SpM-Pade method is another SpM AC method, where unphysical oscillation in the SpM spectrum is reduced by using spectra reconstructed by the Pade AC method.</p>
@@ -200,11 +200,14 @@ The blue points show, for comparison, the exact <img class="math" src="../_image
 The strength of the Gaussian noise is specified by <code class="docutils literal notranslate"><span class="pre">g_sigma</span></code> or the pair of <code class="docutils literal notranslate"><span class="pre">filein_Gsigma</span></code> and <code class="docutils literal notranslate"><span class="pre">column_sigma</span></code> parameters (see <a class="reference internal" href="inputfile.html#inputfiles"><span class="std std-ref">Input files</span></a> for details).
 The coefficient of the Pade weight, <img class="math" src="../_images/math/3c7e3932712a51dcc2e971bff709e7c4f1327ae4.png" alt="eta"/>, is specified by the <code class="docutils literal notranslate"><span class="pre">PadeEta</span></code> parameter.
 If <code class="docutils literal notranslate"><span class="pre">PadeEta</span> <span class="pre">=</span> <span class="pre">0</span></code>, the original SpM method will be used.</p>
+<p><code class="docutils literal notranslate"><span class="pre">param_spm.in</span></code> and <code class="docutils literal notranslate"><span class="pre">param_spmpade.in</span></code> are input files for the SpM (<img class="math" src="../_images/math/e3b3dabdf6117d99d4d0704507be54f8f69faae4.png" alt="\eta=0"/>) and SpM-Pade (<img class="math" src="../_images/math/c2426dc2abc877bfafbc4ea35ef11fd065d77147.png" alt="\eta=1"/>) method, respectively.
+Note that optimal <img class="math" src="../_images/math/cefc603e5658facb747581f9567192993f21c7ab.png" alt="\lambda"/> for the SpM and SpM-Pade differ, and hence users may need to change the range of <img class="math" src="../_images/math/41dd526e33441fb01806df1a6ec9af6187fa5f21.png" alt="lambda"/> (<code class="docutils literal notranslate"><span class="pre">lambdalogbegin</span></code> and <code class="docutils literal notranslate"><span class="pre">lambdalogend</span></code>).
+The following figure shows the result:</p>
 <img alt="../_images/spectrum_spmpade.png" src="../_images/spectrum_spmpade.png" />
 <p>The blue curve and red curve show the spectrum reconstructed by the SpM method (<img class="math" src="../_images/math/e3b3dabdf6117d99d4d0704507be54f8f69faae4.png" alt="\eta=0"/>) and the SpM-Pade method (<img class="math" src="../_images/math/c2426dc2abc877bfafbc4ea35ef11fd065d77147.png" alt="\eta=1"/>), respectively.
 The black dashed curve shows the exact spectrum.</p>
-</section>
-</section>
+</div>
+</div>
 
 
           </div>
@@ -277,7 +280,7 @@ The black dashed curve shows the exact spectrum.</p>
       &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

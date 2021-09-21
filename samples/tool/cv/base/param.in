@@ -1,0 +1,15 @@
+# INPUT/OUTPUT
+statistics="fermion"
+beta=100
+filein_G="G_train.in"
+column=1  
+fileout_spec="spectrum.dat"
+# OMEGA
+Nomega=1001
+omegamin=-4
+omegamax=4
+# ADMM
+lambdalogbegin=0
+lambdalogend=-6
+tolerance=1e-10
+maxiteration=10000

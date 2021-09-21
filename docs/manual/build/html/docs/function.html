@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>4. Calculation flow &#8212; SpM 1.0.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Calculation flow &#8212; SpM 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Input files" href="inputfile.html" />
@@ -29,13 +29,15 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="calculation-flow">
-<h1>4. Calculation flow<a class="headerlink" href="#calculation-flow" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Calculation flow<a class="headerlink" href="#calculation-flow" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, the calculation flow in SpM is shown.</p>
 <div class="section" id="overview-of-calculation-flow">
-<h2>4.1. Overview of calculation flow<a class="headerlink" href="#overview-of-calculation-flow" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Overview of calculation flow<a class="headerlink" href="#overview-of-calculation-flow" title="Permalink to this headline">¶</a></h2>
 <p>The main function for SpM is defined in G2spectrum.cpp
 and the calculation is done by following procedures.</p>
 <div><svg height="120" viewBox="0 0 640 120" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -65,7 +67,7 @@ and the calculation is done by following procedures.</p>
 </svg>
 </div>
 <ol class="arabic">
-<li><p class="first">Set initial condition</p>
+<li><p>Set initial condition</p>
 <div><svg height="120" viewBox="0 0 640 120" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
@@ -91,12 +93,12 @@ and the calculation is done by following procedures.</p>
 </svg>
 </div>
 <ul class="simple">
-<li>Read parameters (ReadParam function in set_initial.cpp).</li>
-<li>Read Gtau (read_Gtau function in G2spectrum.cpp).</li>
-<li>Make a kernel (mesh_linear, mesh_log and MakeKernelLinear functions in kernel.cpp).</li>
+<li><p>Read parameters (ReadParam function in set_initial.cpp).</p></li>
+<li><p>Read Gtau (read_Gtau function in G2spectrum.cpp).</p></li>
+<li><p>Make a kernel (mesh_linear, mesh_log and MakeKernelLinear functions in kernel.cpp).</p></li>
 </ul>
 </li>
-<li><p class="first">Solve equation</p>
+<li><p>Solve equation</p>
 <div><svg height="120" viewBox="0 0 640 120" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
@@ -123,24 +125,25 @@ and the calculation is done by following procedures.</p>
 </svg>
 </div>
 <ul class="simple">
-<li>Set parameters (SetParameters and SetFlags functions in spm_core.cpp).</li>
-<li>Solve equation by ADMM method (SolveEquation function in spm_core.cpp).</li>
-<li>Get results (GetSpectrum and GetResults functions in spm_core.cpp)</li>
+<li><p>Set parameters (SetParameters and SetFlags functions in spm_core.cpp).</p></li>
+<li><p>Solve equation by ADMM method (SolveEquation function in spm_core.cpp).</p></li>
+<li><p>Get results (GetSpectrum and GetResults functions in spm_core.cpp)</p></li>
 </ul>
 </li>
-<li><p class="first">Output results</p>
+<li><p>Output results</p>
 <p>This procedure is directly implemented in G2spectrum.cpp.</p>
 </li>
 </ol>
 </div>
 <div class="section" id="sparse-modeling-procedure">
-<h2>4.2. Sparse modeling procedure<a class="headerlink" href="#sparse-modeling-procedure" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Sparse modeling procedure<a class="headerlink" href="#sparse-modeling-procedure" title="Permalink to this headline">¶</a></h2>
 <p>to be updated…</p>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -177,33 +180,39 @@ and the calculation is done by following procedures.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="algorithm.html" title="previous chapter">3. Algorithm</a></li>
-      <li>Next: <a href="inputfile.html" title="next chapter">5. Input files</a></li>
+      <li>Previous: <a href="algorithm.html" title="previous chapter"><span class="section-number">3. </span>Algorithm</a></li>
+      <li>Next: <a href="inputfile.html" title="next chapter"><span class="section-number">5. </span>Input files</a></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Junya Otsuki, Kazuyoshi Yoshimi, Hiroshi Shinaoka.
+      &copy;2017-, Junya Otsuki, Kazuyoshi Yoshimi, Yuichi Motoyama, Hiroshi Shinaoka.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/docs/function.rst.txt"

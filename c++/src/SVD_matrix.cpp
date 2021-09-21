@@ -36,6 +36,16 @@ void SVD_matrix::OutputSVD(std::string _file_SVD) {
 	fclose(fp);
 	printf(" | '%s'\n", file_SVD.c_str());
 
+  {
+    fp = fopen("Vt.dat", "w");
+    for (int i=0; i<S_temp.l; ++i){
+      for (int j=0; j<S_temp.l; ++j){
+        fprintf(fp, "%d %d %.15e\n", i, j, VT_temp(i,j));
+      }
+    }
+    fclose(fp);
+  }
+
 }
 
 ///
@@ -100,14 +110,15 @@ void SVD_matrix::print_basis(std::string _file_U, std::string _file_V, int N) {
 	{  // U matrix
 		FILE *fp = fopen(file_U.c_str(), "w");
 		int m = U.m;
-		if (U.n < N) {
-			N = U.n;
-		}
+    int UN = min(U.n, N);
 		for (int i = 0; i < m; i++) {
-			fprintf(fp, "%d", i);
-			for (int j = 0; j < N; j++) fprintf(fp, " %.5e", U(i, j));
+			// fprintf(fp, "%d", i);
+			for (int j = 0; j < UN; j++){
+        // fprintf(fp, " %.15e", U(i, j));
+        fprintf(fp, "%d %d  %.15e\n", i, j, U(i, j));
 			// CPPL::dcovector u(U.col(j));
 			// for(int i=0; i<m; i++)  fprintf(fp, "%d %.5e\n", i, u(i));
+      }
 			fprintf(fp, "\n");
 		}
 		fclose(fp);
@@ -116,11 +127,15 @@ void SVD_matrix::print_basis(std::string _file_U, std::string _file_V, int N) {
 	{  // V matrix
 		FILE *fp = fopen(file_V.c_str(), "w");
 		int m = VT.n;
+    int VN = min(VT.n, N);
 		for (int i = 0; i < m; i++) {
-			fprintf(fp, "%d", i);
-			for (int j = 0; j < N; j++) fprintf(fp, " %.5e", VT(j, i));
+			// fprintf(fp, "%d", i);
+			for (int j = 0; j < VN; j++){
+        // fprintf(fp, " %.15e", VT(j, i));
+        fprintf(fp, "%d %d %.15e", i, j, VT(j, i));
 			// CPPL::dcovector u(U.col(j));
 			// for(int i=0; i<m; i++)  fprintf(fp, "%d %.5e\n", i, u(i));
+      }
 			fprintf(fp, "\n");
 		}
 		fclose(fp);

@@ -40,10 +40,10 @@ public:
     void rearrange_col(std::vector<int> &);  // rearrange column of A (actaully VT)
     void print_basis(std::string _file_U, std::string _file_V, int);
 
-    CPPL::dcovector transform_x2sv(const CPPL::dcovector &);  // V^t * x  (to original basis)
-    CPPL::dcovector transform_y2sv(const CPPL::dcovector &);  // U^t * y  (to original basis)
-    CPPL::dcovector transform_sv2x(const CPPL::dcovector &);  // V * x'  (to SV basis)
-    CPPL::dcovector transform_sv2y(const CPPL::dcovector &);  // U * y'  (to SV basis)
+    CPPL::dcovector transform_x2sv(const CPPL::dcovector &);  // V^t * x  (to SV basis)
+    CPPL::dcovector transform_y2sv(const CPPL::dcovector &);  // U^t * y  (to SV basis)
+    CPPL::dcovector transform_sv2x(const CPPL::dcovector &);  // V * x'  (to original basis)
+    CPPL::dcovector transform_sv2y(const CPPL::dcovector &);  // U * y'  (to original basis)
     void OutputSVD(std::string _file_SVD);
 private:
     CPPL::dcovector S_temp;

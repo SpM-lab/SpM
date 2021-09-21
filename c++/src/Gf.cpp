@@ -7,11 +7,6 @@ const complex<double> IMAG = complex<double>(0, 1.);
 
 void Gf::set_Gtau(const std::vector<double> &G_tau, const statistics stat, const double beta, const double tail)
 {
-    if( stat == BOSON ){
-        // TODO
-        cout << "BOSON not yet implemented" << endl;
-        exit(0);
-    }
     gtau = G_tau;  // copy
     N = G_tau.size();
     this->stat = stat;
@@ -25,17 +20,28 @@ void Gf::set_Gtau(const std::vector<double> &G_tau, const statistics stat, const
 // initialize by G(iw_n). n=[0:N/2)
 void Gf::set_Giw(const std::vector< std::complex<double> > &G_iw, const statistics stat, const double beta, const double tail)
 {
-    if( stat == BOSON ){
-        // TODO
-        cout << "BOSON not yet implemented" << endl;
-        exit(0);
-    }
-    giw = G_iw;  // copy
-    N = G_iw.size()*2;
     this->stat = stat;
     this->beta = beta;
     this->tail = tail;
 
+    if(stat == FERMION){
+        int n = G_iw.size();
+        N = 2*n;
+        giw.resize(N);
+        for(int i=0; i<n; ++i){
+            giw[i] = G_iw[i];
+            giw[N-i-1] = conj(G_iw[i]);
+        }
+    }else{ // BOSON
+        int n = G_iw.size();
+        N = 2*n-1;
+        giw.resize(N);
+        giw[0] = G_iw[0];
+        for(int i=1; i<n; ++i){
+            giw[i] = G_iw[i];
+            giw[N-i] = conj(G_iw[i]);
+        }
+    }
     gtau.clear();
     flag_pade = false;
 }
@@ -43,13 +49,14 @@ void Gf::set_Giw(const std::vector< std::complex<double> > &G_iw, const statisti
 void Gf::get_Gtau(std::vector<double> &G_tau)
 {
     if( gtau.empty() )  compute_iw2tau();
-    G_tau = gtau;  // copy
+    G_tau.assign(gtau.begin(), gtau.end());
 }
 
 void Gf::get_Giw(std::vector< std::complex<double> > &G_iw)
 {
     if( giw.empty() )  compute_tau2iw();
-    G_iw = giw;  // copy
+    int n = (stat==FERMION ? N/2 : N/2+1 );
+    G_iw.assign(giw.begin(), giw.begin()+n);
 }
 
 // void get_Gomega(std::vector< std::complex<double> > &G_omega, const double omega_min, const double omega_max, const int n)
@@ -62,10 +69,16 @@ std::complex<double> Gf::Gomega(const double omega)
     if( !flag_pade ){
         if( giw.empty() )  compute_tau2iw();
 
-        vector< complex<double> > matsubara(N);
-        // TODO: boson
-        for(int i=0; i<N; i++)  matsubara[i] = double(2*i+1) * M_PI / beta * IMAG;
-        pade.init(matsubara, giw);
+        int n = N/2;
+        if(isodd(N)) ++n;
+        vector< complex<double> > matsubara(n);
+        vector< complex<double> > Giw(n);
+        int offset = stat==BOSON?0:1;
+        for(int i=0; i<n; i++){
+            matsubara[i] = (2*i+offset) * M_PI / beta * IMAG;
+            Giw[i] = giw[i];
+        }
+        pade.init(matsubara, Giw);
         flag_pade = true;
     }
     return pade.eval(omega);
@@ -82,7 +95,7 @@ void Gf::compute_tau2iw()
         fft_fermion_tau2iw(gtau, giw, beta, tail);
     }
     else{
-        // TODO: BOSON
+        fft_boson_tau2iw(gtau, giw, beta, tail);
     }
 }
 void Gf::compute_iw2tau()
@@ -91,6 +104,6 @@ void Gf::compute_iw2tau()
         fft_fermion_iw2tau(gtau, giw, beta, tail);
     }
     else{
-        // TODO: BOSON
+        fft_boson_iw2tau(gtau, giw, beta, tail);
     }
 }

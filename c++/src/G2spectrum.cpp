@@ -143,26 +143,16 @@ static vector<double> operator*(CPPL::dgematrix &mat, vector<double> &vec) {
 int main(int argc, char *argv[]) {
   SetInitial setInitial;
   int iret = 0;
-  if (argc > 1) {
-    if (strcmp(argv[1], "-i") == 0) {
-      if (argc != 3) iret = -1;
-      else {
-        if (setInitial.ReadParam(argv[2]) == false) {
-          exit(-1);
-        }
-      }
-    } else {
-      if (setInitial.InputFromArgs(argc, argv) == false) {
-        exit(-1);
-      }
-    }
-  } else iret = -1;
-
-  if (iret != 0) {
-    std::cout << "too few arguments." << std::endl;
-    exit(-1);
+  if(argc !=2){
+      std::cout << "input file \""<<argv[1]<<"\" does not exist." << std::endl;
+      exit(-1);
   }
-
+  else{
+      if (setInitial.ReadParam(argv[1]) == false) {
+          std::cout << "fail to read input file \""<<argv[1]<<"\"." << std::endl;
+          exit(-1);
+      }
+  }
   setInitial.PrintInfo();
 
   std::string outputDir = "./output/";
@@ -177,12 +167,32 @@ int main(int argc, char *argv[]) {
   vector<type_gtau> Gtau_samples;  // for cross validation
   vector<type_gtau> Gtau_rest;  // for cross validation
   if (!flags.validation) {
-    Gtau = read_Gtau(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col);
-  } else {  // cross validation
-    read_Gtau_postfix(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col, Gtau_samples);
-    printf("size=%lu\n", Gtau_samples.size());
-    Gtau = average(Gtau_samples);
-    for (unsigned i = 0; i < Gtau_samples.size(); i++) Gtau_rest.push_back(average_rest(Gtau_samples, i));
+      Gtau = read_Gtau(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col);
+  } else {
+      // cross validation
+      // For Obuchi-Kabashima method
+      Gtau = read_Gtau(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col);
+
+      //read_Gtau_postfix(setInitial.fileInfo.filein_G.c_str(), setInitial.fileInfo.col, Gtau_samples);
+      //printf("size=%lu\n", Gtau_samples.size());
+      //Gtau = average(Gtau_samples);
+      //for (unsigned i = 0; i < Gtau_samples.size(); i++) Gtau_rest.push_back(average_rest(Gtau_samples, i));
+  }
+
+  type_gtau Gtau_sigma;
+  if(setInitial.GetParam().pade.eta != 0.0){
+    if(!std::isfinite(setInitial.calcInfo.sigma)){
+      if(setInitial.fileInfo.colsigma < 0){
+        printf("Neither G_sigma nor column_sigma is set.\n");
+        exit(-1);
+      }
+      Gtau_sigma = read_Gtau(setInitial.fileInfo.filein_Gsigma.c_str(),
+                                       setInitial.fileInfo.colsigma);
+    }else{
+      Gtau_sigma.resize(Gtau.size(), setInitial.calcInfo.sigma);
+    }
+  }else{
+    Gtau_sigma.resize(Gtau.size(), 0.0);
   }
 
   Kernel kernel;
@@ -228,6 +238,7 @@ int main(int argc, char *argv[]) {
   printf("\nConstructing kernel matrix...\n");
   vector<vector<double> > A;
   vector<double> vmse, vmse_full, l1_norm, valid;
+  vector<int> l0_norm;
   int errinfo = 0;
 
   //TODO: Make Kernel should be treated as a private function
@@ -238,7 +249,7 @@ int main(int argc, char *argv[]) {
 
   printf("\nSolving the equation...\n");
   int l_valid;
-  errinfo = spm_core.SolveEquation(statistics, beta, A, Gtau, lambda, omega);
+  errinfo = spm_core.SolveEquation(statistics, beta, A, Gtau, Gtau_sigma, lambda, omega);
   if (errinfo != 0) {
     return errinfo;
   }
@@ -247,14 +258,33 @@ int main(int argc, char *argv[]) {
 
   vector<double> spec;
   spm_core.GetSpectrum(spec);
-  spm_core.GetResults(vmse, vmse_full, l1_norm, valid);
+  if (statistics == "boson"){
+      for(int i = 0; i < omega.size(); i++){
+          double x = exp(fabs(omega[i])*beta);
+          double factor = (1.0 - x)/ (1.0 + x);
+          if(fabs(omega[i]) < 1e-15) factor = beta/2.0;
+          else{
+              if (omega[i] > 0) factor *= -1.0;
+              factor /= omega[i];
+          }
+          spec[i] *= factor;
+      }
+  }
+  spm_core.GetResults(vmse, vmse_full, l0_norm, l1_norm, valid);
   //---------------------------------------------------------
   // Save spectrum
   {
     FILE *fp = fopen((outputDir + setInitial.fileInfo.fileout_spec).c_str(), "w");
     fprintf(fp, "# lambda=%.3e  (l=%d)\n", lambda[l_valid], l_valid);
-    for (int i = 0; i < setInitial.omegaInfo.NW; i++) {
-      fprintf(fp, "%.5e %.5e\n", omega[i], spec[i] / d_omega);
+    if (statistics == "fermion") {
+        for (int i = 0; i < setInitial.omegaInfo.NW; i++) {
+            fprintf(fp, "%.5e %.5e\n", omega[i], spec[i] / d_omega);
+        }
+    }
+    else{
+        for (int i = 0; i < setInitial.omegaInfo.NW; i++) {
+            fprintf(fp, "%.5e %.5e %.5e\n", omega[i], spec[i]*omega[i] / d_omega, spec[i] / d_omega);
+        }
     }
     fclose(fp);
     printf("'%s'\n", setInitial.fileInfo.fileout_spec.c_str());
@@ -266,7 +296,7 @@ int main(int argc, char *argv[]) {
     string fileout_lambda("lambda_dep.dat");
     FILE *fp = fopen((outputDir + fileout_lambda).c_str(), "w");
     for (unsigned l = 0; l < lambda.size(); l++) {
-      fprintf(fp, "%.5e %.5e %.5e %.5e %.5e\n", lambda[l], vmse[l], vmse_full[l], l1_norm[l], valid[l]);
+      fprintf(fp, "%.5e %.5e %.5e %d %.5e %.5e\n", lambda[l], vmse[l], vmse_full[l], l0_norm[l], l1_norm[l], valid[l]);
     }
     fclose(fp);
     printf("'%s'\n", fileout_lambda.c_str());

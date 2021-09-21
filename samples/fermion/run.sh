@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # =========================
-file_exe="../SpM.out"
+file_exe="../../build/c++/src/SpM.out"
 dir_plt="../plt"
 plot_level=1  # 0: no plot, 1: plot major data, 2: plot all data
 eps_or_pdf='eps'  # 'eps' or 'pdf' (epstopdf is required)
@@ -17,7 +17,7 @@ abs_plt=$(cd $dir_plt; pwd)  # get full path
 
 # RUN
 echo "### Running..."
-$file_exe -i param.in
+$file_exe param.in
 
 # PLOT
 [ $eps_or_pdf = 'pdf' ] && opt="-e flag_pdf=1"  # set flag to generate pdf

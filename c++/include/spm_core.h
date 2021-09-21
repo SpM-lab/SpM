@@ -39,6 +39,8 @@ private:
 		std::vector<double> omega;
 		std::vector<admm_result> result;
 		std::vector<admm_info> info;
+        std::string StatisticsType;
+        double beta;
 
 		double integrate(std::vector<double> &y, double width);
 
@@ -66,7 +68,8 @@ public:
 
 		void GetSpectrum(std::vector<double> &_spectrum);
 
-		void GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full, std::vector<double> &_vl1_norm,
+		void GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full,
+										std::vector<int> &_vl0_norm, std::vector<double> &_vl1_norm,
 										std::vector<double> &_valid);
 
 		int SolveEquation(
@@ -74,15 +77,19 @@ public:
 						double _Beta,
 						std::vector<std::vector<double> > &_AIn,
 						std::vector<double> &_Gtau,
-            std::vector<double> &_lambda,
-            std::vector<double> &_omega);
+						std::vector<double> &_Gtau_error,
+						std::vector<double> &_lambda,
+						std::vector<double> &_omega);
 
 		int SolveEquationCore(
 						std::vector<std::vector<double> > &_AIn,
 						std::vector<double> &_Gtau,
 						std::vector<double> &_omega,
-            std::vector<double> &_lambda,
-						const double _sum_G
+						std::vector<double> &_omega_coeff,
+						std::vector<double> &_lambda,
+						const double _sum_G,
+						std::vector<double> &_ref_rho,
+						std::vector<double> &_ref_coeff
 		);
 };
 

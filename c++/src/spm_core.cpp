@@ -14,9 +14,14 @@
 /* You should have received a copy of the GNU General Public License */
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <stdio.h>
+#include <fstream> // for debug
 #include <spm_core.h>
 #include "common.h"
+#include <Gf.h>
 #include <cassert>
+#include <cmath>
+
+#include <random>
 
 double SPM_Core::integrate(std::vector<double> &y, double width) {
   long unsigned int n = y.size();
@@ -75,33 +80,140 @@ int SPM_Core::SolveEquation(
         double _Beta,
         std::vector<std::vector<double> > &_AIn,
         std::vector<double> &_Gtau,
+        std::vector<double> &_Gtau_error,
         std::vector<double> &_lambda,
         std::vector<double> &_omega) {
+
+  this->StatisticsType = _StatisticsType;
+  this->beta = _Beta;
   std::vector<double> y = _Gtau;  // input
-  if (_StatisticsType == "fermion") {
+  if (this->StatisticsType == "fermion") {
     for (unsigned int i = 0; i < y.size(); i++) {
       y[i] *= -1.0;
     }
   }
+  std::vector<double> _omega_coeff(_omega);
   double sum_G;
-  if (_StatisticsType == "fermion") {
+  if (this->StatisticsType == "fermion") {
     sum_G = -_Gtau[0] - _Gtau[_Gtau.size() - 1];
+    std::fill(_omega_coeff.begin(), _omega_coeff.end(), 1.0);
   } else if (_StatisticsType == "boson") {
-    sum_G = integrate(_Gtau, _Beta);
+    sum_G = _Gtau[0] + _Gtau[_Gtau.size() - 1];
+    const size_t nw = _omega_coeff.size();
+    for(size_t iw = 0; iw < nw; iw++){
+      const double bw = _Beta * _omega[iw];
+      if(bw > 0.0){
+        _omega_coeff[iw] = -std::expm1(-bw) / (1.0 + std::exp(-bw));
+      }else{
+        _omega_coeff[iw] = std::expm1(bw) / (1.0 + std::exp(bw));
+      }
+    }
   } else {
     std::cerr << "Error: StatisticsType must be fermion or boson." << std::endl;
     return -1;
   }
 
-  return SolveEquationCore(_AIn, y, _omega, _lambda, sum_G);
+  std::vector<double> rho_ref(_omega.size());
+  std::vector<double> rho_ref_weight(_omega.size());
+  std::vector<double> rhopade(_omega.size());
+
+  // Pade from G(tau)
+  {
+    std::vector<double> gt2(_Gtau.begin(), _Gtau.end()-1);
+    Gf gf;
+    if(_StatisticsType=="fermion"){
+      // The tail (4th argument) is not used in SpM
+      gf.set_Gtau(gt2, Gf::FERMION, _Beta, 1.0);
+    }else{
+      // The tail (4th argument) is not used in SpM
+      for(int i=0; i<gt2.size(); ++i){
+        gt2[i] *= -1.0;
+      }
+      gf.set_Gtau(gt2, Gf::BOSON, _Beta, 0.0);
+    }
+
+    for(int i=0; i<_omega.size(); ++i){
+      rhopade[i] = gf.rho(_omega[i]);
+    }
+  }
+
+  if(param.pade.eta != 0.0){
+    // Pade from G(tau) + Gaussian noise
+    std::mt19937 rng(137);
+    std::normal_distribution<> randn(0.0,1.0);
+    const int Nsample = param.pade.nsample;
+    for(int isample=0; isample<Nsample; ++isample){
+      std::vector<double> gt2(_Gtau.begin(), _Gtau.end()-1);
+      const int Nt = gt2.size();
+      for(int i=0; i<Nt; ++i){
+        gt2[i] += _Gtau_error[i]*randn(rng);
+      }
+      Gf gf;
+      if(_StatisticsType=="fermion"){
+        // The tail (4th argument) is not used in SpM
+        gf.set_Gtau(gt2, Gf::FERMION, _Beta, 1.0);
+      }else{
+        for(int i=0; i<gt2.size(); ++i){
+          gt2[i] *= -1.0;
+        }
+        // The tail (4th argument) is not used in SpM
+        gf.set_Gtau(gt2, Gf::BOSON, _Beta, 0.0);
+      }
+      for(int i=0; i<_omega.size(); ++i){
+        double r = gf.rho(_omega[i]);
+        rho_ref[i] += r;
+        rho_ref_weight[i] += r*r;
+      }
+    }
+  }
+
+  const double dw = _omega[1] - _omega[0];
+
+  FILE *fp = fopen(("./output/" + param.pade.filename).c_str(), "w");
+  if(param.pade.eta == 0.0){
+    for(int i=0; i<_omega.size(); ++i){
+      std::fprintf(fp, "%.15lf %.15lf\n", _omega[i], rhopade[i]);
+    }
+  }else{
+    const int Nsample = param.pade.nsample;
+    for(int i=0; i<_omega.size(); ++i){
+      rho_ref_weight[i] -= rho_ref[i]*rho_ref[i]/Nsample;
+      rho_ref_weight[i] /= (Nsample-1); 
+      rho_ref[i] /= Nsample;
+      auto sigma = std::sqrt(rho_ref_weight[i]);
+
+      if(param.pade.eta < 0.0){
+        // constant weight
+        rho_ref_weight[i] = -param.pade.eta;
+      }else{
+        auto r = std::abs(sigma / rho_ref[i]);
+        rho_ref_weight[i] = param.pade.eta/(1.0+r*r);
+      }
+      std::fprintf(fp, "%.15lf %.15lf %.15lf %.15lf %.15lf\n",
+             _omega[i],
+             rhopade[i],
+             rho_ref[i],
+             sigma,
+             rho_ref_weight[i]
+             );
+      rho_ref[i] *= dw;
+    }
+  }
+  fclose(fp);
+
+  return SolveEquationCore(_AIn, y, _omega, _omega_coeff, _lambda, sum_G, rho_ref, rho_ref_weight);
 }
 
 int SPM_Core::SolveEquationCore(
         std::vector<std::vector<double> > &_AIn,
         std::vector<double> &_y,
         std::vector<double> &_omega,
+        std::vector<double> &_omega_coeff,
         std::vector<double> &_lambda,
-        const double _sum_G) {
+        const double _sum_G,
+        std::vector<double> &_rho_ref,
+        std::vector<double> &_rho_ref_weight
+        ) {
   SetKernel(_AIn);
   // Solve the equations
   lambda = _lambda;
@@ -134,7 +246,10 @@ int SPM_Core::SolveEquationCore(
 
     //core
     D.set_sumrule(_sum_G);
-    D.set_coef(lambda[l], param.admm.penalty, param.admm.penalty, flag_penalty_auto);
+
+    D.set_rho_ref(_rho_ref, _rho_ref_weight);
+    D.set_omega_coeff(_omega_coeff);
+    D.set_coef(lambda[l], param.admm.penalty, param.admm.penalty, param.admm.penalty, flag_penalty_auto);
     D.set_y(y);
     D.solve(param.admm.tolerance, param.admm.max_iter);
 
@@ -167,8 +282,27 @@ int SPM_Core::SolveEquationCore(
   // determine lambda
   param.lambda.lvalid = 0;
   if (flags.validation) {
-    param.lambda.lvalid = distance(valid.begin(),
-                                   min_element(valid.begin(), valid.end()));  // get position of the minimum element
+      std::vector<double> looc(param.lambda.Nl);
+      int M = D.get_svd_num();
+      char filename[64] = "find_lambda_opt_CV.dat";
+      FILE *fp = fopen((outputOrgDir + filename).c_str(), "w");
+      fprintf(fp, "# log10(lambda)  log10(E_LOCC) log10(lambda-E_LOCC) log10(E_LOCC-lambda) M S(lambda)\n");
+      for (int l = 0; l < param.lambda.Nl; l++){
+          int Slambda=info[l].l0_norm;
+          double x = M/static_cast<double>(M-Slambda);
+          looc[l] = info[l].mse*x*x;
+          fprintf(fp, " %.15e %.15e %.15e %.15e %d %d\n",
+                  log10(lambda[l]), log10(looc[l]),
+                  log10(lambda[l]-looc[l]), log10(looc[l]-lambda[l]),
+                  M, Slambda);
+      }
+      fclose(fp);
+      printf("'%s'\n", filename);
+
+      // get position of the minimum element
+      param.lambda.lvalid = std::distance(looc.begin(), std::min_element(looc.begin(), looc.end()));
+      valid.resize(lambda.size());
+      fill(valid.begin(), valid.end(), 0.);
   } else {
     std::vector<double> mse, diff, log_f;
     for (int l = 0; l < param.lambda.Nl; l++) mse.push_back(info[l].mse);
@@ -233,8 +367,7 @@ int SPM_Core::find_kink(std::vector<double> &x, std::vector<double> &y, std::vec
 }
 
 void SPM_Core::GetSpectrum(std::vector<double> &_spectrum) {
-  //_spectrum = result[param.lambda.lvalid].x;
-  if(flags.nonnegative==true) {
+  if(flags.nonnegative==true || flags.refrho ) {
     _spectrum = result[param.lambda.lvalid].z2;
   }
   else{
@@ -248,14 +381,17 @@ void SPM_Core::GetLambdaOpt(std::vector<double> &_lambda, int *_opt_l) {
 }
 
 void SPM_Core::GetResults(std::vector<double> &_vmse, std::vector<double> &_vmse_full,
-                          std::vector<double> &_vl1_norm, std::vector<double> &_valid) {
+                          std::vector<int> &_vl0_norm, std::vector<double> &_vl1_norm,
+                          std::vector<double> &_valid) {
   _vmse.resize(info.size());
   _vmse_full.resize(info.size());
+  _vl0_norm.resize(info.size());
   _vl1_norm.resize(info.size());
   _valid.resize(info.size());
   for (unsigned i = 0; i < info.size(); i++) {
     _vmse[i] = info[i].mse;
     _vmse_full[i] = info[i].mse_full;
+    _vl0_norm[i] = info[i].l0_norm;
     _vl1_norm[i] = info[i].l1_norm;
     _valid[i] = valid[i];
   }
@@ -269,7 +405,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   filename = prefix + "x_sv.dat";
   fp = fopen(filename.c_str(), "w");
   for (unsigned i = 0; i < r.xsv.size(); i++) {
-    fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i], r.z1sv[i], r.z2sv[i]);
+    fprintf(fp, "%d %.5e %.5e %.5e %.5e\n", i, r.xsv[i], r.z1sv[i], r.z2sv[i], r.z3sv[i]);
     // fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i]/dw, r.z1sv[i]/dw, r.z2sv[i]/dw);
     // fprintf(fp, "%d %.5e %.5e %.5e\n", i, r.xsv[i]/sqrt(dw), r.z1sv[i]/sqrt(dw), r.z2sv[i]/sqrt(dw));
   }
@@ -280,7 +416,7 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   filename = prefix + "x_tw.dat";
   fp = fopen(filename.c_str(), "w");
   for (unsigned i = 0; i < r.x.size(); i++) {
-    fprintf(fp, "%.5e %.5e %.5e %.5e\n", w[i], r.x[i] / dw, r.z1[i] / dw, r.z2[i] / dw);
+    fprintf(fp, "%.5e %.5e %.5e %.5e %.5e\n", w[i], r.x[i] / dw, r.z1[i] / dw, r.z2[i] / dw, r.z3[i] / dw);
   }
   fclose(fp);
   printf("'%s'\n", filename.c_str());
@@ -293,12 +429,11 @@ void SPM_Core::print_results_admm(admm_result &r, std::vector<double> w, double 
   }
   fclose(fp);
   printf("'%s'\n", filename.c_str());
-
   // y in tau-omega basis
   filename = prefix + "y_tw.dat";
   fp = fopen(filename.c_str(), "w");
   for (unsigned i = 0; i < r.y.size(); i++) {
-    fprintf(fp, "%.5e %.5e %.5e %.5e\n", static_cast<double>(i) / r.y.size(), r.y[i], r.y_recovered_x[i],
+    fprintf(fp, "%.5e %.5e %.5e %.5e\n", static_cast<double>(i) / (r.y.size()-1), r.y[i], r.y_recovered_x[i],
             r.y_recovered_z1[i]);
   }
   fclose(fp);

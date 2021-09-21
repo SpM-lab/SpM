@@ -23,57 +23,6 @@
 #include <iostream>
 #include <algorithm>
 
-template<class T>
-std::string SetInitial::argv_or_defaultvalue(int n, T value) {
-  std::stringstream ss;
-  ss << value;
-  if (argc > n) return vargv[n];
-  else return (ss.str());
-}
-
-
-bool SetInitial::InputFromArgs(int _argc, char *_argv[]) {
-  // init params
-  this->argc = _argc;
-  if (argc <= 7) {
-    printf("too few arguments\n");
-    return false;
-  }
-  vargv.resize(argc);
-  for (unsigned int i = 0; i < vargv.size(); i++) {
-    vargv[i] = _argv[i];
-  }
-
-  calcInfo.statistics = vargv[1];
-  calcInfo.beta = atof(vargv[2].c_str());
-  fileInfo.filein_G = vargv[3];
-  fileInfo.col = atoi(vargv[4].c_str());
-  fileInfo.fileout_spec = vargv[5];
-
-  omegaInfo.NW = atoi(vargv[6].c_str());
-  omegaInfo.omega_min = atof(vargv[7].c_str());
-  omegaInfo.omega_max = atof(vargv[8].c_str());
-
-  // The inputs above are mandatory
-  // The followings are optional
-  std::stringstream ss;
-  param.svd.sv_min = atof(argv_or_defaultvalue(9, param.svd.sv_min).c_str());
-
-  // string algorithm( argv_or_default(9, "oneshot") );
-  param.lambda.Nl = atoi(argv_or_defaultvalue(10, param.lambda.Nl).c_str());
-  param.lambda.lbegin = atof(argv_or_defaultvalue(11, param.lambda.lbegin).c_str());
-  param.lambda.lend = atof(argv_or_defaultvalue(12, param.lambda.lend).c_str());
-
-  param.admm.penalty = atof(argv_or_defaultvalue(13, param.admm.penalty).c_str());
-  param.admm.tolerance = atof(argv_or_defaultvalue(14, param.admm.tolerance).c_str());
-  param.admm.max_iter = atoi(argv_or_defaultvalue(15, param.admm.max_iter).c_str());
-  param.admm.flag_penalty_auto = param.admm.penalty < 0 ? true : false;
-  fileInfo.print_level = atoi(argv_or_defaultvalue(16, fileInfo.print_level).c_str());
-  fileInfo.output_interval=atoi(argv_or_defaultvalue(17, fileInfo.output_interval).c_str());
-  flags.validation = argv_or_defaultvalue(17, "y") == "y";
-  flags.nonnegative = argv_or_defaultvalue(18, "ON") == "ON";
-  return true;
-}
 
 void SetInitial::PrintInfo() {
   printf("\nParameters:\n");
@@ -81,7 +30,9 @@ void SetInitial::PrintInfo() {
   printf(" beta = %lf\n", calcInfo.beta);
   //printf(" filein_G = '%s' \n", fileInfo.filein_G.c_str(), fileInfo.col);
   printf(" filein_G = '%s' \n", fileInfo.filein_G.c_str());
+  printf(" filein_Gsigma = '%s' \n", fileInfo.filein_Gsigma.c_str());
   printf(" fileout_spec = '%s'\n", fileInfo.fileout_spec.c_str());
+  printf(" fileout_pade = '%s'\n", param.pade.filename.c_str());
 
   printf(" omega = [ %lf : %lf ] (%d points)\n", omegaInfo.omega_min, omegaInfo.omega_max, omegaInfo.NW);
 
@@ -98,6 +49,12 @@ void SetInitial::PrintInfo() {
   printf(" print_level = %d\n", fileInfo.print_level);
   printf(" OutputInterval = %d\n", fileInfo.output_interval);
   printf(" FlagNonNegative = %s\n", flags.nonnegative ? "ON": "OFF");
+
+  if (flags.refrho){
+    printf("\n SpM-Pade:\n");
+    printf(" PadeEta = %lf\n", param.pade.eta);
+    printf(" NSamplePade = %d\n", param.pade.nsample);
+  }
 
   if (flags.validation) {
     printf("\n CROSS VALIDATION\n");
@@ -153,9 +110,13 @@ void SetInitial::RegisterMap(std::string _keyword, std::string _value) {
 bool SetInitial::SetDefaultValue() {
   RegisterMap("Statistics", "");
   RegisterMap("beta", "");
+  RegisterMap("G_sigma", "Inf");
   RegisterMap("column", "");
+  RegisterMap("column_sigma", "-1");
   RegisterMap("filein_G", "");
+  RegisterMap("filein_G_sigma", "");
   RegisterMap("fileout_spec", "spectrum.out");
+  RegisterMap("fileout_pade", "pade.out");
   RegisterMap("NOmega", "");
   RegisterMap("OmegaMin", "");
   RegisterMap("OmegaMax", "");
@@ -172,6 +133,8 @@ bool SetInitial::SetDefaultValue() {
   RegisterMap("CrossValidation", "n");
   RegisterMap("OutputInterval", "1");
   RegisterMap("FlagNonNegative", "ON");
+  RegisterMap("PadeEta", "0.0");
+  RegisterMap("NSamplePade", "30");
 
   /*
   std::map<std::string, std::string>::iterator it;
@@ -251,10 +214,19 @@ void SetInitial::SetInputValue() {
   calcInfo.statistics = GetValue("Statistics");
   transform(calcInfo.statistics.begin(), calcInfo.statistics.end(), calcInfo.statistics.begin(), tolower);
   calcInfo.beta = std::stod(GetValue("beta"));
+  calcInfo.sigma = std::stod(GetValue("G_sigma"));
   fileInfo.col = std::stoi(GetValue("column"));
+  fileInfo.colsigma = std::stoi(GetValue("column_sigma"));
   fileInfo.filein_G = GetValue("filein_G");
   fileInfo.fileout_spec = GetValue("fileout_spec");
   fileInfo.output_interval = std::stoi(GetValue("OutputInterval"));
+
+  {
+    std::string buf = GetValue("filein_G_sigma");
+    if(buf==""){fileInfo.filein_Gsigma = fileInfo.filein_G;}
+    else{fileInfo.filein_Gsigma = buf;}
+  }
+
   omegaInfo.NW = std::stoi(GetValue("NOmega"));
   omegaInfo.omega_min = std::stod(GetValue("OmegaMin"));
   omegaInfo.omega_max = std::stod(GetValue("OmegaMax"));
@@ -290,6 +262,10 @@ void SetInitial::SetInputValue() {
   }
   */
 
+  param.pade.filename = GetValue("fileout_pade");
+  param.pade.nsample = std::stoi(GetValue("NSamplePade"));
+  param.pade.eta = std::stod(GetValue("PadeEta"));
+  flags.refrho = param.pade.eta != 0.0;
 
   if (param.lambda.Nl == 0) {
     if (fabs(param.lambda.dlambda) < pow(10.0, -12)) {

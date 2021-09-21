@@ -8,8 +8,24 @@
 Input files
 ===============================
 1. Parameter file (param.in)
-  
-The variables for which default value is not given are mandatory.
+
+  - The format of the parameter file is the "name = value" pair format.
+
+  - ``#`` means a comment. In other words, a ``#`` character and the subsequent part in a line will be ignored.
+
+  - A blank line is skipped.
+    
+  - The variables for which default value is not given are mandatory.
+
+.. code-block::
+
+   # character means comment
+
+   statistics = "fermion"  # stats.
+   beta = 100.0            # inv. temp.
+
+   ### continued ###
+
 
 * INPUT/OUTPUT
 
@@ -17,13 +33,13 @@ The variables for which default value is not given are mandatory.
      :header-rows: 1
      :widths: 1,1,2,4
 
-     Name, Type, Default value, Description
-     statistics, String, ---, Choose "fermion" or "boson".
-     beta, Double, ---, The inverse temperature
-     filein_G, String, Gtau.in, The name of an input file for Green's function.
-     column, Integer, 1, The column number where the values of G(tau) are stored in the filein_G file.
-     fileout_spec, String, spectrum.out, The name of output file of spectrum.
-       
+     Name,          Type,    Default value, Description
+     statistics,    String,  ---,           Choose "fermion" or "boson".
+     beta,          Double,  ---,           The inverse temperature
+     filein_G,      String,  Gtau.in,       The name of an input file for Green's function.
+     column,        Integer, 1,             The column number where the values of G(tau) are stored in the ``filein_G file``.
+     fileout_spec,  String,  spectrum.out,  The name of output file of spectrum.
+     fileout_pade,  String,  pade.out,      The name of output file of spectrum calculated by the Pade approximant.
 
      
 * OMEGA
@@ -65,6 +81,19 @@ The variables for which default value is not given are mandatory.
      tolerance, Double, 1e-6, The criteria of convergence.
      maxiteration, Integer,1000,	The maximum number of iterations.
      printlevel, Integer,2,	"0; minimum, 1; moderate, 2; verbose."
+
+* SpM-Pade
+
+  .. csv-table::
+     :header-rows: 1
+     :widths: 1,1,2,4
+
+     Name, Type, Default value, Description
+     PadeEta, Double, 0.0, The weight of the spectrum by the Pade approximant.
+     filein_Gsigma, String,  Gtau.in,       The name of input file for errors of Green's function.
+     column_sigma,  Integer, 1,             The column number where the errors of G(tau) are stored in the ``filein_Gsigma`` file.
+     g_sigma,       Double,  inf,           "The errors of G(tau). If this is inf (default value), the errors will be loaded from a file specified by ``filein_Gsigma``."
+     NSamplePade, Integer, 30, The number of random samples (with noise) will be used to calculate the expected value and the standard deviation  of the spectrum by the Pade approximant.
 
 2. Green's function (Gtau.in)
 

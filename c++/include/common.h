@@ -24,6 +24,7 @@ CPPL::dcovector vec2cppl_col(const std::vector<double> &);  // vector -> CPPL
 std::vector<double> cppl2vec(const CPPL::dcovector &);  // CPPL -> vector
 std::vector<double> cppl2vec(const CPPL::drovector &);  // CPPL -> vector
 
+int norm_l0(const CPPL::dcovector &);  // L0 norm
 double norm_l1(const CPPL::dcovector &);  // L1 norm
 double norm_l2(const CPPL::dcovector &);  // L2 norm
 double norm_l2_sq(const CPPL::dcovector &);  // square of L2 norm
@@ -38,6 +39,11 @@ CPPL::drovector drovector_all1(int n);  // return a rovector with elements all b
 
 CPPL::dcovector positive(const CPPL::dcovector &);  // set negative elements at zero
 CPPL::dgematrix positive(const CPPL::dgematrix &);
+
+// return (v + coeff*ref) / (1+coeff)
+CPPL::dcovector project_ref(const CPPL::dcovector &v,
+                            const std::vector<double> &ref,
+                            const std::vector<double> &coeff); 
 
 // return shrinked matrix
 CPPL::dgematrix low_rank_matrix(CPPL::dgematrix &mat, int m, int n);

@@ -10,10 +10,15 @@ Tutorials
 
 Sample data are provided both for fermionic and bosonic cases:
 
-    - ``samples/fermion``  # a sample for fermionic spectrum (data in the article)
+    - ``samples/fermion``  # a sample for fermionic spectrum (data in the SpM article)
+    - ``samples/fermion_twopeak``  # another sample for fermionic spectrum (data in the SpM-Pade article)
     - ``samples/boson``  # a sample for bosonic spectrum
 
-Here, an explanation is given for the fermionic case.
+
+Fermionic system
+~~~~~~~~~~~~~~~~~
+
+Here, an explanation is given for the fermionic case (``samples/fermion``).
 
 Script
 ----------------------------------
@@ -103,7 +108,7 @@ In the directory ``samples/fermion/``, just type the command
 
 ::
 
-    $ build_directory/src/SpM.out -i param.in
+    $ build_directory/src/SpM.out param.in
 
 Results
 -------
@@ -167,3 +172,45 @@ Let us look at some graphs below.
 
     The light blue points show the input data :math:`G'_l` transformed into the SVD basis, and red circles are data used in computing :math:`\rho(\omega)` above.
     The blue points show, for comparison, the exact :math:`G'_l` without noise, which is provided in the file ``Gtau.in.sv_basis`` (not output of the ``SpM`` program).
+
+
+Bosonic system
+~~~~~~~~~~~~~~~~~~~
+
+Sample files are available at ``samples/boson``.
+
+Users can deal with a bosonic system by only changing ``statistics`` parameter to ``"boson"`` from ``"fermion"`` in the parameter file.
+
+
+SpM-Pade method
+~~~~~~~~~~~~~~~~~
+
+Sample files are available at ``samples/fermion_twopeak``.
+
+The SpM-Pade method is another SpM AC method, where unphysical oscillation in the SpM spectrum is reduced by using spectra reconstructed by the Pade AC method.
+
+The cost function is
+
+.. math::
+
+   L_\text{SpM-Pade}(\boldsymbol{\rho}) = L_\text{SpM}(\boldsymbol{\rho}) + \frac{\eta}{2} \sum_i w_i \left(\rho(\omega_i) - \rho^\text{Pade}(\omega_i)\right)^2,
+
+where
+
+.. math:: 
+
+   w_i = \left(1.0 + \left(\frac{\sigma^\text{Pade}(\omega_i)}{\rho^\text{Pade}(\omega_i)}\right)^2\right)^{-1}
+
+and :math:`\rho^\text{Pade}(\omega_i)` and :math:`\sigma^\text{Pade}(\omega_i)` are the expectation value and standard deviation of the spectrum reconstructed by the Pade AC method from ``NSamplePade`` Green's functions with independent Gaussian noise.
+The strength of the Gaussian noise is specified by ``g_sigma`` or the pair of ``filein_Gsigma`` and ``column_sigma`` parameters (see :ref:`inputfiles` for details).
+The coefficient of the Pade weight, :math:`eta`, is specified by the ``PadeEta`` parameter.
+If ``PadeEta = 0``, the original SpM method will be used.
+
+``param_spm.in`` and ``param_spmpade.in`` are input files for the SpM (:math:`\eta=0`) and SpM-Pade (:math:`\eta=1`) method, respectively.
+Note that optimal :math:`\lambda` for the SpM and SpM-Pade differ, and hence users may need to change the range of :math:`lambda` (``lambdalogbegin`` and ``lambdalogend``).
+The following figure shows the result:
+
+.. image:: figs/spectrum_spmpade.png
+
+The blue curve and red curve show the spectrum reconstructed by the SpM method (:math:`\eta=0`) and the SpM-Pade method (:math:`\eta=1`), respectively.
+The black dashed curve shows the exact spectrum.

@@ -1,4 +1,3 @@
-
 #ifndef _GF_H
 #define _GF_H
 
@@ -39,7 +38,7 @@ public:
     double rho(const double omega);
 
 private:
-    int N;
+    int N; // == beta/dt
     double beta;
     double tail;
     statistics stat;

@@ -1,0 +1,10 @@
+[cond]
+cv_type = "LOO"
+nsamples = 20
+[param]
+k_fold = 2
+[file]
+work_dir = "input"
+path_to_job = "base"
+[job]
+cmd = ["./SpM.out", "param.in"]

@@ -6,6 +6,5 @@
 *.pdf
 *.eps
 cmake-build-*
-build
 *.idea
 .DS_Store

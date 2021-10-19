@@ -22,7 +22,7 @@ function(add_gtest test)
     endif(${ARGC} EQUAL 2)
 
     add_executable(${test} ${source} ${gtest_src})
-    target_link_libraries(${test} ${LINK_ALL})
+    target_link_libraries(${test} ${LINK_ALL} pthread)
     add_test(NAME ${test} COMMAND ${test} ${test_xml_output})
 endfunction(add_gtest)
 

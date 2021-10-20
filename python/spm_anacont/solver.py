@@ -2,7 +2,7 @@ import numpy as np
 import os
 import copy
 import subprocess
-
+import shutil
 
 default_spm_input_params = {
    # INPUT/OUTPUT
@@ -26,7 +26,7 @@ default_spm_input_params = {
 valid_kwargs = {
     'statistics': 'fermion',
     'beta': None,
-    'Nomega': None,
+    'Nomega': 1001,
     'omegamin': None,
     'omegamax':  None,
 }
@@ -39,15 +39,15 @@ class SpMSolver:
         self.stdout_err = None
 
         additional_params = copy.deepcopy(valid_kwargs)
-        for k, v in kwargs:
+        for k, v in kwargs.items():
             if k not in valid_kwargs.keys():
                 raise ValueError(f"Invalid key {k}!")
             additional_params[k] = v
 
         self.spm_input_params = copy.deepcopy(default_spm_input_params)
-        for k, v in additional_params:
+        for k, v in additional_params.items():
             if v is None:
-                raise RuntimeError("kward {k} must be set!")
+                raise RuntimeError(f"kward {k} must be set!")
             self.spm_input_params[k] = v
 
 
@@ -67,35 +67,38 @@ class SpMSolver:
         dir_org = os.getcwd()
         if os.path.exists(self.work_dir):
             if os.path.isdir(self.work_dir):
-                os.removedirs(self.work_dir)
+                shutil.rmtree(self.work_dir)
             else:
                 raise RuntimeError("Path {self.work_dir} is not a directory!")
 
-        try:
+        #try:
+            os.mkdir(self.work_dir)
             os.chdir(self.work_dir)
 
             with open('param.in', 'w') as f:
-                for k, v in self.spm_input_params:
+                for k, v in self.spm_input_params.items():
                     print(f'{k} = {v}', file=f)
 
             xs = np.linspace(0, 1, gtau.size)
             np.savetxt('gtau.in', np.vstack((xs, gtau)).T)
 
             commands = [self.exec_path, 'param.in']
-            return_code = subprocess.call(commands, stdout='output.txt', stderr=subprocess.STDOUT)
-            with open('output.txt') as f:
+            with open('output.txt', 'w') as f:
+                return_code = subprocess.call(
+                    commands, stdout=f, stderr=subprocess.STDOUT)
+            with open('output.txt', 'r') as f:
                 self.stdout_err = f.readlines()
 
             if return_code:
                 raise RuntimeError("Subprocess of SpM returned error!")
             
-            res = np.loadtxt('spectrum.dat')
+            res = np.loadtxt('output/spectrum.dat')
             # TODO: Load additional results
 
             os.chdir(dir_org)
 
             return res[:,1]
 
-        except Exception as e:
-            os.chdir(dir_org)
-            return e
+        #except Exception as e:
+            #os.chdir(dir_org)
+            #return e

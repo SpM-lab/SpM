@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 function(add_python_test test)
     add_test(NAME python_${test} COMMAND "${PYTHON_EXECUTABLE}" ${test}.py)
-    set_tests_properties(python_${test} PROPERTIES ENVIRONMENT "PYTHONPATH=${CMAKE_BINARY_DIR}/test")
+    set_tests_properties(python_${test} PROPERTIES ENVIRONMENT "PYTHONPATH=${CMAKE_BINARY_DIR}/test:$ENV{PYTHONPATH}")
 endfunction(add_python_test)
 
 find_package(PythonInterp REQUIRED)

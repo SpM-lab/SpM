@@ -1,5 +1,9 @@
 # SpM
 
+> Part of the [SpM-lab](https://spm-lab.github.io/) tools for imaginary-time Green's functions and analytic continuation.
+> Related: the [sparse-ir ecosystem](https://spm-lab.github.io/sparse-ir-doc/) (IR/DLR bases, sparse sampling) and the other
+> [analytic continuation tools](https://spm-lab.github.io/#analytic-continuation).
+
 Sparse Modeling tool for analytical continuation from the imaginary-time Green's function to real-requency spectral function.
 
 The algorithm is presented in the article
